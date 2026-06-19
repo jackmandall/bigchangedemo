@@ -2743,7 +2743,6 @@
     -webkit-overflow-scrolling: touch;
     background: var(--white);
     padding: 0;
-    padding-bottom: calc(20px + env(safe-area-inset-bottom));
     min-height: 0;
   }
   .book-modal .meetings-iframe-container { min-height: 640px; }
@@ -2751,24 +2750,26 @@
   body.book-modal-open { overflow: hidden; }
 
   @media (max-width: 720px) {
-    .book-modal { padding: 0; }
+    .book-modal {
+      padding: 12px;
+      /* Lift the whole dialog above Safari's floating URL pill */
+      padding-bottom: calc(110px + env(safe-area-inset-bottom));
+      align-items: flex-start;
+      padding-top: 12px;
+    }
     .book-modal-dialog {
       max-width: none;
-      max-height: 100vh; max-height: 100dvh;
-      height: 100vh; height: 100dvh;
-      border-radius: 0;
+      max-height: calc(100dvh - 130px - env(safe-area-inset-bottom));
+      height: auto;
+      border-radius: 14px;
     }
-    .book-modal-close { top: 10px; right: 10px; width: 32px; height: 32px; }
-    .book-modal-body {
-      /* Generous bottom buffer so HubSpot's Back/Confirm buttons clear iOS Safari's floating URL bar */
-      padding-bottom: calc(120px + env(safe-area-inset-bottom));
-    }
+    .book-modal-close { top: 8px; right: 8px; width: 32px; height: 32px; }
     .book-modal .meetings-iframe-container,
-    .book-modal .meetings-iframe-container iframe { min-height: 720px; }
+    .book-modal .meetings-iframe-container iframe { min-height: 580px; }
   }
   @media (max-width: 420px) {
     .book-modal .meetings-iframe-container,
-    .book-modal .meetings-iframe-container iframe { min-height: 780px; }
+    .book-modal .meetings-iframe-container iframe { min-height: 620px; }
   }
 </style>
 <script>
@@ -2793,10 +2794,39 @@
     if (lastFocus && typeof lastFocus.focus === 'function') { lastFocus.focus(); }
   }
 
-  // Any anchor pointing to #book opens the modal instead of scrolling
+  // Direct binding so the first tap always fires on iOS Safari, even after a scroll
+  function bindOpeners() {
+    var links = document.querySelectorAll('a[href="#book"]');
+    links.forEach(function(link){
+      if (link._bookBound) return;
+      link._bookBound = true;
+      link.style.touchAction = 'manipulation';
+      link.addEventListener('click', open);
+      // Touch fallback: fire on touchend if no significant movement happened
+      var startY = 0, startX = 0, moved = false;
+      link.addEventListener('touchstart', function(e){
+        var t = e.touches[0]; startY = t.clientY; startX = t.clientX; moved = false;
+      }, { passive: true });
+      link.addEventListener('touchmove', function(e){
+        var t = e.touches[0];
+        if (Math.abs(t.clientY - startY) > 8 || Math.abs(t.clientX - startX) > 8) moved = true;
+      }, { passive: true });
+      link.addEventListener('touchend', function(e){
+        if (moved) return;
+        if (modal.classList.contains('is-open')) return;
+        e.preventDefault();
+        open();
+      });
+    });
+  }
+  bindOpeners();
+  // Catch any dynamically added booking links later
+  if (window.MutationObserver) {
+    new MutationObserver(bindOpeners).observe(document.body, { childList: true, subtree: true });
+  }
+
+  // Delegated fallback for closing controls
   document.addEventListener('click', function(e){
-    var a = e.target.closest && e.target.closest('a[href="#book"]');
-    if (a) { open(e); return; }
     if (e.target.closest && e.target.closest('[data-book-close]')) { close(); }
   });
 
