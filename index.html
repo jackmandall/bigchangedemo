@@ -2744,7 +2744,6 @@
     overscroll-behavior: contain;
     background: var(--white);
     padding: 0;
-    padding-bottom: 50px;
     min-height: 0;
     /* GPU layer hint helps iOS Safari handle nested iframe scrolling reliably */
     transform: translateZ(0);
@@ -2797,6 +2796,17 @@
     document.body.classList.add('book-modal-open');
     var closeBtn = modal.querySelector('.book-modal-close');
     if (closeBtn) { setTimeout(function(){ closeBtn.focus(); }, 60); }
+    // Nudge HubSpot's embed to remeasure the iframe height now that we're visible.
+    // Several fires across the next ~0.7s catch slow inits and lazy postMessage handshakes.
+    [0, 80, 250, 600].forEach(function(delay){
+      setTimeout(function(){
+        try { window.dispatchEvent(new Event('resize')); } catch(_) {}
+        var ifr = modal.querySelector('.meetings-iframe-container iframe');
+        if (ifr && ifr.contentWindow) {
+          try { ifr.contentWindow.postMessage({ type: 'recalculateHeight' }, '*'); } catch(_) {}
+        }
+      }, delay);
+    });
   }
   function close() {
     modal.classList.remove('is-open');
