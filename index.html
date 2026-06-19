@@ -2752,24 +2752,23 @@
   @media (max-width: 720px) {
     .book-modal {
       padding: 12px;
-      /* Lift the whole dialog above Safari's floating URL pill */
-      padding-bottom: calc(110px + env(safe-area-inset-bottom));
-      align-items: flex-start;
-      padding-top: 12px;
+      align-items: center;
     }
     .book-modal-dialog {
       max-width: none;
-      max-height: calc(100dvh - 130px - env(safe-area-inset-bottom));
+      /* svh = smallest visible viewport (URL bar shown). Always fits within the safe area
+         no matter the Safari chrome state, so the Confirm button is never obscured. */
+      max-height: calc(100svh - 24px - env(safe-area-inset-bottom));
       height: auto;
       border-radius: 14px;
     }
     .book-modal-close { top: 8px; right: 8px; width: 32px; height: 32px; }
     .book-modal .meetings-iframe-container,
-    .book-modal .meetings-iframe-container iframe { min-height: 580px; }
+    .book-modal .meetings-iframe-container iframe { min-height: 540px; }
   }
   @media (max-width: 420px) {
     .book-modal .meetings-iframe-container,
-    .book-modal .meetings-iframe-container iframe { min-height: 620px; }
+    .book-modal .meetings-iframe-container iframe { min-height: 580px; }
   }
 </style>
 <script>
