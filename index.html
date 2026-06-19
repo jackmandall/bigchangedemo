@@ -2822,14 +2822,32 @@
     if (lastFocus && typeof lastFocus.focus === 'function') { lastFocus.focus(); }
   }
 
-  // Direct binding so the first tap always fires on iOS Safari, even after a scroll
+  // Use the embedded modal on desktop. On phones (narrow viewport or coarse pointer),
+  // skip the modal entirely and open HubSpot's own meeting page in a new tab — their
+  // page is built for mobile and avoids all the embed scroll quirks.
+  var BOOKING_URL = 'https://meetings.hubspot.com/jack-wilson9';
+  function isMobileBookingDevice() {
+    try {
+      if (window.matchMedia('(max-width: 720px)').matches) return true;
+      if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) return true;
+    } catch(_) {}
+    return false;
+  }
+  function handleBookingClick(e) {
+    if (isMobileBookingDevice()) {
+      if (e) { e.preventDefault(); }
+      window.open(BOOKING_URL, '_blank', 'noopener,noreferrer');
+      return;
+    }
+    open(e);
+  }
   function bindOpeners() {
     var links = document.querySelectorAll('a[href="#book"]');
     links.forEach(function(link){
       if (link._bookBound) return;
       link._bookBound = true;
       link.style.touchAction = 'manipulation';
-      link.addEventListener('click', open);
+      link.addEventListener('click', handleBookingClick);
       // Touch fallback: fire on touchend if no significant movement happened
       var startY = 0, startX = 0, moved = false;
       link.addEventListener('touchstart', function(e){
@@ -2843,7 +2861,7 @@
         if (moved) return;
         if (modal.classList.contains('is-open')) return;
         e.preventDefault();
-        open();
+        handleBookingClick();
       });
     });
   }
