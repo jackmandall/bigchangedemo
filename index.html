@@ -2743,7 +2743,7 @@
     -webkit-overflow-scrolling: touch;
     background: var(--white);
     padding: 0;
-    padding-bottom: env(safe-area-inset-bottom);
+    padding-bottom: calc(20px + env(safe-area-inset-bottom));
     min-height: 0;
   }
   .book-modal .meetings-iframe-container { min-height: 640px; }
@@ -2751,7 +2751,7 @@
   body.book-modal-open { overflow: hidden; }
 
   @media (max-width: 720px) {
-    .book-modal { padding: 0; padding-bottom: env(safe-area-inset-bottom); }
+    .book-modal { padding: 0; }
     .book-modal-dialog {
       max-width: none;
       max-height: 100vh; max-height: 100dvh;
@@ -2759,6 +2759,10 @@
       border-radius: 0;
     }
     .book-modal-close { top: 10px; right: 10px; width: 32px; height: 32px; }
+    .book-modal-body {
+      /* Generous bottom buffer so HubSpot's Back/Confirm buttons clear iOS Safari's floating URL bar */
+      padding-bottom: calc(120px + env(safe-area-inset-bottom));
+    }
     .book-modal .meetings-iframe-container,
     .book-modal .meetings-iframe-container iframe { min-height: 720px; }
   }
