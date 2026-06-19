@@ -2676,34 +2676,124 @@
 @media (max-width: 960px) { .demo-wrap { grid-template-columns: 1fr !important; gap: 40px !important; } }
 </style>
 
-<!-- BOOK: HubSpot meetings embed -->
-<section id="book" class="book-section" style="background:var(--mist);padding:80px 0;scroll-margin-top:80px;">
-  <div class="container">
-    <div class="section-head" style="text-align:center;">
-      <h2 class="section-title" style="margin-left:auto;margin-right:auto;">Pick a time that works for you.</h2>
-      <p class="section-lead" style="margin-left:auto;margin-right:auto;">Thirty minutes, straight into the diary. No back and forth, no forms, no sales pitch. Just a useful conversation about your operation.</p>
-    </div>
-    <div class="book-frame" style="max-width:1080px;margin:32px auto 0;background:var(--white);border:1px solid rgba(10,34,64,0.08);border-radius:20px;box-shadow:0 18px 40px rgba(10,34,64,0.08);padding:16px;">
+<!-- BOOK MODAL: HubSpot meetings embed as popup -->
+<div id="book" class="book-modal" role="dialog" aria-modal="true" aria-label="Book a demo" aria-hidden="true">
+  <div class="book-modal-backdrop" data-book-close></div>
+  <div class="book-modal-dialog" role="document">
+    <button type="button" class="book-modal-close" aria-label="Close" data-book-close>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <div class="book-modal-body">
       <!-- Start of Meetings Embed Script -->
-      <div class="meetings-iframe-container" data-src="https://meetings.hubspot.com/jack-wilson9?embed=true" style="min-height:680px;"></div>
+      <div class="meetings-iframe-container" data-src="https://meetings.hubspot.com/jack-wilson9?embed=true"></div>
       <script type="text/javascript" src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js"></script>
       <!-- End of Meetings Embed Script -->
     </div>
   </div>
-</section>
+</div>
 <style>
-  .book-section .meetings-iframe-container iframe { width: 100% !important; min-height: 680px; border: 0; display: block; }
+  .book-modal {
+    position: fixed; inset: 0; z-index: 1000;
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px;
+    opacity: 0; visibility: hidden; pointer-events: none;
+    transition: opacity 0.22s ease, visibility 0s linear 0.22s;
+  }
+  .book-modal.is-open {
+    opacity: 1; visibility: visible; pointer-events: auto;
+    transition: opacity 0.22s ease, visibility 0s linear 0s;
+  }
+  .book-modal-backdrop {
+    position: absolute; inset: 0;
+    background: rgba(10,34,64,0.55);
+    backdrop-filter: blur(6px);
+    cursor: pointer;
+  }
+  .book-modal-dialog {
+    position: relative;
+    width: 100%; max-width: 880px;
+    max-height: 92vh;
+    background: var(--white);
+    border-radius: 18px;
+    box-shadow: 0 32px 80px rgba(10,34,64,0.32);
+    display: flex; flex-direction: column;
+    overflow: hidden;
+    transform: translateY(12px) scale(0.98);
+    transition: transform 0.24s cubic-bezier(0.2,0.8,0.2,1);
+  }
+  .book-modal.is-open .book-modal-dialog { transform: translateY(0) scale(1); }
+  .book-modal-close {
+    position: absolute; top: 12px; right: 12px; z-index: 2;
+    width: 34px; height: 34px;
+    border: 1px solid rgba(10,34,64,0.1);
+    background: var(--white);
+    border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    color: var(--ink-soft);
+    transition: all 0.18s ease;
+    box-shadow: 0 2px 6px rgba(10,34,64,0.08);
+  }
+  .book-modal-close:hover { background: var(--mist); color: var(--ink); border-color: rgba(10,34,64,0.18); }
+  .book-modal-close:focus-visible { outline: 2px solid var(--energy-blue); outline-offset: 2px; }
+  .book-modal-body {
+    flex: 1 1 auto;
+    overflow: auto;
+    background: var(--white);
+    padding: 0;
+    min-height: 0;
+  }
+  .book-modal .meetings-iframe-container { min-height: 640px; }
+  .book-modal .meetings-iframe-container iframe { width: 100% !important; min-height: 640px; border: 0; display: block; }
+  body.book-modal-open { overflow: hidden; }
+
   @media (max-width: 720px) {
-    .book-section { padding: 56px 0 !important; }
-    .book-frame { padding: 6px !important; border-radius: 16px !important; margin-top: 24px !important; }
-    .book-section .meetings-iframe-container,
-    .book-section .meetings-iframe-container iframe { min-height: 760px; }
+    .book-modal { padding: 0; }
+    .book-modal-dialog { max-width: none; max-height: 100vh; height: 100vh; border-radius: 0; }
+    .book-modal-close { top: 10px; right: 10px; width: 32px; height: 32px; }
+    .book-modal .meetings-iframe-container,
+    .book-modal .meetings-iframe-container iframe { min-height: 720px; }
   }
   @media (max-width: 420px) {
-    .book-section .meetings-iframe-container,
-    .book-section .meetings-iframe-container iframe { min-height: 820px; }
+    .book-modal .meetings-iframe-container,
+    .book-modal .meetings-iframe-container iframe { min-height: 780px; }
   }
 </style>
+<script>
+(function(){
+  var modal = document.getElementById('book');
+  if (!modal) return;
+  var lastFocus = null;
+
+  function open(e) {
+    if (e) { e.preventDefault(); }
+    lastFocus = document.activeElement;
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('book-modal-open');
+    var closeBtn = modal.querySelector('.book-modal-close');
+    if (closeBtn) { setTimeout(function(){ closeBtn.focus(); }, 60); }
+  }
+  function close() {
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('book-modal-open');
+    if (lastFocus && typeof lastFocus.focus === 'function') { lastFocus.focus(); }
+  }
+
+  // Any anchor pointing to #book opens the modal instead of scrolling
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href="#book"]');
+    if (a) { open(e); return; }
+    if (e.target.closest && e.target.closest('[data-book-close]')) { close(); }
+  });
+
+  // ESC closes
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && modal.classList.contains('is-open')) { close(); }
+  });
+})();
+</script>
 
 <footer>
   <div class="container">
