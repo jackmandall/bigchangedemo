@@ -2695,7 +2695,7 @@
   .book-modal {
     position: fixed; inset: 0; z-index: 1000;
     display: flex; align-items: center; justify-content: center;
-    padding: 20px;
+    padding: 8px;
     opacity: 0; visibility: hidden; pointer-events: none;
     transition: opacity 0.22s ease, visibility 0s linear 0.22s;
   }
@@ -2712,10 +2712,10 @@
   .book-modal-dialog {
     position: relative;
     width: 100%; max-width: 880px;
-    max-height: 92vh;
-    max-height: 92dvh;
+    max-height: 96vh;
+    max-height: 96dvh;
     background: var(--white);
-    border-radius: 18px;
+    border-radius: 14px;
     box-shadow: 0 32px 80px rgba(10,34,64,0.32);
     display: flex; flex-direction: column;
     overflow: hidden;
@@ -2740,14 +2740,10 @@
   .book-modal-body {
     flex: 1 1 auto;
     overflow: auto;
-    -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
     background: var(--white);
     padding: 0;
-    padding-bottom: 50px;
     min-height: 0;
-    /* GPU layer hint helps iOS Safari handle nested iframe scrolling reliably */
-    transform: translateZ(0);
   }
   .book-modal .meetings-iframe-container { min-height: 640px; }
   .book-modal .meetings-iframe-container iframe { width: 100% !important; min-height: 640px; border: 0; display: block; }
