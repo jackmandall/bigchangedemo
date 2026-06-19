@@ -1404,7 +1404,7 @@
     </div>
     <div style="display:flex;gap:8px;align-items:center;">
       <a href="https://clients.bigchange.com/" target="_blank" rel="noopener" class="btn btn-ghost">Login</a>
-      <a href="https://meetings.hubspot.com/jack-wilson9" target="_blank" rel="noopener" class="btn btn-primary">Get demo <span class="btn-arrow">→</span></a>
+      <a href="#book" class="btn btn-primary">Get demo <span class="btn-arrow">→</span></a>
     </div>
   </div>
 </nav>
@@ -1420,7 +1420,7 @@
       </div>
       <p class="lead">Every disconnected tool your team uses is costing you money. BigChange replaces all of them with one AI powered platform, built for field service businesses that are done losing revenue to admin, chaos and systems that don't talk to each other.</p>
       <div class="hero-cta">
-        <a href="https://meetings.hubspot.com/jack-wilson9" target="_blank" rel="noopener" class="btn btn-primary btn-large">See it in action <span class="btn-arrow">→</span></a>
+        <a href="#book" class="btn btn-primary btn-large">See it in action <span class="btn-arrow">→</span></a>
         <button type="button" onclick="document.getElementById('outcomes').scrollIntoView({behavior:'smooth', block:'start'});" class="btn btn-ghost btn-large" style="font-family:inherit;cursor:pointer;">See the numbers</button>
       </div>
     </div>
@@ -1599,7 +1599,7 @@
     </div>
 
     <div class="feature-bottom-cta">
-      <a href="https://meetings.hubspot.com/jack-wilson9" target="_blank" rel="noopener" class="btn btn-primary">Get demo <span class="btn-arrow">→</span></a>
+      <a href="#book" class="btn btn-primary">Get demo <span class="btn-arrow">→</span></a>
       <a href="https://www.bigchange.com/features" target="_blank" rel="noopener" style="font-size:14px;font-weight:500;color:var(--ink-soft);text-decoration:none;align-self:center;">See full feature list &rarr;</a>
     </div>
   </div>
@@ -1881,7 +1881,7 @@
       </div>
       <div style="display:flex;flex-direction:column;align-items:flex-end;gap:10px;">
         <div style="font-size:14px;color:var(--ink-soft);">Don't see your trade?</div>
-        <a href="https://meetings.hubspot.com/jack-wilson9" target="_blank" rel="noopener" class="btn btn-primary">Talk to us <span class="btn-arrow">→</span></a>
+        <a href="#book" class="btn btn-primary">Talk to us <span class="btn-arrow">→</span></a>
       </div>
     </div>
 
@@ -2556,7 +2556,7 @@
     </div>
     <div style="text-align:center;margin-top:48px;">
       <p style="color:var(--ink-soft);margin-bottom:16px;">Still have a question that's specific to your operation?</p>
-      <a href="https://meetings.hubspot.com/jack-wilson9" target="_blank" rel="noopener" class="btn btn-primary">Ask it on a call <span class="btn-arrow">&rarr;</span></a>
+      <a href="#book" class="btn btn-primary">Ask it on a call <span class="btn-arrow">&rarr;</span></a>
     </div>
   </div>
 </section>
@@ -2617,7 +2617,7 @@
       <h2 class="section-title" style="color:var(--white);">Let's build your profit story.</h2>
         <p class="section-lead" style="color:rgba(255,255,255,0.7);">Thirty minutes with someone who actually understands field service. No generic walkthroughs, no slide decks. Your operation, your numbers, your ROI.</p>
         <div style="margin-top:32px;">
-          <a href="https://meetings.hubspot.com/jack-wilson9" target="_blank" rel="noopener" class="btn btn-primary btn-large" style="background:var(--white);color:var(--energy-blue);">Book your free demo <span class="btn-arrow" style="background:var(--energy-blue-light);color:var(--energy-blue);">→</span></a>
+          <a href="#book" class="btn btn-primary btn-large" style="background:var(--white);color:var(--energy-blue);">Book your free demo <span class="btn-arrow" style="background:var(--energy-blue-light);color:var(--energy-blue);">→</span></a>
         </div>
       </div>
 
@@ -2674,6 +2674,35 @@
 .demo-step h5 { font-size: 16px; font-weight: 700; margin-bottom: 6px; color: var(--white); }
 .demo-step p { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.5; }
 @media (max-width: 960px) { .demo-wrap { grid-template-columns: 1fr !important; gap: 40px !important; } }
+</style>
+
+<!-- BOOK: HubSpot meetings embed -->
+<section id="book" class="book-section" style="background:var(--mist);padding:80px 0;scroll-margin-top:80px;">
+  <div class="container">
+    <div class="section-head" style="text-align:center;">
+      <h2 class="section-title" style="margin-left:auto;margin-right:auto;">Pick a time that works for you.</h2>
+      <p class="section-lead" style="margin-left:auto;margin-right:auto;">Thirty minutes, straight into the diary. No back and forth, no forms, no sales pitch. Just a useful conversation about your operation.</p>
+    </div>
+    <div class="book-frame" style="max-width:1080px;margin:32px auto 0;background:var(--white);border:1px solid rgba(10,34,64,0.08);border-radius:20px;box-shadow:0 18px 40px rgba(10,34,64,0.08);padding:16px;">
+      <!-- Start of Meetings Embed Script -->
+      <div class="meetings-iframe-container" data-src="https://meetings.hubspot.com/jack-wilson9?embed=true" style="min-height:680px;"></div>
+      <script type="text/javascript" src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js"></script>
+      <!-- End of Meetings Embed Script -->
+    </div>
+  </div>
+</section>
+<style>
+  .book-section .meetings-iframe-container iframe { width: 100% !important; min-height: 680px; border: 0; display: block; }
+  @media (max-width: 720px) {
+    .book-section { padding: 56px 0 !important; }
+    .book-frame { padding: 6px !important; border-radius: 16px !important; margin-top: 24px !important; }
+    .book-section .meetings-iframe-container,
+    .book-section .meetings-iframe-container iframe { min-height: 760px; }
+  }
+  @media (max-width: 420px) {
+    .book-section .meetings-iframe-container,
+    .book-section .meetings-iframe-container iframe { min-height: 820px; }
+  }
 </style>
 
 <footer>
