@@ -2741,13 +2741,17 @@
     flex: 1 1 auto;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
     background: var(--white);
     padding: 0;
     min-height: 0;
+    /* GPU layer hint helps iOS Safari handle nested iframe scrolling reliably */
+    transform: translateZ(0);
   }
   .book-modal .meetings-iframe-container { min-height: 640px; }
   .book-modal .meetings-iframe-container iframe { width: 100% !important; min-height: 640px; border: 0; display: block; }
-  body.book-modal-open { overflow: hidden; }
+  /* Body scroll lock uses position:fixed (set via JS) — overflow:hidden breaks inner scroll on iOS */
+  body.book-modal-open { width: 100%; }
 
   @media (max-width: 720px) {
     .book-modal {
@@ -2777,9 +2781,16 @@
   if (!modal) return;
   var lastFocus = null;
 
+  var savedScrollY = 0;
   function open(e) {
     if (e) { e.preventDefault(); }
     lastFocus = document.activeElement;
+    // Lock background using position:fixed pattern (iOS-friendly, allows inner scroll)
+    savedScrollY = window.scrollY || window.pageYOffset || 0;
+    document.body.style.position = 'fixed';
+    document.body.style.top = '-' + savedScrollY + 'px';
+    document.body.style.left = '0';
+    document.body.style.right = '0';
     modal.classList.add('is-open');
     modal.setAttribute('aria-hidden', 'false');
     document.body.classList.add('book-modal-open');
@@ -2790,6 +2801,12 @@
     modal.classList.remove('is-open');
     modal.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('book-modal-open');
+    // Restore background scroll position
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+    window.scrollTo(0, savedScrollY);
     if (lastFocus && typeof lastFocus.focus === 'function') { lastFocus.focus(); }
   }
 
