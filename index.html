@@ -38,7 +38,7 @@
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
   section[id] { scroll-margin-top: 70px; }
 
   body {
@@ -46,6 +46,8 @@
     color: var(--ink);
     line-height: 1.6;
     background: var(--white);
+    overflow-x: hidden;
+    max-width: 100vw;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-size: 17px;
@@ -822,10 +824,12 @@
     .logos-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 18px !important; }
 
     /* Integrations */
-    .integrations-grid { grid-template-columns: 1fr !important; gap: 36px !important; }
-    .integrations-logos { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; }
-    .integration-logo { padding: 18px !important; aspect-ratio: 5/3 !important; }
-    .integration-logo img { max-width: 80% !important; max-height: 65% !important; }
+    .integrations-section { padding: 56px 0 !important; }
+    .integrations-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
+    .integrations-logos { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; max-width: 100% !important; }
+    .integration-logo { padding: 14px !important; aspect-ratio: 3/2 !important; border-radius: 12px !important; }
+    .integration-logo img { max-width: 70% !important; max-height: 55% !important; }
+    .integrations-section h2 { font-size: clamp(26px, 7vw, 34px) !important; }
 
     /* FAQ */
     details.faq-item summary { font-size: 16px !important; padding: 18px 0 !important; }
