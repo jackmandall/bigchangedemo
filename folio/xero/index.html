@@ -1054,7 +1054,7 @@
       <aside class="xero-side">
         <div>
           <div class="xs-eyebrow">In one line</div>
-          <p class="xs-pull">Two FSM systems posting different jobs cannot create the same invoice. Duplicates only happen if the same document is submitted twice on purpose.</p>
+          <p class="xs-pull">Two FSM systems posting different jobs cannot create the same invoice. Any duplicate risk comes from a single system retrying or misfiring, not from having two.</p>
         </div>
         <div class="xs-cite">Source: <a href="https://developer.xero.com/documentation/best-practices/data-integrity/managing-tokens" target="_blank" rel="noopener">Xero Developer, Managing Tokens and Data Integrity</a></div>
       </aside>
@@ -1091,6 +1091,10 @@
       <h3>Recommended safeguard</h3>
       <p>Use <b>distinct prefixes per system</b>. For example: <code style="background: rgba(10,34,64,.06); padding: 2px 8px; border-radius: 4px; font-family: monospace;">SYS1-INV-001</code> for FSM A and <code style="background: rgba(10,34,64,.06); padding: 2px 8px; border-radius: 4px; font-family: monospace;">SYS2-INV-001</code> for FSM B. Three benefits: (1) the source system is immediately obvious to anyone reading the ledger; (2) numbering sequences cannot theoretically collide; (3) reconciliation back to either FSM becomes a simple prefix filter. This is a configuration choice, not a Xero limitation.</p>
     </div>
+
+    <div class="next" style="margin-top: 24px; border-left: 4px solid var(--green); padding-left: 18px; background: rgba(40,226,137,.06); border-radius: 6px; padding-top: 14px; padding-bottom: 14px; padding-right: 18px;">
+      <h3 style="color: var(--navy); margin-top: 0;">How BigChange handles this in practice</h3>
+      <p>When BigChange raises an invoice into Xero, it does <b>not</b> set its own invoice number on the Xero side. BigChange lets <b>Xero</b> assign the next number in Xero's own sequence, then writes that number back into BigChange. The result: both systems show the same invoice number for the same document, and BigChange cannot create a duplicate in Xero because it never tries to claim a number; it always defers to whatever Xero gives it. The duplicate risk is removed at source on the BigChange side.</p>
   </div>
 </section>
 
