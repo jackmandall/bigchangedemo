@@ -981,8 +981,8 @@
     <div class="history-card">
       <div>
         <h3>What Xero says</h3>
-        <p>Per the Xero <a href="https://developer.xero.com/documentation/best-practices/data-integrity/managing-tokens" target="_blank" rel="noopener" style="color: var(--energy); border-bottom: 1px dotted var(--energy); text-decoration: none;">Managing Tokens &amp; Data Integrity documentation</a>, each Xero tenant has its own set of financial data, and transactions posted via the API are treated identically to those entered manually.</p>
-        <p><b>The key consequence:</b> because both FSM systems are posting <i>distinct</i> transactions from their own workflows, there is no mechanism by which two separate API connections would cause the same entry to be duplicated, unless the same document is intentionally submitted twice.</p>
+        <p>Per the Xero <a href="https://developer.xero.com/documentation/best-practices/data-integrity/managing-tokens" target="_blank" rel="noopener" style="color: var(--energy); border-bottom: 1px dotted var(--energy); text-decoration: none;">Managing Tokens and Data Integrity documentation</a>, each Xero tenant has its own set of financial data, and connections from different apps are handled independently. Per the <a href="https://developer.xero.com/documentation/api/accounting/invoices" target="_blank" rel="noopener" style="color: var(--energy); border-bottom: 1px dotted var(--energy); text-decoration: none;">Accounting API Invoices documentation</a>, each API call creates its own Invoice record in the standard Xero ledger.</p>
+        <p><b>The key consequence:</b> each API POST to <code style="background: rgba(10,34,64,.06); padding: 2px 6px; border-radius: 3px; font-family: monospace;">/Invoices</code> creates a distinct invoice in the Xero ledger. Because both FSM systems are posting <i>distinct</i> transactions from their own workflows, there is no mechanism by which two separate API connections would cause the same entry to be duplicated, unless the same document is intentionally submitted twice.</p>
         <p><b>Worked example.</b> FSM A raises Invoice 1042 against Customer Smith for an alarm service done on Monday. FSM B raises Invoice 7301 against Customer Jones for a CCTV install done on Tuesday. Both invoices are distinct documents for distinct work. Xero treats them as two valid invoices, both in the same ledger, with no relationship to each other beyond the shared organisation.</p>
         <p><b>What would cause a duplicate.</b> Manually re submitting a payload, or having both FSM systems incorrectly configured to issue invoices for the same job. Neither is an issue with dual integration itself; both are operational hygiene issues that exist in single FSM setups too.</p>
       </div>
@@ -1003,13 +1003,13 @@
     <div class="section-head">
       <div class="kicker">3. Invoice numbering</div>
       <h2>Invoice number uniqueness is enforced by Xero</h2>
-      <p>Direct from Xero's product ideas forum (confirmed by Xero) and Xero Central.</p>
+      <p>Direct from the Xero Accounting API documentation and Xero Central.</p>
     </div>
 
     <div class="history-card">
       <div>
         <h3>What Xero says</h3>
-        <p>Per Xero's <a href="https://productideas.xero.com/forums/967115-invoices-quotes/suggestions/45445666-invoice-settings-ability-to-create-multiple-numb" target="_blank" rel="noopener" style="color: var(--energy); border-bottom: 1px dotted var(--energy); text-decoration: none;">product ideas forum response (confirmed by Xero)</a>, Xero already has the capability to prevent identical invoice numbers being used more than once. A duplicate invoice number is <b>rejected with an error</b> rather than silently overwriting.</p>
+        <p>Per the official Xero <a href="https://developer.xero.com/documentation/api/accounting/invoices" target="_blank" rel="noopener" style="color: var(--energy); border-bottom: 1px dotted var(--energy); text-decoration: none;">Accounting API Invoices documentation</a>, customer invoice numbers must be unique. When the Xero API receives a duplicate invoice number on a new customer invoice it returns a <b><code style="background: rgba(10,34,64,.06); padding: 2px 6px; border-radius: 3px; font-family: monospace;">DuplicateInvoiceNumber</code> error</b> rather than silently overwriting.</p>
         <p>Per <a href="https://central.xero.com/s/article/Change-numbering-on-invoices-quotes" target="_blank" rel="noopener" style="color: var(--energy); border-bottom: 1px dotted var(--energy); text-decoration: none;">Xero Central: Change the transaction number sequence</a>, Xero's number sequencing assigns the next available number each time a new transaction is created, combining a fixed prefix with an increasing number component.</p>
         <p><b>What that means in practice.</b> If FSM A and FSM B independently tried to write the identical invoice number, Xero would block the second one outright. Your ledger cannot end up with two invoices sharing one number.</p>
       </div>
@@ -1018,7 +1018,7 @@
           <div class="xs-eyebrow">In one line</div>
           <p class="xs-pull">Xero blocks a duplicate invoice number at the point it is created. The ledger cannot end up with two invoices sharing one number.</p>
         </div>
-        <div class="xs-cite">Source: <a href="https://central.xero.com/s/article/Change-numbering-on-invoices-quotes" target="_blank" rel="noopener">Xero Central, transaction number sequencing</a></div>
+        <div class="xs-cite">Source: <a href="https://developer.xero.com/documentation/api/accounting/invoices" target="_blank" rel="noopener">Xero Developer, Accounting API Invoices</a></div>
       </aside>
     </div>
 
@@ -1042,7 +1042,7 @@
       <ol style="margin: 0; padding-left: 20px; line-height: 2; color: var(--charcoal); font-size: 15px;">
         <li><a href="https://developer.xero.com/documentation/guides/oauth2/tenants" target="_blank" rel="noopener" style="color: var(--energy); border-bottom: 1px dotted var(--energy); text-decoration: none;">Xero Developer &middot; Tenants documentation</a>: multiple apps connecting to one tenant.</li>
         <li><a href="https://developer.xero.com/documentation/best-practices/data-integrity/managing-tokens" target="_blank" rel="noopener" style="color: var(--energy); border-bottom: 1px dotted var(--energy); text-decoration: none;">Xero Developer &middot; Managing Tokens and Data Integrity</a>: API postings treated identically to manual entries.</li>
-        <li><a href="https://productideas.xero.com/forums/967115-invoices-quotes/suggestions/45445666-invoice-settings-ability-to-create-multiple-numb" target="_blank" rel="noopener" style="color: var(--energy); border-bottom: 1px dotted var(--energy); text-decoration: none;">Xero Product Ideas Forum &middot; invoice number uniqueness</a>: Xero rejects duplicate invoice numbers with an error.</li>
+        <li><a href="https://developer.xero.com/documentation/api/accounting/invoices" target="_blank" rel="noopener" style="color: var(--energy); border-bottom: 1px dotted var(--energy); text-decoration: none;">Xero Developer &middot; Accounting API Invoices</a>: customer invoice numbers must be unique; duplicates return a DuplicateInvoiceNumber error.</li>
         <li><a href="https://central.xero.com/s/article/Change-numbering-on-invoices-quotes" target="_blank" rel="noopener" style="color: var(--energy); border-bottom: 1px dotted var(--energy); text-decoration: none;">Xero Central &middot; Change the transaction number sequence</a>: number sequencing model (fixed prefix + increasing number).</li>
       </ol>
     </div>
