@@ -868,6 +868,14 @@
     color: var(--white);
     border-bottom-color: var(--white);
   }
+
+  /* Bottom line: 2 on top, 1 wide below, stacks on mobile */
+  .vp-grid-2col { grid-template-columns: 1fr 1fr; }
+  .vp-card-wide { grid-column: 1 / -1; }
+  @media (max-width: 760px) {
+    .vp-grid-2col { grid-template-columns: 1fr; }
+    .vp-card-wide { grid-column: auto; }
+  }
 </style>
 </head>
 <body>
@@ -923,7 +931,7 @@
       <p>The setup aligns with how Xero's API is designed to be used. There is no structural risk to the general ledger when two FSM systems post into the same Xero Instance, provided three simple conditions are met.</p>
     </div>
 
-    <div class="vp-grid" style="grid-template-columns: 1fr 1fr;">
+    <div class="vp-grid vp-grid-2col">
       <div class="vp-card accent">
         <span class="vp-tag">No double entry by design</span>
         <h3>Each system posts its own distinct transactions.</h3>
@@ -934,7 +942,7 @@
         <h3>Xero treats API postings identically to manual entries.</h3>
         <p>Both FSM systems contribute to one ledger using the same transaction model the finance team already understands. Distinct prefixes per system make it immediately obvious in the ledger which app raised which document.</p>
       </div>
-      <div class="vp-card accent" style="grid-column: 1 / -1;">
+      <div class="vp-card accent vp-card-wide">
         <span class="vp-tag">No structural data problems</span>
         <h3>Xero is built for multi source integration into a single tenant.</h3>
         <p>The Xero Tenants documentation explicitly supports multiple users and apps connecting to the same Xero Instance. Combining two FSM systems into one Xero Instance is the supported model, not a workaround.</p>
