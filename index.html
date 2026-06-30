@@ -7,7 +7,9 @@
 </script>
 <html lang="en-GB">
 <head>
-<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAADiUlEQVR4nO2bz4scRRTHP6+6ZpLZH5FAoqgIKnhQFDwET7nsIZB/YHPzash6EATxODN/gScPLnqX3T8iF0OCkqtgDrkoWQK6S4ib7MxUveehZ0O8zHYNm1Rp9xf61PPob33mdderX8IXv9yn6p1D1cCEVkgM54QYDjwiF6j8OhKAlrQfA+fBYuXBAhoMjUarCCAYwQMCMm+4tASAMW+ruNxWcqsDkNtAbnUAchvIrdYD8OkhZqdv4zSV1pWnA3Beyq2XDDQmRaQBEAeTx59CvIc4RywkG0QdIhH1HzJY+wEN1jQT0jPAnv7Mt1fuJce9DN24fZSanUt8A/prbO5UnH/XcXBf0+NfiCog4txqauASGaDK7rXI0IztS2UA2NyB3WuRrdvJflrfDXYAchvIrQ5AbgO51QHIbSC3liiEXrRMGI6E0cgYjRqWdReF4dDxUARDQQxbUBLK/L5hBQIQY4wxHkM9e9lA47oA+vxKwPcdCotLYgPXAw1nygPw1U/rhNVzTA+bD7Scd3g1pvE8YfoHFk5a5DFUBTgoB8Dwpme8EZj0v2Rl7WtMZzR/RSO9FY8+ucX6X++xt+6YPF5cFr8N7L9Z4Csg0sf1BsBZXNXsG2Bap7RwlvHGUcrjyusFzAwLhkjAojW6INRpLwombFpVvwInX+VlAAAiGII0nt56fnXL+MAMpNE3pLwMeMnqAOQ2kFsdgNwGcqvQXsDqSr3xIow891sTfkWabfeRAgGICFIJRpVQCFVIJQgCYuxKbDqMKA+AMkPjEULAtKk/RaPDmPLZdz3OvOWY/H7yDPHdkgCMNwIAE/mGgX5PmAKDZrHx74reWmQ2eZ/VT35DozF4dfFgyDnhshY0GDrW9qVHwKOlYm/ceY3+yjvojJOHwx4mhxfLA3A8IZKivTcqXn8QeUiP2ZHWY4QFH0HBkCDA0wIBzCdEUrS5I2xfV7auGiIOM1s8jnh237W+DugA5DaQWx2A3AZyqwOQ20BupdcB4hxDc4BjWMYeKfbuOoZm/Hkr+Q9NBxDDIWNRoIztMbVqL9fvPEkNTAfg/cds3RwgzmFaBgSzCpEI8aPGq2lzpQEwhf4rPx4fuChL84ZrJGW36DK7xP79wP+4Wt8LdAByG8itDkBuA7nVAchtILc8PFuBsf9L395Ax201j4mvj8FQ8FGY05YJzkOM3mNxnziNrTs8bSqY7v8D+rNleBr9V3gAAAAASUVORK5CYII=">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/favicon.png" sizes="96x96">
+<link rel="apple-touch-icon" href="/favicon.png">
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="referrer" content="no-referrer" />
@@ -38,7 +40,7 @@
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; overflow-x: hidden; }
+  html { scroll-behavior: smooth; }
   section[id] { scroll-margin-top: 70px; }
 
   body {
@@ -46,8 +48,6 @@
     color: var(--ink);
     line-height: 1.6;
     background: var(--white);
-    overflow-x: hidden;
-    max-width: 100vw;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-size: 17px;
@@ -824,12 +824,10 @@
     .logos-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 18px !important; }
 
     /* Integrations */
-    .integrations-section { padding: 56px 0 !important; }
-    .integrations-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
-    .integrations-logos { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; max-width: 100% !important; }
-    .integration-logo { padding: 14px !important; aspect-ratio: 3/2 !important; border-radius: 12px !important; }
-    .integration-logo img { max-width: 70% !important; max-height: 55% !important; }
-    .integrations-section h2 { font-size: clamp(26px, 7vw, 34px) !important; }
+    .integrations-grid { grid-template-columns: 1fr !important; gap: 36px !important; }
+    .integrations-logos { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; }
+    .integration-logo { padding: 18px !important; aspect-ratio: 5/3 !important; }
+    .integration-logo img { max-width: 80% !important; max-height: 65% !important; }
 
     /* FAQ */
     details.faq-item summary { font-size: 16px !important; padding: 18px 0 !important; }
@@ -1408,7 +1406,7 @@
     </div>
     <div style="display:flex;gap:8px;align-items:center;">
       <a href="https://clients.bigchange.com/" target="_blank" rel="noopener" class="btn btn-ghost">Login</a>
-      <a href="#book" class="btn btn-primary">Get demo <span class="btn-arrow">→</span></a>
+      <a href="https://meetings.hubspot.com/jack-wilson9" target="_blank" rel="noopener" class="btn btn-primary">Get demo <span class="btn-arrow">→</span></a>
     </div>
   </div>
 </nav>
@@ -1424,7 +1422,7 @@
       </div>
       <p class="lead">Every disconnected tool your team uses is costing you money. BigChange replaces all of them with one AI powered platform, built for field service businesses that are done losing revenue to admin, chaos and systems that don't talk to each other.</p>
       <div class="hero-cta">
-        <a href="#book" class="btn btn-primary btn-large">See it in action <span class="btn-arrow">→</span></a>
+        <a href="https://meetings.hubspot.com/jack-wilson9" target="_blank" rel="noopener" class="btn btn-primary btn-large">See it in action <span class="btn-arrow">→</span></a>
         <button type="button" onclick="document.getElementById('outcomes').scrollIntoView({behavior:'smooth', block:'start'});" class="btn btn-ghost btn-large" style="font-family:inherit;cursor:pointer;">See the numbers</button>
       </div>
     </div>
@@ -1603,7 +1601,7 @@
     </div>
 
     <div class="feature-bottom-cta">
-      <a href="#book" class="btn btn-primary">Get demo <span class="btn-arrow">→</span></a>
+      <a href="https://meetings.hubspot.com/jack-wilson9" target="_blank" rel="noopener" class="btn btn-primary">Get demo <span class="btn-arrow">→</span></a>
       <a href="https://www.bigchange.com/features" target="_blank" rel="noopener" style="font-size:14px;font-weight:500;color:var(--ink-soft);text-decoration:none;align-self:center;">See full feature list &rarr;</a>
     </div>
   </div>
@@ -1885,7 +1883,7 @@
       </div>
       <div style="display:flex;flex-direction:column;align-items:flex-end;gap:10px;">
         <div style="font-size:14px;color:var(--ink-soft);">Don't see your trade?</div>
-        <a href="#book" class="btn btn-primary">Talk to us <span class="btn-arrow">→</span></a>
+        <a href="https://meetings.hubspot.com/jack-wilson9" target="_blank" rel="noopener" class="btn btn-primary">Talk to us <span class="btn-arrow">→</span></a>
       </div>
     </div>
 
@@ -2560,7 +2558,7 @@
     </div>
     <div style="text-align:center;margin-top:48px;">
       <p style="color:var(--ink-soft);margin-bottom:16px;">Still have a question that's specific to your operation?</p>
-      <a href="#book" class="btn btn-primary">Ask it on a call <span class="btn-arrow">&rarr;</span></a>
+      <a href="https://meetings.hubspot.com/jack-wilson9" target="_blank" rel="noopener" class="btn btn-primary">Ask it on a call <span class="btn-arrow">&rarr;</span></a>
     </div>
   </div>
 </section>
@@ -2621,7 +2619,7 @@
       <h2 class="section-title" style="color:var(--white);">Let's build your profit story.</h2>
         <p class="section-lead" style="color:rgba(255,255,255,0.7);">Thirty minutes with someone who actually understands field service. No generic walkthroughs, no slide decks. Your operation, your numbers, your ROI.</p>
         <div style="margin-top:32px;">
-          <a href="#book" class="btn btn-primary btn-large" style="background:var(--white);color:var(--energy-blue);">Book your free demo <span class="btn-arrow" style="background:var(--energy-blue-light);color:var(--energy-blue);">→</span></a>
+          <a href="https://meetings.hubspot.com/jack-wilson9" target="_blank" rel="noopener" class="btn btn-primary btn-large" style="background:var(--white);color:var(--energy-blue);">Book your free demo <span class="btn-arrow" style="background:var(--energy-blue-light);color:var(--energy-blue);">→</span></a>
         </div>
       </div>
 
@@ -2679,209 +2677,6 @@
 .demo-step p { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.5; }
 @media (max-width: 960px) { .demo-wrap { grid-template-columns: 1fr !important; gap: 40px !important; } }
 </style>
-
-<!-- BOOK MODAL: HubSpot meetings embed as popup -->
-<div id="book" class="book-modal" role="dialog" aria-modal="true" aria-label="Book a demo" aria-hidden="true">
-  <div class="book-modal-backdrop" data-book-close></div>
-  <div class="book-modal-dialog" role="document">
-    <button type="button" class="book-modal-close" aria-label="Close" data-book-close>
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
-    </button>
-    <div class="book-modal-body">
-      <!-- Start of Meetings Embed Script -->
-      <div class="meetings-iframe-container" data-src="https://meetings.hubspot.com/jack-wilson9?embed=true"></div>
-      <script type="text/javascript" src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js"></script>
-      <!-- End of Meetings Embed Script -->
-    </div>
-  </div>
-</div>
-<style>
-  .book-modal {
-    position: fixed; inset: 0; z-index: 1000;
-    display: flex; align-items: center; justify-content: center;
-    padding: 8px;
-    opacity: 0; visibility: hidden; pointer-events: none;
-    transition: opacity 0.22s ease, visibility 0s linear 0.22s;
-  }
-  .book-modal.is-open {
-    opacity: 1; visibility: visible; pointer-events: auto;
-    transition: opacity 0.22s ease, visibility 0s linear 0s;
-  }
-  .book-modal-backdrop {
-    position: absolute; inset: 0;
-    background: rgba(10,34,64,0.55);
-    backdrop-filter: blur(6px);
-    cursor: pointer;
-  }
-  .book-modal-dialog {
-    position: relative;
-    width: 100%; max-width: 880px;
-    max-height: 96vh;
-    max-height: 96dvh;
-    background: var(--white);
-    border-radius: 14px;
-    box-shadow: 0 32px 80px rgba(10,34,64,0.32);
-    display: flex; flex-direction: column;
-    overflow: hidden;
-    transform: translateY(12px) scale(0.98);
-    transition: transform 0.24s cubic-bezier(0.2,0.8,0.2,1);
-  }
-  .book-modal.is-open .book-modal-dialog { transform: translateY(0) scale(1); }
-  .book-modal-close {
-    position: absolute; top: 12px; right: 12px; z-index: 2;
-    width: 34px; height: 34px;
-    border: 1px solid rgba(10,34,64,0.1);
-    background: var(--white);
-    border-radius: 50%;
-    display: inline-flex; align-items: center; justify-content: center;
-    cursor: pointer;
-    color: var(--ink-soft);
-    transition: all 0.18s ease;
-    box-shadow: 0 2px 6px rgba(10,34,64,0.08);
-  }
-  .book-modal-close:hover { background: var(--mist); color: var(--ink); border-color: rgba(10,34,64,0.18); }
-  .book-modal-close:focus-visible { outline: 2px solid var(--energy-blue); outline-offset: 2px; }
-  .book-modal-body {
-    flex: 1 1 auto;
-    overflow: auto;
-    overscroll-behavior: contain;
-    background: var(--white);
-    padding: 0;
-    min-height: 0;
-  }
-  .book-modal .meetings-iframe-container { min-height: 640px; }
-  .book-modal .meetings-iframe-container iframe { width: 100% !important; min-height: 640px; border: 0; display: block; }
-  /* Body scroll lock uses position:fixed (set via JS) — overflow:hidden breaks inner scroll on iOS */
-  body.book-modal-open { width: 100%; }
-
-  @media (max-width: 720px) {
-    .book-modal {
-      padding: 12px;
-      align-items: center;
-    }
-    .book-modal-dialog {
-      max-width: none;
-      /* svh = smallest visible viewport (URL bar shown). Always fits within the safe area
-         no matter the Safari chrome state, so the Confirm button is never obscured. */
-      max-height: calc(100svh - 24px - env(safe-area-inset-bottom));
-      height: auto;
-      border-radius: 14px;
-    }
-    .book-modal-close { top: 8px; right: 8px; width: 32px; height: 32px; }
-    .book-modal .meetings-iframe-container,
-    .book-modal .meetings-iframe-container iframe { min-height: 540px; }
-  }
-  @media (max-width: 420px) {
-    .book-modal .meetings-iframe-container,
-    .book-modal .meetings-iframe-container iframe { min-height: 580px; }
-  }
-</style>
-<script>
-(function(){
-  var modal = document.getElementById('book');
-  if (!modal) return;
-  var lastFocus = null;
-
-  var savedScrollY = 0;
-  function open(e) {
-    if (e) { e.preventDefault(); }
-    lastFocus = document.activeElement;
-    // Lock background using position:fixed pattern (iOS-friendly, allows inner scroll)
-    savedScrollY = window.scrollY || window.pageYOffset || 0;
-    document.body.style.position = 'fixed';
-    document.body.style.top = '-' + savedScrollY + 'px';
-    document.body.style.left = '0';
-    document.body.style.right = '0';
-    modal.classList.add('is-open');
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.classList.add('book-modal-open');
-    var closeBtn = modal.querySelector('.book-modal-close');
-    if (closeBtn) { setTimeout(function(){ closeBtn.focus(); }, 60); }
-    // Nudge HubSpot's embed to remeasure the iframe height now that we're visible.
-    // Several fires across the next ~0.7s catch slow inits and lazy postMessage handshakes.
-    [0, 80, 250, 600].forEach(function(delay){
-      setTimeout(function(){
-        try { window.dispatchEvent(new Event('resize')); } catch(_) {}
-        var ifr = modal.querySelector('.meetings-iframe-container iframe');
-        if (ifr && ifr.contentWindow) {
-          try { ifr.contentWindow.postMessage({ type: 'recalculateHeight' }, '*'); } catch(_) {}
-        }
-      }, delay);
-    });
-  }
-  function close() {
-    modal.classList.remove('is-open');
-    modal.setAttribute('aria-hidden', 'true');
-    document.body.classList.remove('book-modal-open');
-    // Restore background scroll position
-    document.body.style.position = '';
-    document.body.style.top = '';
-    document.body.style.left = '';
-    document.body.style.right = '';
-    window.scrollTo(0, savedScrollY);
-    if (lastFocus && typeof lastFocus.focus === 'function') { lastFocus.focus(); }
-  }
-
-  // Use the embedded modal on desktop. On phones (narrow viewport or coarse pointer),
-  // skip the modal entirely and open HubSpot's own meeting page in a new tab — their
-  // page is built for mobile and avoids all the embed scroll quirks.
-  var BOOKING_URL = 'https://meetings.hubspot.com/jack-wilson9';
-  function isMobileBookingDevice() {
-    try {
-      if (window.matchMedia('(max-width: 720px)').matches) return true;
-      if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) return true;
-    } catch(_) {}
-    return false;
-  }
-  function handleBookingClick(e) {
-    if (isMobileBookingDevice()) {
-      if (e) { e.preventDefault(); }
-      window.open(BOOKING_URL, '_blank', 'noopener,noreferrer');
-      return;
-    }
-    open(e);
-  }
-  function bindOpeners() {
-    var links = document.querySelectorAll('a[href="#book"]');
-    links.forEach(function(link){
-      if (link._bookBound) return;
-      link._bookBound = true;
-      link.style.touchAction = 'manipulation';
-      link.addEventListener('click', handleBookingClick);
-      // Touch fallback: fire on touchend if no significant movement happened
-      var startY = 0, startX = 0, moved = false;
-      link.addEventListener('touchstart', function(e){
-        var t = e.touches[0]; startY = t.clientY; startX = t.clientX; moved = false;
-      }, { passive: true });
-      link.addEventListener('touchmove', function(e){
-        var t = e.touches[0];
-        if (Math.abs(t.clientY - startY) > 8 || Math.abs(t.clientX - startX) > 8) moved = true;
-      }, { passive: true });
-      link.addEventListener('touchend', function(e){
-        if (moved) return;
-        if (modal.classList.contains('is-open')) return;
-        e.preventDefault();
-        handleBookingClick();
-      });
-    });
-  }
-  bindOpeners();
-  // Catch any dynamically added booking links later
-  if (window.MutationObserver) {
-    new MutationObserver(bindOpeners).observe(document.body, { childList: true, subtree: true });
-  }
-
-  // Delegated fallback for closing controls
-  document.addEventListener('click', function(e){
-    if (e.target.closest && e.target.closest('[data-book-close]')) { close(); }
-  });
-
-  // ESC closes
-  document.addEventListener('keydown', function(e){
-    if (e.key === 'Escape' && modal.classList.contains('is-open')) { close(); }
-  });
-})();
-</script>
 
 <footer>
   <div class="container">
