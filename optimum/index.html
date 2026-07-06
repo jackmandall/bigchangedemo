@@ -328,10 +328,14 @@
   footer b { color: var(--white); font-weight: 600; }
 
   .bc-icon,.co-icon{display:none;}
+  @media (max-width:1100px){
+    .co-full{display:none;}
+    .co-icon{display:inline-block;height:15px;width:auto;}
+  }
   @media (max-width:600px){
-    .bc-full,.co-full{display:none !important;}
+    .bc-full{display:none !important;}
     .bc-icon{display:inline-block;height:24px;width:auto;}
-    .co-icon{display:inline-block;height:16px;width:auto;}
+    .co-icon{height:16px;}
     .logo-div{margin:0 5px;}
   }
 </style>
