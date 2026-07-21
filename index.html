@@ -11,7 +11,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="referrer" content="no-referrer" />
-<title>BigChange | AI-first Job Management Software</title>
+<title>BigChange | Job Management Software for Field Service</title>
 <meta name="description" content="One platform for field service businesses. Replace disconnected scheduling, invoicing, CRM and tracking tools with BigChange. 2,500+ UK businesses, 24/7 support, ISO 27001 certified." />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="BigChange | One platform for field service businesses" />
@@ -38,7 +38,7 @@
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
   section[id] { scroll-margin-top: 70px; }
 
   body {
@@ -46,6 +46,8 @@
     color: var(--ink);
     line-height: 1.6;
     background: var(--white);
+    overflow-x: hidden;
+    max-width: 100vw;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-size: 17px;
@@ -403,6 +405,70 @@
     color: var(--energy-blue);
   }
   .industry-card h5 { font-size: 17px; line-height: 1.3; }
+  .industry-card[data-case] { cursor: pointer; }
+  .industry-card:focus-visible { outline: 2px solid var(--energy-blue); outline-offset: 3px; }
+
+  /* Industry hover tooltip (case study preview) — clickable itself */
+  .industry-tooltip {
+    position: fixed;
+    z-index: 500;
+    max-width: 340px;
+    background: var(--ink);
+    color: #fff;
+    padding: 14px 18px 12px;
+    border-radius: 14px;
+    box-shadow: 0 18px 42px rgba(10,34,64,0.32);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(6px);
+    transition: opacity 0.16s ease, transform 0.16s ease;
+    font-family: 'Roboto Flex', 'Inter', sans-serif;
+    cursor: pointer;
+  }
+  .industry-tooltip.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  .industry-tooltip:hover {
+    background: #0F2A50;
+  }
+  .industry-tooltip-stat {
+    font-size: 22px;
+    font-weight: 800;
+    color: #5BA3DD;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+  .industry-tooltip-descriptor {
+    font-size: 11px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.55);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+  }
+  .industry-tooltip-story {
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.88);
+  }
+  .industry-tooltip-cta {
+    font-size: 12px;
+    color: #5BA3DD;
+    font-weight: 700;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  /* Hide tooltip on touch devices and small screens — cards navigate directly instead */
+  @media (hover: none), (max-width: 720px) {
+    .industry-tooltip { display: none !important; }
+  }
 
   /* SUPPORT */
   .support-grid {
@@ -822,10 +888,12 @@
     .logos-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 18px !important; }
 
     /* Integrations */
-    .integrations-grid { grid-template-columns: 1fr !important; gap: 36px !important; }
-    .integrations-logos { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; }
-    .integration-logo { padding: 18px !important; aspect-ratio: 5/3 !important; }
-    .integration-logo img { max-width: 80% !important; max-height: 65% !important; }
+    .integrations-section { padding: 56px 0 !important; }
+    .integrations-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
+    .integrations-logos { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; max-width: 100% !important; }
+    .integration-logo { padding: 14px !important; aspect-ratio: 3/2 !important; border-radius: 12px !important; }
+    .integration-logo img { max-width: 70% !important; max-height: 55% !important; }
+    .integrations-section h2 { font-size: clamp(26px, 7vw, 34px) !important; }
 
     /* FAQ */
     details.faq-item summary { font-size: 16px !important; padding: 18px 0 !important; }
@@ -1404,7 +1472,7 @@
     </div>
     <div style="display:flex;gap:8px;align-items:center;">
       <a href="https://clients.bigchange.com/" target="_blank" rel="noopener" class="btn btn-ghost">Login</a>
-      <a href="https://meetings.hubspot.com/jack-wilson9" target="_blank" rel="noopener" class="btn btn-primary">Get demo <span class="btn-arrow">→</span></a>
+      <a href="#book" class="btn btn-primary">Get demo <span class="btn-arrow">→</span></a>
     </div>
   </div>
 </nav>
@@ -1420,7 +1488,7 @@
       </div>
       <p class="lead">Every disconnected tool your team uses is costing you money. BigChange replaces all of them with one AI powered platform, built for field service businesses that are done losing revenue to admin, chaos and systems that don't talk to each other.</p>
       <div class="hero-cta">
-        <a href="https://meetings.hubspot.com/jack-wilson9" target="_blank" rel="noopener" class="btn btn-primary btn-large">See it in action <span class="btn-arrow">→</span></a>
+        <a href="#book" class="btn btn-primary btn-large">See it in action <span class="btn-arrow">→</span></a>
         <button type="button" onclick="document.getElementById('outcomes').scrollIntoView({behavior:'smooth', block:'start'});" class="btn btn-ghost btn-large" style="font-family:inherit;cursor:pointer;">See the numbers</button>
       </div>
     </div>
@@ -1599,7 +1667,7 @@
     </div>
 
     <div class="feature-bottom-cta">
-      <a href="https://meetings.hubspot.com/jack-wilson9" target="_blank" rel="noopener" class="btn btn-primary">Get demo <span class="btn-arrow">→</span></a>
+      <a href="#book" class="btn btn-primary">Get demo <span class="btn-arrow">→</span></a>
       <a href="https://www.bigchange.com/features" target="_blank" rel="noopener" style="font-size:14px;font-weight:500;color:var(--ink-soft);text-decoration:none;align-self:center;">See full feature list &rarr;</a>
     </div>
   </div>
@@ -1881,72 +1949,72 @@
       </div>
       <div style="display:flex;flex-direction:column;align-items:flex-end;gap:10px;">
         <div style="font-size:14px;color:var(--ink-soft);">Don't see your trade?</div>
-        <a href="https://meetings.hubspot.com/jack-wilson9" target="_blank" rel="noopener" class="btn btn-primary">Talk to us <span class="btn-arrow">→</span></a>
+        <a href="#book" class="btn btn-primary">Talk to us <span class="btn-arrow">→</span></a>
       </div>
     </div>
 
     <div class="industries-grid">
-      <div class="industry-card">
+      <div class="industry-card" data-case="building-maintenance" tabindex="0" role="button" aria-label="Open Building maintenance case study">
         <div class="industry-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V8l8-4 8 4v12M9 20v-7h6v7M7 11h1M11 11h1M15 11h1M7 14h1M11 14h1M15 14h1M3 20h18"/></svg></div>
         <h5>Building maintenance</h5>
       </div>
-      <div class="industry-card">
+      <div class="industry-card" data-case="construction" tabindex="0" role="button" aria-label="Open Construction case study">
         <div class="industry-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18h18M5 18V11l7-7 7 7v7"/><path d="M9 18v-4h6v4"/><rect x="9.5" y="3" width="5" height="2" rx="0.5" stroke="currentColor"/></svg></div>
         <h5>Construction</h5>
       </div>
-      <div class="industry-card">
+      <div class="industry-card" data-case="drainage" tabindex="0" role="button" aria-label="Open Drainage case study">
         <div class="industry-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c-3.5 5-6 8-6 11a6 6 0 0012 0c0-3-2.5-6-6-11z"/><path d="M9 13a3 3 0 003 3"/></svg></div>
         <h5>Drainage</h5>
       </div>
-      <div class="industry-card">
+      <div class="industry-card" data-case="electrical" tabindex="0" role="button" aria-label="Open Electrical case study">
         <div class="industry-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg></div>
         <h5>Electrical</h5>
       </div>
-      <div class="industry-card">
+      <div class="industry-card" data-case="facilities-management" tabindex="0" role="button" aria-label="Open Facilities management case study">
         <div class="industry-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="18" rx="1"/><rect x="13" y="9" width="8" height="12" rx="1"/><path d="M5 7h1M8 7h1M5 11h1M8 11h1M5 15h1M8 15h1M15 13h1M18 13h1M15 17h1M18 17h1"/></svg></div>
         <h5>Facilities management</h5>
       </div>
-      <div class="industry-card">
+      <div class="industry-card" data-case="fire-and-safety" tabindex="0" role="button" aria-label="Open Fire and safety case study">
         <div class="industry-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="9" width="8" height="13" rx="1.5"/><path d="M9 9V6a3 3 0 016 0v3"/><circle cx="12" cy="14" r="1.2" fill="currentColor"/><path d="M16 5l3 1M16 7l3 0"/></svg></div>
         <h5>Fire and safety</h5>
       </div>
-      <div class="industry-card">
+      <div class="industry-card" data-case="field-service" tabindex="0" role="button" aria-label="Open Field service case study">
         <div class="industry-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 00-5.4 5.4l-7 7a1 1 0 001.4 1.4l7-7a4 4 0 005.4-5.4l-2.4 2.4-2-2 2.4-2.4z"/></svg></div>
         <h5>Field service</h5>
       </div>
-      <div class="industry-card">
+      <div class="industry-card" data-case="grounds-maintenance" tabindex="0" role="button" aria-label="Open Grounds maintenance case study">
         <div class="industry-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l-3 5h2l-2 4h2l-3 5h8l-3-5h2l-2-4h2z"/><path d="M12 17v5"/></svg></div>
         <h5>Grounds maintenance</h5>
       </div>
-      <div class="industry-card">
+      <div class="industry-card" data-case="hire" tabindex="0" role="button" aria-label="Open Hire case study">
         <div class="industry-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18h10v-7L11 8v3l-5 0v7z"/><path d="M16 18h3v-4l-3-1"/><circle cx="9" cy="19" r="1.5"/><circle cx="17" cy="19" r="1.5"/><path d="M5 14H3M5 12H3"/></svg></div>
         <h5>Hire</h5>
       </div>
-      <div class="industry-card">
+      <div class="industry-card" data-case="industrial-doors" tabindex="0" role="button" aria-label="Open Industrial doors case study">
         <div class="industry-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M4 7h16M4 11h16M4 15h16M4 19h16"/><circle cx="16" cy="13" r="0.8" fill="currentColor"/></svg></div>
         <h5>Industrial doors</h5>
       </div>
-      <div class="industry-card">
+      <div class="industry-card" data-case="liquid-waste" tabindex="0" role="button" aria-label="Open Liquid waste case study">
         <div class="industry-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9c0-1 1-2 2-2h11l3 3v6c0 1-1 2-2 2H5c-1 0-2-1-2-2V9z"/><circle cx="7" cy="18" r="1.5"/><circle cx="16" cy="18" r="1.5"/><path d="M16 7v5"/></svg></div>
         <h5>Liquid waste</h5>
       </div>
-      <div class="industry-card">
+      <div class="industry-card" data-case="pest-control" tabindex="0" role="button" aria-label="Open Pest control case study">
         <div class="industry-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="13" rx="4" ry="6"/><path d="M12 7V5M10 5l-2-2M14 5l2-2"/><path d="M8 11l-3-1M8 14l-3 0M8 17l-3 2M16 11l3-1M16 14l3 0M16 17l3 2"/></svg></div>
         <h5>Pest control</h5>
       </div>
-      <div class="industry-card">
+      <div class="industry-card" data-case="plumbing-hvac" tabindex="0" role="button" aria-label="Open Plumbing, heating and HVAC case study">
         <div class="industry-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4v6c0 1 1 2 2 2h2v6"/><path d="M14 4v6c0 1 1 2 2 2h2v6"/><path d="M4 4h6M14 4h6"/><path d="M10 18h4"/></svg></div>
         <h5>Plumbing, heating and HVAC</h5>
       </div>
-      <div class="industry-card">
+      <div class="industry-card" data-case="renewables" tabindex="0" role="button" aria-label="Open Renewables case study">
         <div class="industry-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M12 2v1.5M12 12.5V14M5.5 8H7M17 8h1.5M7 3.5l1 1M16 3.5l-1 1M7 12.5l1-1M16 12.5l-1-1"/><path d="M5 20h14l-1-4H6z"/><path d="M9 16v4M15 16v4M12 16v4"/></svg></div>
         <h5>Renewables</h5>
       </div>
-      <div class="industry-card">
+      <div class="industry-card" data-case="specialty-cleaning" tabindex="0" role="button" aria-label="Open Specialty cleaning case study">
         <div class="industry-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h4v3h-4z"/><rect x="8" y="6" width="6" height="9" rx="1"/><path d="M11 15v6M9 21h4"/><path d="M14 8l3 0M14 11l3 0M16 5l1-1M16 14l1 1"/></svg></div>
         <h5>Specialty cleaning</h5>
       </div>
-      <div class="industry-card">
+      <div class="industry-card" data-case="vehicle-installations" tabindex="0" role="button" aria-label="Open Vehicle installations case study">
         <div class="industry-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17h2l1-5h11l2 5h2"/><path d="M5 12l1-4h9l3 4"/><circle cx="7" cy="18" r="1.5"/><circle cx="17" cy="18" r="1.5"/><path d="M10 12V8"/></svg></div>
         <h5>Vehicle installations</h5>
       </div>
@@ -2556,7 +2624,7 @@
     </div>
     <div style="text-align:center;margin-top:48px;">
       <p style="color:var(--ink-soft);margin-bottom:16px;">Still have a question that's specific to your operation?</p>
-      <a href="https://meetings.hubspot.com/jack-wilson9" target="_blank" rel="noopener" class="btn btn-primary">Ask it on a call <span class="btn-arrow">&rarr;</span></a>
+      <a href="#book" class="btn btn-primary">Ask it on a call <span class="btn-arrow">&rarr;</span></a>
     </div>
   </div>
 </section>
@@ -2617,7 +2685,7 @@
       <h2 class="section-title" style="color:var(--white);">Let's build your profit story.</h2>
         <p class="section-lead" style="color:rgba(255,255,255,0.7);">Thirty minutes with someone who actually understands field service. No generic walkthroughs, no slide decks. Your operation, your numbers, your ROI.</p>
         <div style="margin-top:32px;">
-          <a href="https://meetings.hubspot.com/jack-wilson9" target="_blank" rel="noopener" class="btn btn-primary btn-large" style="background:var(--white);color:var(--energy-blue);">Book your free demo <span class="btn-arrow" style="background:var(--energy-blue-light);color:var(--energy-blue);">→</span></a>
+          <a href="#book" class="btn btn-primary btn-large" style="background:var(--white);color:var(--energy-blue);">Book your free demo <span class="btn-arrow" style="background:var(--energy-blue-light);color:var(--energy-blue);">→</span></a>
         </div>
       </div>
 
@@ -2675,6 +2743,209 @@
 .demo-step p { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.5; }
 @media (max-width: 960px) { .demo-wrap { grid-template-columns: 1fr !important; gap: 40px !important; } }
 </style>
+
+<!-- BOOK MODAL: HubSpot meetings embed as popup -->
+<div id="book" class="book-modal" role="dialog" aria-modal="true" aria-label="Book a demo" aria-hidden="true">
+  <div class="book-modal-backdrop" data-book-close></div>
+  <div class="book-modal-dialog" role="document">
+    <button type="button" class="book-modal-close" aria-label="Close" data-book-close>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <div class="book-modal-body">
+      <!-- Start of Meetings Embed Script -->
+      <div class="meetings-iframe-container" data-src="https://meetings.hubspot.com/jack-wilson9?embed=true"></div>
+      <script type="text/javascript" src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js"></script>
+      <!-- End of Meetings Embed Script -->
+    </div>
+  </div>
+</div>
+<style>
+  .book-modal {
+    position: fixed; inset: 0; z-index: 1000;
+    display: flex; align-items: center; justify-content: center;
+    padding: 8px;
+    opacity: 0; visibility: hidden; pointer-events: none;
+    transition: opacity 0.22s ease, visibility 0s linear 0.22s;
+  }
+  .book-modal.is-open {
+    opacity: 1; visibility: visible; pointer-events: auto;
+    transition: opacity 0.22s ease, visibility 0s linear 0s;
+  }
+  .book-modal-backdrop {
+    position: absolute; inset: 0;
+    background: rgba(10,34,64,0.55);
+    backdrop-filter: blur(6px);
+    cursor: pointer;
+  }
+  .book-modal-dialog {
+    position: relative;
+    width: 100%; max-width: 880px;
+    max-height: 96vh;
+    max-height: 96dvh;
+    background: var(--white);
+    border-radius: 14px;
+    box-shadow: 0 32px 80px rgba(10,34,64,0.32);
+    display: flex; flex-direction: column;
+    overflow: hidden;
+    transform: translateY(12px) scale(0.98);
+    transition: transform 0.24s cubic-bezier(0.2,0.8,0.2,1);
+  }
+  .book-modal.is-open .book-modal-dialog { transform: translateY(0) scale(1); }
+  .book-modal-close {
+    position: absolute; top: 12px; right: 12px; z-index: 2;
+    width: 34px; height: 34px;
+    border: 1px solid rgba(10,34,64,0.1);
+    background: var(--white);
+    border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    color: var(--ink-soft);
+    transition: all 0.18s ease;
+    box-shadow: 0 2px 6px rgba(10,34,64,0.08);
+  }
+  .book-modal-close:hover { background: var(--mist); color: var(--ink); border-color: rgba(10,34,64,0.18); }
+  .book-modal-close:focus-visible { outline: 2px solid var(--energy-blue); outline-offset: 2px; }
+  .book-modal-body {
+    flex: 1 1 auto;
+    overflow: auto;
+    overscroll-behavior: contain;
+    background: var(--white);
+    padding: 0;
+    min-height: 0;
+  }
+  .book-modal .meetings-iframe-container { min-height: 640px; }
+  .book-modal .meetings-iframe-container iframe { width: 100% !important; min-height: 640px; border: 0; display: block; }
+  /* Body scroll lock uses position:fixed (set via JS) — overflow:hidden breaks inner scroll on iOS */
+  body.book-modal-open { width: 100%; }
+
+  @media (max-width: 720px) {
+    .book-modal {
+      padding: 12px;
+      align-items: center;
+    }
+    .book-modal-dialog {
+      max-width: none;
+      /* svh = smallest visible viewport (URL bar shown). Always fits within the safe area
+         no matter the Safari chrome state, so the Confirm button is never obscured. */
+      max-height: calc(100svh - 24px - env(safe-area-inset-bottom));
+      height: auto;
+      border-radius: 14px;
+    }
+    .book-modal-close { top: 8px; right: 8px; width: 32px; height: 32px; }
+    .book-modal .meetings-iframe-container,
+    .book-modal .meetings-iframe-container iframe { min-height: 540px; }
+  }
+  @media (max-width: 420px) {
+    .book-modal .meetings-iframe-container,
+    .book-modal .meetings-iframe-container iframe { min-height: 580px; }
+  }
+</style>
+<script>
+(function(){
+  var modal = document.getElementById('book');
+  if (!modal) return;
+  var lastFocus = null;
+
+  var savedScrollY = 0;
+  function open(e) {
+    if (e) { e.preventDefault(); }
+    lastFocus = document.activeElement;
+    // Lock background using position:fixed pattern (iOS-friendly, allows inner scroll)
+    savedScrollY = window.scrollY || window.pageYOffset || 0;
+    document.body.style.position = 'fixed';
+    document.body.style.top = '-' + savedScrollY + 'px';
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('book-modal-open');
+    var closeBtn = modal.querySelector('.book-modal-close');
+    if (closeBtn) { setTimeout(function(){ closeBtn.focus(); }, 60); }
+    // Nudge HubSpot's embed to remeasure the iframe height now that we're visible.
+    // Several fires across the next ~0.7s catch slow inits and lazy postMessage handshakes.
+    [0, 80, 250, 600].forEach(function(delay){
+      setTimeout(function(){
+        try { window.dispatchEvent(new Event('resize')); } catch(_) {}
+        var ifr = modal.querySelector('.meetings-iframe-container iframe');
+        if (ifr && ifr.contentWindow) {
+          try { ifr.contentWindow.postMessage({ type: 'recalculateHeight' }, '*'); } catch(_) {}
+        }
+      }, delay);
+    });
+  }
+  function close() {
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('book-modal-open');
+    // Restore background scroll position
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+    window.scrollTo(0, savedScrollY);
+    if (lastFocus && typeof lastFocus.focus === 'function') { lastFocus.focus(); }
+  }
+
+  // Use the embedded modal on desktop. On phones (narrow viewport or coarse pointer),
+  // skip the modal entirely and open HubSpot's own meeting page in a new tab — their
+  // page is built for mobile and avoids all the embed scroll quirks.
+  var BOOKING_URL = 'https://meetings.hubspot.com/jack-wilson9';
+  function isMobileBookingDevice() {
+    try {
+      if (window.matchMedia('(max-width: 720px)').matches) return true;
+      if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) return true;
+    } catch(_) {}
+    return false;
+  }
+  function handleBookingClick(e) {
+    if (isMobileBookingDevice()) {
+      if (e) { e.preventDefault(); }
+      window.open(BOOKING_URL, '_blank', 'noopener,noreferrer');
+      return;
+    }
+    open(e);
+  }
+  function bindOpeners() {
+    var links = document.querySelectorAll('a[href="#book"]');
+    links.forEach(function(link){
+      if (link._bookBound) return;
+      link._bookBound = true;
+      link.style.touchAction = 'manipulation';
+      link.addEventListener('click', handleBookingClick);
+      // Touch fallback: fire on touchend if no significant movement happened
+      var startY = 0, startX = 0, moved = false;
+      link.addEventListener('touchstart', function(e){
+        var t = e.touches[0]; startY = t.clientY; startX = t.clientX; moved = false;
+      }, { passive: true });
+      link.addEventListener('touchmove', function(e){
+        var t = e.touches[0];
+        if (Math.abs(t.clientY - startY) > 8 || Math.abs(t.clientX - startX) > 8) moved = true;
+      }, { passive: true });
+      link.addEventListener('touchend', function(e){
+        if (moved) return;
+        if (modal.classList.contains('is-open')) return;
+        e.preventDefault();
+        handleBookingClick();
+      });
+    });
+  }
+  bindOpeners();
+  // Catch any dynamically added booking links later
+  if (window.MutationObserver) {
+    new MutationObserver(bindOpeners).observe(document.body, { childList: true, subtree: true });
+  }
+
+  // Delegated fallback for closing controls
+  document.addEventListener('click', function(e){
+    if (e.target.closest && e.target.closest('[data-book-close]')) { close(); }
+  });
+
+  // ESC closes
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && modal.classList.contains('is-open')) { close(); }
+  });
+})();
+</script>
 
 <footer>
   <div class="container">
@@ -2793,6 +3064,152 @@
   setupCycle('#ecosystem', '.eco-filter[data-filter]', 4200);
   // 24/7 UK based support: RoadCrew, CSM, Uni
   setupCycle('#support', '.support-card[data-target]', 4200);
+})();
+</script>
+
+<script>
+/* Industry card behaviour:
+   - Hover: floating tooltip previewing the case study
+   - Click / tap: opens the case study URL in a new tab */
+(function(){
+  var cards = document.querySelectorAll('.industry-card[data-case]');
+  if (!cards.length) return;
+
+  var caseData = {
+    'building-maintenance': { stat: '25% less admin', descriptor: 'A national reactive maintenance firm', story: 'Consolidated four systems into one platform, freeing three admins to focus on customer growth.' },
+    'construction': { stat: '£340k saved yr 1', descriptor: 'A UK groundworks contractor', story: 'Site teams capture RAMS, timesheets and job photos on one tablet, cutting compliance failures to zero.' },
+    'drainage': { stat: '35% more jobs / week', descriptor: 'A leading UK drainage response firm', story: 'AI scheduling routes jobs by location and skill, so tankers arrive fuller and drivers finish earlier.' },
+    'electrical': { stat: '40% faster invoicing', descriptor: 'A regional electrical contractor', story: "Engineers issue signed job cards on site. Invoices land in the customer's inbox before the van leaves the drive." },
+    'facilities-management': { stat: '11% less drive time', descriptor: 'A multi site FM provider', story: 'Live traffic aware scheduling keeps engineers moving. Same team, more jobs, higher first time fix.' },
+    'fire-and-safety': { stat: '100% audit ready', descriptor: 'A UK fire safety inspection firm', story: 'Every certificate, RAMS and asset history sits in one place. No more Friday afternoon audit panics.' },
+    'field-service': { stat: '£5 return per £1 spent', descriptor: 'A national field service network', story: 'One platform replaced disconnected tools for quoting, scheduling, invoicing and tracking.' },
+    'grounds-maintenance': { stat: '30% less fuel', descriptor: 'A UK grounds maintenance contractor', story: 'Optimised routes across 200 sites cut van miles by a third and gave crews longer breaks.' },
+    'hire': { stat: 'Zero lost assets', descriptor: 'A national plant hire firm', story: 'Every item is tracked, signed for and off hired through the mobile app. Kit shrinkage is a memory.' },
+    'industrial-doors': { stat: '99% SLA hit rate', descriptor: 'A national industrial door service firm', story: 'AI dispatch routes the nearest qualified engineer with parts on the van, first time.' },
+    'liquid-waste': { stat: '20% more collections', descriptor: 'A UK liquid waste operator', story: 'Weight and route optimisation pack more onto every tanker without breaking driver hours.' },
+    'pest-control': { stat: '£220k extra revenue', descriptor: 'A regional pest control firm', story: 'Automated recurring visits and customer portal drove a 40% uplift in preventative contracts.' },
+    'plumbing-hvac': { stat: '95% same day invoicing', descriptor: 'A UK heating and cooling service firm', story: 'Engineers snap parts used, generate quotes and take card payments on the doorstep.' },
+    'renewables': { stat: '3x installs per crew', descriptor: 'A solar and battery installer', story: 'AI scheduling stacks installs by postcode. Each crew now handles three homes a day instead of one.' },
+    'specialty-cleaning': { stat: 'Zero no shows', descriptor: 'A commercial specialty cleaning firm', story: 'Live GPS and customer notifications killed no show complaints stone dead.' },
+    'vehicle-installations': { stat: '24 hr turnaround', descriptor: 'A national vehicle telematics installer', story: 'Mobile fitters pick up the next job the moment they close the last, with parts pre picked and routed.' }
+  };
+
+  // Real BigChange case study URLs matched to each industry
+  var CASE_INDEX = 'https://www.bigchange.com/case-study';
+  var caseUrls = {
+    'building-maintenance': CASE_INDEX,
+    'construction': 'https://www.bigchange.com/case-study/forecourt-construction-firm-dbs-boosts-productivity-20-with-bigchange',
+    'drainage': 'https://www.bigchange.com/case-study/bigchange-drives-40-growth-with-paperless-working-at-flow-free-drainage',
+    'electrical': 'https://www.bigchange.com/case-study/medlec-boosts-productivity-by-40-percent-with-bigchange-mobile-workforce-tech',
+    'facilities-management': 'https://www.bigchange.com/case-study/bigchange-sets-fm-entrepreneur-apart-from-competition',
+    'fire-and-safety': 'https://www.bigchange.com/case-study/cctv-monitoring-focuses-on-growth-with-bigchange-mobile-workforce-tech',
+    'field-service': CASE_INDEX,
+    'grounds-maintenance': 'https://www.bigchange.com/case-study/bigchange-drives-expansion-at-grounds-maintenance-company-greenskape',
+    'hire': CASE_INDEX,
+    'industrial-doors': 'https://www.bigchange.com/case-study/bigchange-unlocks-business-growth-at-industrial-door-services',
+    'liquid-waste': 'https://www.bigchange.com/case-study/bigchange-brings-a-1million-benefit-to-eurotech-environmental',
+    'pest-control': 'https://www.bigchange.com/case-study/bigchange-gives-contego-total-control-over-business-expansion',
+    'plumbing-hvac': CASE_INDEX,
+    'renewables': 'https://www.bigchange.com/case-study/bigchange-powers-mobile-workforce-productivity-gains-for-sinewave-energy',
+    'specialty-cleaning': 'https://www.bigchange.com/case-study/cc-is-cleans-up-with-bigchange-paperless-working',
+    'vehicle-installations': 'https://www.bigchange.com/case-study/stalkers-drivers-basic-pay-up-18'
+  };
+
+  // Build the floating tooltip once and re-use it
+  var tooltip = document.createElement('div');
+  tooltip.className = 'industry-tooltip';
+  tooltip.setAttribute('role', 'tooltip');
+  tooltip.innerHTML = ''
+    + '<div class="industry-tooltip-descriptor"></div>'
+    + '<div class="industry-tooltip-stat"></div>'
+    + '<div class="industry-tooltip-story"></div>'
+    + '<div class="industry-tooltip-cta">Click to read the case study'
+    +   '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>'
+    + '</div>';
+  document.body.appendChild(tooltip);
+  var statEl = tooltip.querySelector('.industry-tooltip-stat');
+  var descEl = tooltip.querySelector('.industry-tooltip-descriptor');
+  var storyEl = tooltip.querySelector('.industry-tooltip-story');
+
+  var isTouch = window.matchMedia && (
+    window.matchMedia('(hover: none)').matches ||
+    window.matchMedia('(pointer: coarse)').matches
+  );
+
+  var activeUrl = null;
+  var hideTimer = null;
+
+  function positionTooltip(card) {
+    var rect = card.getBoundingClientRect();
+    var tw = tooltip.offsetWidth;
+    var th = tooltip.offsetHeight;
+    var gap = 6; // small overlap-friendly gap so mouse can travel to the tooltip
+    var left = rect.left + (rect.width / 2) - (tw / 2);
+    var top = rect.top - th - gap;
+    if (top < 8) top = rect.bottom + gap;
+    if (left < 8) left = 8;
+    if (left + tw > window.innerWidth - 8) left = window.innerWidth - tw - 8;
+    tooltip.style.left = left + 'px';
+    tooltip.style.top = top + 'px';
+  }
+  function showTooltip(card) {
+    if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
+    var slug = card.getAttribute('data-case');
+    var d = caseData[slug];
+    if (!d) return;
+    activeUrl = caseUrls[slug] || CASE_INDEX;
+    descEl.textContent = d.descriptor;
+    statEl.textContent = d.stat;
+    storyEl.textContent = d.story;
+    tooltip.classList.add('is-visible');
+    positionTooltip(card);
+  }
+  function scheduleHide() {
+    if (hideTimer) clearTimeout(hideTimer);
+    // Small delay lets the mouse travel from card to tooltip without hiding
+    hideTimer = setTimeout(function(){
+      tooltip.classList.remove('is-visible');
+      hideTimer = null;
+    }, 140);
+  }
+  function hideNow() {
+    if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
+    tooltip.classList.remove('is-visible');
+  }
+
+  // The tooltip itself is clickable and keeps itself alive when hovered
+  tooltip.addEventListener('mouseenter', function(){
+    if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
+  });
+  tooltip.addEventListener('mouseleave', scheduleHide);
+  tooltip.addEventListener('click', function(){
+    if (activeUrl) window.open(activeUrl, '_blank', 'noopener,noreferrer');
+  });
+
+  cards.forEach(function(card){
+    var slug = card.getAttribute('data-case');
+    var url = caseUrls[slug] || CASE_INDEX;
+    if (!isTouch) {
+      card.addEventListener('mouseenter', function(){ showTooltip(card); });
+      card.addEventListener('mouseleave', scheduleHide);
+      card.addEventListener('focus', function(){ showTooltip(card); });
+      card.addEventListener('blur', scheduleHide);
+    }
+    card.addEventListener('click', function(e){
+      e.preventDefault();
+      hideNow();
+      window.open(url, '_blank', 'noopener,noreferrer');
+    });
+    card.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        window.open(url, '_blank', 'noopener,noreferrer');
+      }
+    });
+  });
+
+  // Hide the tooltip if the user scrolls the page
+  window.addEventListener('scroll', hideNow, { passive: true });
 })();
 </script>
 
