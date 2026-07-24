@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What's included with BigChange — module by module</title>
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAADiUlEQVR4nO2bz4scRRTHP6+6ZpLZH5FAoqgIKnhQFDwET7nsIZB/YHPzash6EATxODN/gScPLnqX3T8iF0OCkqtgDrkoWQK6S4ib7MxUveehZ0O8zHYNm1Rp9xf61PPob33mdderX8IXv9yn6p1D1cCEVkgM54QYDjwiF6j8OhKAlrQfA+fBYuXBAhoMjUarCCAYwQMCMm+4tASAMW+ruNxWcqsDkNtAbnUAchvIrdYD8OkhZqdv4zSV1pWnA3Beyq2XDDQmRaQBEAeTx59CvIc4RywkG0QdIhH1HzJY+wEN1jQT0jPAnv7Mt1fuJce9DN24fZSanUt8A/prbO5UnH/XcXBf0+NfiCog4txqauASGaDK7rXI0IztS2UA2NyB3WuRrdvJflrfDXYAchvIrQ5AbgO51QHIbSC3liiEXrRMGI6E0cgYjRqWdReF4dDxUARDQQxbUBLK/L5hBQIQY4wxHkM9e9lA47oA+vxKwPcdCotLYgPXAw1nygPw1U/rhNVzTA+bD7Scd3g1pvE8YfoHFk5a5DFUBTgoB8Dwpme8EZj0v2Rl7WtMZzR/RSO9FY8+ucX6X++xt+6YPF5cFr8N7L9Z4Csg0sf1BsBZXNXsG2Bap7RwlvHGUcrjyusFzAwLhkjAojW6INRpLwombFpVvwInX+VlAAAiGII0nt56fnXL+MAMpNE3pLwMeMnqAOQ2kFsdgNwGcqvQXsDqSr3xIow891sTfkWabfeRAgGICFIJRpVQCFVIJQgCYuxKbDqMKA+AMkPjEULAtKk/RaPDmPLZdz3OvOWY/H7yDPHdkgCMNwIAE/mGgX5PmAKDZrHx74reWmQ2eZ/VT35DozF4dfFgyDnhshY0GDrW9qVHwKOlYm/ceY3+yjvojJOHwx4mhxfLA3A8IZKivTcqXn8QeUiP2ZHWY4QFH0HBkCDA0wIBzCdEUrS5I2xfV7auGiIOM1s8jnh237W+DugA5DaQWx2A3AZyqwOQ20BupdcB4hxDc4BjWMYeKfbuOoZm/Hkr+Q9NBxDDIWNRoIztMbVqL9fvPEkNTAfg/cds3RwgzmFaBgSzCpEI8aPGq2lzpQEwhf4rPx4fuChL84ZrJGW36DK7xP79wP+4Wt8LdAByG8itDkBuA7nVAchtILc8PFuBsf9L395Ax201j4mvj8FQ8FGY05YJzkOM3mNxnziNrTs8bSqY7v8D+rNleBr9V3gAAAAASUVORK5CYII=">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700;8..144,800;8..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --energy:#0072CE;
+    --navy:#0A2240;
+    --navy-2:#0F2E55;
+    --grey:#F4F4F4;
+    --card:#FFFFFF;
+    --border:#E4E7EC;
+    --charcoal:#282922;
+    --muted:#5B6472;
+    --green:#28E289;
+    --green-dim:#DFF9EC;
+    --orange:#FF6B00;
+    --orange-dim:#FFE8D6;
+    --display:'Roboto Flex', Arial, sans-serif;
+    --body:'Inter', Arial, sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  html,body{overflow-x:clip;}
+  body{
+    margin:0;
+    background:var(--grey);
+    color:var(--charcoal);
+    font-family:var(--body);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{font-family:var(--display); margin:0; letter-spacing:-0.018em; line-height:1.18; font-weight:700;}
+  p{margin:0 0 0.9em 0;}
+  a{color:var(--energy);}
+
+  /* ---------- NAVBAR ---------- */
+  .navbar{
+    position:sticky; top:0; z-index:60;
+    background:rgba(255,255,255,0.94);
+    backdrop-filter:saturate(160%) blur(10px);
+    border-bottom:1px solid var(--border);
+    box-shadow:0 4px 18px rgba(10,34,64,0.06);
+  }
+  .navbar-inner{
+    max-width:1080px; margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between;
+    gap:14px;
+    padding:10px 20px;
+  }
+  .logo-link{display:flex; align-items:center;}
+  .logo-full{height:28px; width:auto; display:block;}
+  .navbar-right{display:flex; align-items:center; gap:14px;}
+  .navbar-current{
+    font-size:12px; letter-spacing:0.02em;
+    color:var(--muted); font-weight:500;
+  }
+  .burger-btn{
+    display:flex; align-items:center; gap:10px;
+    background:var(--navy);
+    border:none;
+    color:#fff;
+    padding:9px 15px;
+    border-radius:8px;
+    font-family:var(--body);
+    font-size:13px;
+    font-weight:600;
+    cursor:pointer;
+    transition:background 0.15s;
+  }
+  .burger-btn:hover{background:var(--navy-2);}
+  .burger-icon{width:16px; height:12px; display:flex; flex-direction:column; justify-content:space-between; flex:0 0 auto;}
+  .burger-icon span{display:block; height:2px; width:100%; background:#fff; border-radius:2px; transition:transform 0.2s, opacity 0.2s;}
+  .burger-btn.open .burger-icon span:nth-child(1){transform:translateY(5px) rotate(45deg);}
+  .burger-btn.open .burger-icon span:nth-child(2){opacity:0;}
+  .burger-btn.open .burger-icon span:nth-child(3){transform:translateY(-5px) rotate(-45deg);}
+  .nav-panel{
+    position:absolute; left:0; right:0; top:100%;
+    max-height:0; opacity:0; overflow:hidden; pointer-events:none;
+    background:#fff;
+    border-bottom:1px solid var(--border);
+    box-shadow:0 24px 40px rgba(10,34,64,0.14);
+    transition:max-height 0.25s ease, opacity 0.2s ease;
+  }
+  .nav-panel.open{max-height:75vh; opacity:1; pointer-events:auto; overflow-y:auto;}
+  .nav-panel-inner{
+    max-width:1080px; margin:0 auto;
+    display:grid; grid-template-columns:repeat(3, 1fr);
+    gap:4px 16px;
+    padding:8px 20px 22px;
+  }
+  .panel-group-label{
+    grid-column:1 / -1;
+    font-size:11.5px; letter-spacing:0.03em;
+    color:var(--muted); font-weight:600;
+    padding:14px 12px 4px;
+  }
+  .panel-link{
+    display:flex; align-items:center; gap:10px;
+    padding:9px 12px;
+    border-radius:8px;
+    color:var(--charcoal);
+    font-size:13.5px;
+    text-decoration:none;
+    transition:background 0.15s;
+  }
+  .panel-link:hover{background:var(--grey);}
+  .panel-link.active{background:rgba(0,114,206,0.1); color:var(--energy); font-weight:600;}
+  @media (max-width:700px){ .nav-panel-inner{grid-template-columns:1fr;} .navbar-current{display:none;} }
+  .led{width:7px; height:7px; border-radius:50%; flex:0 0 auto;}
+  .led.standard{background:var(--green); box-shadow:0 0 6px rgba(40,226,137,0.8);}
+  .led.addon{background:var(--orange); box-shadow:0 0 6px rgba(255,107,0,0.7);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:
+      radial-gradient(1100px 500px at 85% -10%, rgba(0,114,206,0.35), transparent 60%),
+      linear-gradient(180deg, var(--navy) 0%, var(--navy-2) 100%);
+    color:#fff;
+    padding:64px 32px 48px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    right:-60px; bottom:-120px;
+    width:420px; height:420px;
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:50%;
+  }
+  .hero-inner{max-width:1080px; margin:0 auto; position:relative; z-index:1;}
+  .eyebrow{
+    font-size:13px;
+    letter-spacing:0.04em;
+    font-weight:600;
+    color:var(--green);
+    display:flex; align-items:center; gap:10px;
+    margin-bottom:18px;
+  }
+  .eyebrow .line{width:28px; height:1px; background:var(--green); display:inline-block;}
+  .hero h1{
+    font-size:clamp(32px, 5vw, 56px);
+    font-weight:800;
+    letter-spacing:-0.024em;
+    line-height:1.15;
+    max-width:780px;
+    color:#fff;
+  }
+  .hero p.lead{
+    max-width:660px;
+    margin-top:18px;
+    font-size:16.5px;
+    color:rgba(255,255,255,0.78);
+  }
+  .hero-meta{
+    margin-top:30px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .chip{
+    font-size:12.5px;
+    font-weight:500;
+    padding:7px 13px;
+    border-radius:99px;
+    border:1px solid rgba(255,255,255,0.22);
+    color:rgba(255,255,255,0.88);
+    background:rgba(255,255,255,0.05);
+  }
+
+  /* ---------- MAIN ---------- */
+  .wrap{max-width:1080px; margin:0 auto; padding:0 32px;}
+
+  .section-intro{padding:44px 0 8px;}
+  .section-intro h2{font-size:22px;}
+  .section-intro p{color:var(--muted); max-width:680px;}
+
+  /* legend */
+  .legend{display:flex; gap:22px; flex-wrap:wrap; margin:18px 0 6px;}
+  .legend-item{display:flex; align-items:center; gap:8px; font-size:13px; color:var(--muted); font-weight:500;}
+
+  /* at-a-glance table */
+  .glance{
+    margin:22px 0 10px;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:12px;
+    overflow:hidden;
+  }
+  .glance-row{
+    display:grid;
+    grid-template-columns:1fr 210px;
+    align-items:center;
+    padding:12px 18px;
+    border-bottom:1px solid var(--border);
+    font-size:14px;
+  }
+  .glance-row:last-child{border-bottom:none;}
+  .glance-row .name{font-weight:600;}
+  .badge{
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:0.02em;
+    padding:4px 10px;
+    border-radius:6px;
+    text-align:center;
+    justify-self:end;
+  }
+  .badge.standard{background:var(--green-dim); color:#0B6B3F;}
+  .badge.addon{background:var(--orange-dim); color:#9A4A00;}
+
+  /* glossary */
+  .glossary{
+    margin:26px 0 8px;
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:10px 26px;
+  }
+  .g-term{padding:10px 0; border-bottom:1px dashed var(--border);}
+  .g-term dt{font-size:13px; color:var(--energy); font-weight:700;}
+  .g-term dd{margin:3px 0 0; font-size:13.5px; color:var(--muted);}
+
+  /* module sections */
+  .module{
+    scroll-margin-top:90px;
+    padding:38px 0;
+    border-top:1px solid var(--border);
+  }
+  .module-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+    margin-bottom:6px;
+  }
+  .module-title{display:flex; align-items:center; gap:11px;}
+  .module-title .led{width:9px; height:9px;}
+  .module h3{font-size:21px;}
+  .module .tagline{color:var(--muted); font-size:14.5px; margin-top:6px; max-width:660px;}
+
+  .feature-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:10px 24px;
+    margin-top:20px;
+  }
+  @media (max-width:820px){ .feature-grid{grid-template-columns:1fr;} .glossary{grid-template-columns:1fr;} .glance-row{grid-template-columns:1fr 150px;} }
+  .feature{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:13px 15px;
+    font-size:13.8px;
+  }
+  .feature b{display:block; font-size:13.8px; margin-bottom:2px;}
+  .feature span{color:var(--muted); font-size:13px;}
+  .feature .badge{display:inline-block; margin:2px 0 4px; justify-self:start;}
+
+  .note-open{
+    margin-top:16px;
+    font-size:13px;
+    color:var(--muted);
+    border-left:3px solid var(--energy);
+    padding-left:12px;
+  }
+
+  /* footer */
+  footer{
+    background:var(--navy);
+    color:rgba(255,255,255,0.85);
+    margin-top:50px;
+    padding:38px 32px 30px;
+  }
+  .footer-inner{max-width:1080px; margin:0 auto; display:flex; justify-content:space-between; gap:24px; flex-wrap:wrap;}
+  .footer-brand{font-family:var(--display); font-weight:700; font-size:18px; color:#fff; display:flex; align-items:center; gap:8px;}
+  .footer-brand .dot{width:9px; height:9px; border-radius:50%; background:var(--green);}
+  .footer-tagline{font-size:13px; color:rgba(255,255,255,0.55); margin-top:8px;}
+  .footer-contact{font-size:13.5px; color:rgba(255,255,255,0.65); line-height:1.8; text-align:right;}
+  .footer-contact a{color:rgba(255,255,255,0.9); text-decoration:none;}
+  .footer-note{font-size:12.5px; color:rgba(255,255,255,0.4); margin-top:22px; max-width:1080px; margin-left:auto; margin-right:auto;}
+
+  @media (max-width:600px){
+    .hero{padding:44px 20px 34px;}
+    .wrap{padding:0 20px;}
+    .footer-inner{flex-direction:column;}
+    .footer-contact{text-align:left;}
+  }
+</style>
+</head>
+<body>
+
+<div class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <a href="https://www.bigchangedemo.co.uk/" class="logo-link"><img class="logo-full" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQwAAAA4CAYAAAAIEMacAAAyi0lEQVR42u29eZxdVZU2/Ky19zl3qDlJJWQOBAImAQKJgARIRbAdsZ2qUFFBX4VubVvAWdFbV/1eJ2xHWkFbENqp6hUHRESQVJjBxIyVQEImMlRS83Cnc87ee71/nFsZKxhfTYSv75PfL/dWnXtunT2tvdazhg28yCAiJCJ6mYgW2ZQQEUIFFVRwQqABYElmmV7+Inlgau1A87xGnoZhtfTmIELTj6ksNJiITGVIK6jgRCzEF/Gzl7WOiqZRQQXHW8MQkZoLWh/8UOeQV1utImETwXhVBBeB4eDKH2TgiPdjveJ5rv2l+4/pGilx1okmJ16ySp+S7v01ET3yIpd5FVTwojFJNNnoxnxyTiKgEAkeQsRJiBZA5MAyFBz5fqxXPM+1v3T/MVxz5MMlfLDNQXm1qBrY08XAI59pW+9lW+aHlSGtoILjKjC6ozynuyUMJhsSsVZIKIQQv0AfOYByQyBExhDriFMjDkBHZ4+rDGcFFRx3gcFUUGkNyWkSJyBDIAuIPkhleGHBMsGKD0XQBRM/5PLKWFZQwXEHxxaEK+v9FRqgggoq+AsCo4IKKqigIjAqqKCCvyv00S8dzF8QIGTi350IXoPKHhpRIKrYSRVU8MIVGASCAGQBeNA2QqRqUe0XtPFrQRLhRHEdQSmAMxFQkRkVVPBCFRgCIYLAB0FBSRG+6cXFk8MfIk3d1hjFTMdVzXCOKKkRPf5c9JYeqZoDF7qK+VRBBS9ok4QAITGcpKQdwPSBZ2+89aPXdp3Ih6u/btlspMbPQTF0oIrAqKCCF6RJAhGQlAB4ZDiNovKwtbY0YUlmWU8PGrkRxzdIanf/VHXluNPsN4Y7kpATFwuSyWS4A008cV6TdHd2/M120Adam6QZcAQANLZWlskId6DjkL85cV6TtLeQ/UdMCBGhlnZwd2cHLe/oAJqa/qr7lwD4wLwmaW6Go6O0GSK0pLVDHd7Py1ub7NH6qYIXsEkScwYMbYsAMUQnYMFueXapQUYYWTq+UZXNbfL5b8+xtdd3yKgMOxHIZrMOyP7d2rY8e0ibVGZus2QP67vyz//4KNVMhrFhHhGRBWDHbsQxtBmHBNFRc1sbt7e0HCr8iGQ5cGRmcbayIF+kJglByAMoEiAkchFSsCdwUjfHvhjnZFSGHU+hISJERPKhH/zx9OGGM+aWhkeEyVGJfKqSEYG1sEoddIeFRQ0A/5C1FV8KAQSYNnEiTp5UbYK+1Suuf9Ul/UwUZAE0N7ep9vYWCwgBJG+/df0C1TDjFJPrc4YUKQUgyIVdO39+3/Js9kSl6xOyWUcANg4PT/j5Wiz+3YNr1PDIgOelaygURbbcVoXSkXSSBYQ0FaMomDWhTl51/vTwnxY0PnHReNXb3tJi0dymcFCbr/zmsmkyZe55pTBwZCw7scKJGuLu3Q+3f+jcHohQRdN4EZkkJPEmE1ESIEZKCghDv3y99cQ93QnyjlBTqwJgVm4f+Zct3YXrwkIBioCAGSkrMKiCIwUpR8PGJkYESP4ISUbMEEkguSePJPqRH7RDtz38UM+l2bvve+X86u999M1L1yOT4YVdK9Wfb0W0esueTwzW1l/hRgYRah9aAyrfa89Lz5oAYHB0kR2vtt+yYoV3zcKF5nuPbDr77oc3f+CtX37oTf3+9PEDQQMiqoErKQgpSDlvmBDFjzSq+UncI5Z8CAiDgwY7H9iKO+5d139R6wNrF01VX/zqu5f8wSLDyHQwsjB/2pVfOlgo3hEU8gAztIuAlEZDcfifANyPlnY+UhJX8ALWMP6noQlAFj2SLHYNGovAGUA0lMWQDQAKAahy9LyO37sQcHYM1UcAlQCkfE1NrtsXmrottvHUPU8NvOvjP1v9b19+64I7VmbmaQJQCKP8voGckZCM40CBQNolB5E+8HXHS7vKZDJ87aJF0crv/OJVHT2TfrUjmJ0IwhAYCS2UB5CAXREMAyUGFj4iTgHiDhEYjAhAAQBhuMQYhg9Q1bhnA2raXCg0/fNNHR/51Ueavua6LlcAkAtd2DswbF0QGBA0ucBxIeIklyoFkCoC48UDtpY0QznFwjDKMOAJlxPxnJBALAQODGIf4COtNHZhHMNCliEWyoRiPCUFN9luGNE1Dc/u+O7DXX0rL548bgMDyHENW1XHYM1gyyBLDkKorz++lIUIZ4nc5x7sWfj9e1fdsdOkE1AqArMmP6FIHMQJHPsQJMSAhZ1BwpYOCAsHCBFCVQWCIS0BESycSgAgcZR0OwpVSGHbTTfd9chTN7xx0cPxrEsTKU9BOQFBKXKkFHHczxVUBMZBWJLJ6OVoev4P9W9Wl2SW0doRAAKDsUrvEYyAAPr7uVFYQlEIAYlAYgAEEAiMSgMICBISxABEEKjDbPnYu+Q4HWshzgFk4FiTtjki6WHj15gtw4n0nb9fezGwtFMATKtFqloXWOe6/NDzocmBwpHq+qNwLfs9GGP1LQ71sGQyGT6YR8wAyGazAkCyrR0sInLJzc9+vMuf20jRvigZ7vaECSWuBokDg8RacUKeIi9BTvkI9qs+B7fcQSJBBLaanCJXhOdCApQKVYPZXUrJo88OvldEHiEiEYkdR7GmQhCRsrlXxtxGGvUeLR+jfW3P54GJO4oyra3UgSYG/nIm85L9emaHi4nvIzWxw/lYaW2V0WcQEWpq7VAH/60l+0ngDnfwZ5+PRzvGsXUAZKxnQrZVjjBfRSjTCjq8Lw//7qYmAB1NLtsKeT7+6IQLjJjI+4t0uFkOoOrf/giqqdbkQg3W2D+tyAHOau0nQXmX+Hs9W0hJMpSCIwciBjgJmAANGMHkusS+lIkCDcOGQ0SUEEOHBoeQGHiuxEVKuO68TB+yCVhSIraawBZIRMjLBDGWFmvC957404r0U0PjMjnlfzPcY6IomWRPJdlPNqhrzk/R7dfFZGyZBER50h3Vtj94QjS3icoe5prNHkJyLjVolXRp77YLzMhJAp1WIRGAEkACJxpwhibV+yoV9ZcKQwPdpLQy5Msh6QEi5LmS82vqJ/brkxK5XAgiC8MMCANS4hFJUY9OXAQgBaBAYiTmydx+gRPPRo3mNlHtLWTKz+rGal8sWjIMaT1icmcyGc4SuSwgx+rxWn7wa3ObkrbmQwTSWEKEslkcNi7maGNB2WzcrivYHhkmIAT8tWPbprKHe54OH+FRgp3Ixn1xdE/cchzkDMvGfZvJtCI7hjf0hAqMbdskedX3f96yJy9VHlnB6E5zBBQ4kQjr65S3J7f1NjaDbIWUgMGu5DyUACGXMJ6aVDX8zG4RotbWv9mLw6OTUQjxP4aNDE4bF+JHn3jp687wsL7cZwLsEWDHYaM/k4ApHoDw6u8/ccVvn87f2u9qFIslEQNIAZGfpP5QiAionVWrG7pqec/2wd51Tw72pOuhjd9D58/1kiKzBJih168Xmk8U+gzc/9SKyX/cmbpkw97i+LUbnhHWigx7ADMQhW7qxAYsnDd71zffMPu37S1kv/rVW0/eWT1Zj0jSuqFeN2tKrT9vRnpPZ0dTIZsluWvtvrNylJxEEggAtqQBSQCinaeJz03s2vmyl577kVeeP39N413XbsXChV7to788ZKJ6tZNInf5aWnfqkuk/Wbbzonuf6v12v5vgW3ZCrkQgOPj1vHH3VtO3+UmtDuGzGRDAUgI+HJKD29He0mRFpO7TP330tB1DeuHKrd0KJoLPzl1w1umYNbl6z0WzzOOXzZnTE1IWzW1tqr2lxYoIdXZ2evPnzw9TCY3PPbhp5t7d9pKnn9tXvXnnTrCfJBYiOAsSKyosOiggR5oaJ5yEpXNnll46Ln//W5aevYuoLHiyWbdMJPnwL56Y/uTmnE3UAV5Q7ZAEprrt9j+IdiY04Rs/uX/q5iB1ycpN++q6h0oQL8FTp8zEGdNrB6uC/oe+/I7ze4molMks062tTY4oXohtIqqF2aYTPu59ZPXkju3FC9d2FRvXbdpJHpflpfIQGJEZU06SxWdN2/OV18+++5ctLfbz37x99iNuph2f2y1WK6qfNMu74OSTeq5umjUc8/gd1J5dakTE//pvnjptzT578YpndvHo+rKI4DkgMCWpq6qSpecvFAz1rZo/Odx+zWsWd2ezWWzbtq1+1qxZw0TkRj2JJ0RgjNrLe3VuztC4c3+0PXLQHsEdTfERB05U48qTc79+6u0veY87lFI8pHLfBgLoi+8evfQ3CgwHElfe8RwgBiIJFL0qwEMvEZWO9btEpG3CRx74pui62tBBCAmCi2VNY2MSkQNeMmHO8KxPPfTdXml4O2hCyY4kNLiKOh4ZGNzStfu0//zXBdLe0yG57u2Tr7q7cMt7f7Hv0iLCdFHVIEjPgwPBsIIQg5TD3pzBhid78ZKP/PbRj33wFd/5wQ//8NXVu2onRqoa2iVsdU9On71935vvy9LdAJCLvDpJ1fsyGFpCWPZ4QMQ5akwFxU++8ew3vWHhtBXfONCsaGw30x2QBzu3vvGK7KbFNz36wT/12wXWBCDlABgEKoLkc40788QOcXn3UY/T/sE0IebPnsItv9ly/Uu/8NgNzw4lpuqER0VMhfgKBEHXs4DeuAc/U7nhy27+893Xvm7eF/95ZqITItTe3s5XtLSEHVu2nHnT7/pvvelX/Qtc2ksGphZRci4IAhYLRREsJWASNRAK4cjH7oCxdVUObWHP8Mu/9FDbF95z3ldeNjHxLJClJvT571+Z//324oTprm/IeRE79hNqamngfsnte+8rv7vh9q+siC4Z1jWpEiZBUjkIKewe9LCmPwcEpeKjux7Z+emfPvmN1reedwtRPE8zGeHmlbeyDAzUveO/197+/v+z49J+GpcueY0opqoBPmDyiuewb8TH2kcHcNon73/q+vcu/tpXvtfx7a2lCfVaTRC4wCUGST+2cc1brm6adXd7R2e6o7Up/6GTn7jmZa2/u2Fn3p9drJquC35NnNQJKfeHg00ogH1sX8twww6pjXbkvJuf+dOlcxKfPf3UWY/+97bnUgCKoxrXCTdJJCxaUzSODZE7Cv0gxIYctC3BRUuWaZxVVNibi1W+7k7CxHn7b1z2/mZqaoKUA47+zv5WBlEEGxXx0Krim3/QsWOz1eyRjQzLYQJKA9YRW68qGYW54hu+0/EuoxM1FIVONLOIBxgPNYVeYHj4xyLCKSZngpIZ0h6gGnwADPIRiVKput0KgG1takpckr3vlyuKU88vlupAsFYQCnQSRLAcBRAwRICIBEXR3I8Zi7/2+77FA4nZMowSgX2A05LzZ9CMxE5v/xpl3xrBIYq+gJz2tGqkfY++ZeEFK666bVly1tVNYZZIjiaTlzmob927WQXS6j7+85WfGNq7cnKApBtW40E2cGE4QuNrUoXB+gUxV7q/xHss9hmOA0MuXz3lwz//075XbxsE4FcJ54sGzHCWRQSUDwSQFHdxde3GXXVXDrR3vuaeFc8teS3RupbmNohI6tKv//GOJ/ZOXVAoKeFgj2FSgHjOMZHjBINrYlPJFMGSd8KeE0dqIMyjx5tW2z2s3/u52x45R+TSCynOtMwNlCQKuMpzCGA4CXEJ5GrPmDH/ps2/3VpoWFg0CjDaKgTOchpwIaGUQ06ERI1L9e+N5nSXov8cvHPVOSLnXEutGQaAkYXX1L3+C3+8e9Vw3QVDYQ1AvuVCQXwqIlBVVohBYpBwBUQlgzx73IsJ533nD3t/nktMAHI5hLoWEBIloGIpL0wkRMg9eOeaG+/bVf35bSM1sZwfKRpQ0kIswE7HuzXHBL3Lm1JRCFTro1Ss2be1+PIt27oWve+Wjle1zJjxBDIZRtksO6ECwwWhExFFAo7ZmaNYJAJYQBstzMuXGjexTeLAnyOxtD0mjI6LcBMH5fvYOKDwhd9suSmpHAxpCHO8dORI+o9dEWQj9A4nkbcaRB6xKcHakq0lrc+uzXXc+p5XPvCRO9ekjCBfVDWArhGYEcs2D5YSpaJhu+WpLYauJLn6h3++YnVx8vnF0IZaOU+EFBPBmKKITmhL+kC8iihYViAzhDWrt1rt+cojK9ZEcFxtkzanONcfjmpsOdY6Yh9AcIjvlsnhzFmTSqsBWhRusj+ipe5goXKkU1rc0tfMMR+Kf7xvrM/sBfCRmbd4btQSGd0sJLZaRGl+clv46pEgFSktbIMRZcVpcAKgCMxiCcLERMJWIiPRqr224T9/t+IrIvI6AO7Gn62csnp7zdmFRMIiPUQSTdIGSXhJh1rTAwR9QjJCFgrK5m1SW2+I61BwKZHkBCKB5PLFaH0xWviur/zsn4je/ltgV0qTA7tIhOEgwjBFdEe1Z3YFSRjDIWA9mEFlbaCg6wB2TkvgmEQ5Z8V6tbJ5KGXpmd73ffXudbchm308iyx2THni6qeLdRcM2dqQPOcpM6iIGCWqF5CvQQKBIIAP8RoAsqAoh1Wrui2SSWZfoKIRAGQjSSidbtAC4Merdp3zxbue+fS2wcmGUrXEUZdKmEEtyUZdlWCYkX3CEBJSEBFw1Xg1WBQ4UUJKkzGlaDdPrl29d9d/ichZB2/GJ1zDcOQgZOGI91fXOLLgOEGxgEMXh5fObXxegUDHISqQyv9ricAuws4+bUEsQFSOxXD7Wf5D7/IIlBQoj4hLCgAoYjdlYpqbTvPbf3zFeVcRUYQly4Rj80uUKxJsjkgMOUpTSVexrU1rAHh6fedi0XMF5LOhJIFZYEZoSrJIk+vsminja4uKrEAsrAMiiOzqlSnb83WzRqKEkBTIc3kYVyTtLClTOMA/AMJjaHkxQ8bMgMgDDcfCDcnBhFx7ZydhDE/Yyj1jqCiE2KPECiOBWM9LeuPVMKrGpVHLAQCDkZJBX6jVkEnAQYFcgbTs80uWXWex4ZVffuDpuR+/7Iz1VVXVi8Yn+6kU7VRMJQQyBXVuN86ZnLrntJPo4z+66fu9E5HHlLMXJ2pmnlU9e9akui0D+PQTO0qvHTS+S7gBDlU19+op0mOkWUR+CwwYZUIotmRhCCJExAijkrATakhaf1zCIZlOAfDhR0Xsy1kepHouhWUDzBkSlXA7wjq5d9X2KwA8LiK85DO/uaBYqHfgNIsTMpwWsgFNTQ7S5Dpv9YxxflFZC6s8BoVkwqLZ3V2Y+mzUMHOkWBQNQ6Gqj4lnJsoXSg4A7l6++YK+gksSl4wYpywSDn4Dmup23TN/3qwftN1631NJTVwAMOOc+XrazAkvW7ul77pdxeT5OaccMTwyebdxuPa0f2tf+xImrPuMi2mFE2+SEAPMED7AYcgRM4/gCHBevHfKhh4ZWwPIMFH2OIasE1hcbGp7NQRYYjsCUAiLZLzkDvoswUDRMAx8ArEIOQGDHJJcKDj39HM9C676/t5/F5Hv0bUrC1gOeFIEuxIsAKfSEFLQKGLn9j1GRPiiL3XMLfRXEVFIyo3AQGOq6jVvOavm7be858L2tYE9YhWGIlWvv3nVTY/sCv9loARrKKWEUwjZoeTV7ZdwKgysduYIzcEJIVL+IYL8WAV2OW+EDmLsy1+ToYW3XK5WjrWJgOHEkzrp5cWz9H2nVPNNTefP2jV5fA3yBFq/Mccbd+99fceq7R/cFtSfZHQ1lOkn6CrpRg0/uy+8gIjWfePh3Y8vfWn+pdSbGxqnU6kut0+fMxV1i88+nVztBPPOV/50XKoGaiIwcoqmDfdZwIlcdebnHn1uqK+QAlsRlaAip2lEl2bHBG2Pi9iXUPkQ+LDsA8TCEsjMqnz/y8+o/vYFZ0z8xdTp06XaB/b1wK7btnXa79f1vm3Vc4V3msQ4rUyBwJZCTlFvSZ0nIhoAY8Ks84ZGQiZyYFeEcw5T08Ze+7Lqd3+l+dw710Uu9s5z3InWAZFI/dtv3/SLX200Lw8j7Tw7wpY8CNJgP6UIwLN2/CU9nhaxRWg3LA4+sady/37VK781e6re9przvzohWQVLPqg0CHXeJDzxgz/3L7vpF1suGMn7FuyztsOS1+P1SBRdyMC6jtYOBnBiBYYHQEsc56CEnyfgmeLrcGNO2FHGFmglkVY6HhqGlOMqLClY9gCtWImFYg+ONBRGn//AoSlCPoQ8VEkRBkDgEiBnACYM5g3/Oe+d9lxpwpfecfvKmXTrovfHi0XDcAJCISAGLBEgwE4Tu8GSVePmuH0RlPaoynbJkJ5GEydO2Pu1t5/7f/7jSos4T6PzQPszTUxE+V9t6r513e0brx6Qat9xHNYtJIANDtL2EuTGCr8nArSChdC1l63kW9uPPUxbMUORE8UMa91oeRUYl5WV144t3InIsp9UZ1bTUw/fcM6rfhc4fOfIj3Ve/f0HRnp2+N8ezFkDUhoW4imGiJoDANddPPW5zX0F+exPnnj3hp7iK7b2Rf4Dz3q131u/8wzHvWBbAnsapjgS1lz/x03n1tPgp26/5/Y+M22IlJ+GCwWmBBCQc34xbnQNWeqHMOBFDpYjOAuZXs/81pek3/2/37ro7h8c+axPpxkPzPzUQ694tiDThTynYDkqFVA1Y8qZAOo9xb1zWh93pDQgARjGWr9WsVd89POvX3BniMwBj73LxuN7zQpNRIO3PLrvM4/vLF6yvc+RU/FcZTgYE28eT2/vt1HVNFKSA0iTI41iiJrrbl97v681rACOOA5AFAIpjWJk0FUgEIuGM4hIyyQ1jGken2okjtNYnj3BJomhiCwlHChhHcqk5xiHFQmxASVhTFHQLAon3avR3HZggrW0A81taGrtoOXZpuOkWwiIgNACpzc4nDWb3716zbYtfrJGg0UoHBEKw0MEldEazq9WOhgJTp86Yf7a7uimrfl0tWMN0kwg3/YO5Omxvq2v+8OKFZ98xaJFQ3EJwtEclZiIsuTROIwDAFiLCESARIjIs0hW6x19A48DHSqzTHR26WGem2xWRCTR+oMf7BgaaswhPWECTEkABxJ12HhYtuAjBkCIsHPvgPNBcmnpd3wsHFFrR4fq6AAumBm+ekiNv7GvxNaQx448sWCqU4XCmRPVBz7xujM3Mgkf6hRzSFCAyTNn/eyRwNGpH/ydf+W3Xn3AI9MJnd3Qbic3zqPE3mFguASUm2KdQ/febgMAX7937cuuufWxP6zqS1WPyHhIIg3nDLCnaGHzAmcAKgrI85AcP7+nZwhbCrUXDZo0RPJwUHRAxz0awUYOrDhNud3/3xWLl//v7y7TzR9okrnlfMkNAKG9HW3NzXrJzZtk8+Y4X2asMAgDJiGv3A4jpDX2Dea7QmR44S2tasU1MAdvhplbFtoNl7WpCdVDz5UG9w2RmjD+ABN9IIxD63hOxUVkBCQWVoBnuoom3gsJcQeOhuuCQAStmbQrAHCIOGWNKIpAAQB0dPwDOIwadsZjZs/3WHl4Preq1n4CNbpA1E5WDgtoGZ1tDx/Gf/x9NQzsJxJTPqPtytnLvXeeum3Uq/CX/m4n8Ni17RuX7l5RfGsQhEbY0yJOEcRGtdOn/X6TugjAPXRY6qeA40Svcft/E8WDGiKiFCMoYuqE5CJgscsupRKWLNNY3iNoHrUJOomIgjufWD87tbWvaiCwEjs4RouWHRAaSsNTWuPgYCKCsAtC6Su480KRRiLqoQ8d234AALU3/X7psn32vLzVUJKHcBLWeji5roRpiehUABv5sDqtTCBl8nh85ZaVAOTZvTmTpQNBQ5ll4tDSYqP7tjvn7CGaEBFBe54CgF+v6b3msYGTqkPhEijpc1QASFMqoVWjX4KXqoaAwbBgGcJI4NBVqgZMCZrMMR3eJRChRBJ9Pb3P+EzD+KxwOfpyfyAbWloEIkTlbGsZTVg8VKuC7/vlPUIDpFiiENPHJU/dLK1CRIZ+skwBGYfmeXTNZadwlloc0G5fs7Ln9Kr6wnjpsZZ8UofTUORsecOLc/hYDMAKXNOgaXTWlv272hmwCIxKwZAPAYNgoZ1TkkrAcL72hAduZctScv6sZzZffFLd1xdNTUyGCZw4GXOERJEwRkixOvXKO7b92rliHE8lSgDFThsmGFtPSdSEPd/76nte9ruDXT9/X8lhxXCSBoE6K4CnYqF8sLAbFR5aASUjkwAEW4Haa7751AzjfGhEZCgZ6xA2lKKqpd3Dww37J9iRokqmjpvgM5GbdsPvH9L+9He60DnDvoZEbnfvyKx/+/maz4vI1z2iXgCQ9vKAErBpWOZd9+M/f3UwTKTibSdWLQ6Poq8u7eoc7u0ehFdbJ2KkXOWHAHa7itUT3/CNh35+6/2r/+Vtl509WB0L7aPJSd010uV+8tjwy297qu89OVdr4KWAqI/YGTiknFhwUMoVgXLOnjqg0VgoOAJqlHjPa+4oPiyDOfZtO4lZ/M29mB/6E0SHuzxLhhNhv5tcR27RjKrvTuLiA7Pnz/ZB7HwbwvMjvXrd02HnoHvF2r7ENQMFIgXHRMewAYkgpcnb54SotXUstjym68RIvDDpiMtKMSZUIWJXglAaQsyISq5o1MLr2jo/JiLfSSjKg+Kx/a92WBHxN+3cedK/3vbUtbtz00GJBMTljuCgPCnBQzhqegiUJt/kBurCoQ8kU76BYwGJWFsufcLMYZRzlEoNUmHY+jZnJ9aEyYni6TPS4zaJrPcJ8yKcQJMktvZpqQFwwzFrJO9/8K7ihNPfKMFwLIUdAGEIhyAUUStVmOP6l3uE330K83QWCP9ej0vlQHTNBnuHAlz45VV3Trv+N5tqtEkUVBpilVNiR20qEivWr0pUX3zL2kW2kO8pRHrq01027cgg5fLKqPFgBBBXgtUTUD8+oY40ghDrF2L2d9rM6RPCvr1GSkIQ9kEScr/x5Red9lMPf/7Rd0372H0rRESBSEQgVQmdfP1/LL90a6FKF1xSiI0iZ+EoWc5Kt/vDht95vtn96d/oIThVD2fc/tXI4GIo0rEjXPrIrqE1t/55ZVBFIZVUTZyKToesHYjHNDw45PpLqq47SMGjHFxUhKEqJOwQIEI22YBJc6bFX68OMoNiExSGfTjz/16YiQCEliwRKG2HkNOTXajH8fRJ0TN//PB5H+zLj03D1DJ+mf7IssvEm3YawgE3Kr7l+fVOWChoIgGa+QCndrgy4g4y9w5EnvQAXhAZBMN9DyY5PasoxgGOiYV35zy5Y6X50sMbHv3A7BvuWR1SkgkAh0PhGV/401QyZt6e4bqqkk6C7ZA6eLsZXcyzp00wa3oK4uAA8iDwpCrp074vTbyLaE5wlEBDft93O/5zezFBoutERyOcqq1Vw5S8Ezhje6YVlMU/ID2wuU3UXyp/F5fo221vHgEKQc64KLCQUJEQBEzCArAyOTaqV9SwA9B//oK/IRajI7bm2GNYB0cpCEJAAohOUm8R6A2S8zlx2nzlAhjxIMo71CesY8LjmfWDAHM9RACdFiJHJRoPkhEQBiHcwImh/mBSomodADjlQcRCSxEggVACJIxTZryElgNYfEbVf2/vH/lfuwoM9thCPFYIae9wZPdy9TRKjJ8mgjKVroDIASNFgZiIPOcJxy5gz+YhqEGoagAAOy+AD8wLGsc99fDubp4pNukUDTEhgnUNADsaoXrnkE727Skl4XScw3PUMNkGgCTOXxVLnuTgywgcp5xQgMRIV/ebz75wzScBRErBKQ+eDMOShkMS7BxgYkG5ZG4jLS9P4jiMOjagUzaClngRaGdhYOCQgCtbdb4rEWwBjghgYQsl2/ftPeWNt6354DvPmfyr/vUPjUTTq6U2rFLVDVOTd68bOGPd9u7LVg16sygInVUeaxdYcoK0FMva70IG7mcAMFwd50KKgSdl/irTdtTEsqQNASIoCqCcRURpEEQaAScCXL5g8q8Hn+x578YBz1Gy2rLNsSOmgSjhBgIzPeFVTbdQACkkvCrkB2vigo8SRBwVPQjFFqYoiHgAJwUApjV4f3imL3xXgXxiCYld4AoqWX/Jl3bf98G7Nn/9pZPo8XBjR3FEjVc8KeHC8KRp7/jhqi/9cU/15ftsDUSlwbYWU4YHcXJqYAcRdSzJLNMn3EsSu92OISKzWeRz355j665bBkuk4VQcEkGjMloAC3FeqEfCUKwA375t9d9USyGmgRw8V4RBAiQOSkI4UmAiwOWdBOQMgSBR7Eo8LE6dIES+ZhESIiGRiCACw2mwFMXocUZcrZ6W7trbevmUpz8PQNi58p3wnEWgfRgiVJe9QZ6ijnfe0fmjPz49ctWeYghjASNWWKfYUdJKWHD7dzBmIDIEldYTUtozxS4ZctUklIQjAyZCyL4AQFR9iiEi98VHn/t+8Q/PvWNjYRKb1DjDbkjBMDlxAHyGC4WUBpQua11qjM5To4FYDDgY8eDYB1iLQzpK6VxiwfSaP59WU9MHAEqsEHRZpyKA4sRCJOPpOHHe4W70pvIuqMiRB8DGPA8xGAR2sTetNs2824SupKpFXAQmRzsKk7y2td63fvPUhqwNq/JGJxW5kqSoU7nqKZN6gxmwkYGiCA66nHjogShg2u/dM9CuCAsN5SJAFFgiMAE223qkElLW04SFQAk4IghbABqODI0yoJ98zUseeLYn+NHAFly1r2RgrQLYCShP0J4NhBzEAhLBUBKxFhKpSYnQKxQNhrkOhFKZd1AgcQ4APnbRxPue3rp6Zx/NnurYN2wHdRAZebh/2pINa8ySn+W7e0w0M7IqSbROrK8KjSOoT5QMG0IJmobFSJ31OZ8cX6fvBeKs24P5wxcpCGp0Av+F4K5jsZmUC5y2oYOUHCRyIuRE2DmJR0IgLCIkAIkIl3/e/+oEJE4EcS0JgcBByAF555AkHVV7p04YpgvPn/wR4mkFBiAucIByluusQdIJ0k7Ic8PP7YiYWT74s8dSP7xy7r9eNO+kd81pkMdPqTeuoTpNCbLkU1H5ijxfOS+pIi/p8t7EBl+fUd377OXn1N04rS7ZC2viJcppQASqbJKsfGCry2Qy/KnFMx5qmkHXzq4fZI+gnaTIAU65yGgXGO0iq2xglQ0smzB+b4L9v1MmsGxLVrnAKhsYbUPj2aIR55xDgmr1cOL8cSM7r3nlwuuIWogAUKlo4eBCqnEOaQshF3LSRTrNANDevp8YPESliTgFQ8oBkQvIc8JVTkQclxNFF81p/NmkdMDGEotoA8MmbUKT688F3UFDQ5+ePW1Ipk0e5OlTujBj0r5+JwkWTEwbpEu9jlzgHPvOUpUr6urRzEhLElllQwcJXblugbOknWbgeSrQkVEQuISz1OAMpxyccS4uokIA0Hp7B/7rqgXve/Vsc9UFVbsfObOm10z2R6iaipRgqzytPE95XkLBS3HgzUj0qgWJXesvf4l3o+/yu1l7EHESR7IYECIHAIvOmNr7ugVTb5wzPmC4SEdOC+CcjoaDvoFi0GMbGwe8U6YM8/TJQxg/rSfwvZLlAAQSZ5iiwBufGEpOrcNPP3n5hRsAoX9IaPgLW/QAAi+lUtWcDK0PUgAxHHmgv6ZanBxk3CMuS5pMWTSEA7nppvTYhVP8m77xz4vuxyWf1W551jTISLpEQ2wVJ6pcEQVSqA33VJ0RdBEAfL3lwuI34q+9E8CdItL48i/cWztQGh43fVJjzaDRRrmAAKBvaCS4eMGFcvM/z9sI7DFTnww+Knq6QAIom4fSKfiejtdBM5BtyTogw9/7X4tv/cSdj2z806bdN+yyiSVdqZMaQk6xUFyrgv5Cya9Y64g1P1XWzmvtCE4yawbmNI5rv/4NC792yezk5rmZNn9Dtt1W2yGvDiNsqOCLl4SKRsCUQHU04h3NZIy/c9ifJP0cIO/72kfBDfgNilHjx2TpHVefc/PlX18+bXWJPhAIvIhSsHBIsqcN+SDEeRkOPkQ0pui9uPTcGbd3D+ume/INs2p0CUnbzUVvIuptbrTwhyLS1V4yzWQdsxO4ZBV0KGljgWtuWaluuUbGMkuk2vSnayRkJR5rKgCSR4NNVY/Okuy7l5ay7wYA3AHgDhEZ//pP3tmwy6bqk/Xj0qx9BgCPI4HJYfEpddEX3vrapwAkf/une64XGwJMYGehXAiWiACgObPe/1LL/Ds+89un3fJVW6/fOohz+9Qk5RErSz4seyCJkHDDMOwQ+GlWWifIBEgQoSGRGDgr3XPzXR99TevhOVoVgQEAHa3WURaLGuzNM2XXvQUnooMSjNYw5JEWkQPlDnTZgzjWKw75XVQKXS4MotNOnqfecOGCPe84o/bpR8qEY3tbs7VopXd994Ev7h3uum3mzKlTBrpKvTlbMrVVpfDs+lkFEcG3H970ih6uOzc/KMaKc9f/vqv4qldfyB9bWPcrItpzeFPWAfgBgKt/vOqrBdVQh1AsIVJxWQ2RXMnGE6B9vw/LCTL8xXde9DADD/9uXd/09s49C1Dd8PKdXSUvNzIiWj3/NHFiiBlw1knS9+mkyTWRHZH7P3bWmWvOOef03b/8cJwu3traHFEWuOysmR3bcoOv1yricY3+xJ3PdO+orq9OTp9Ut2otALQ1u4NlVGtTk20V4e/9cfXPF9X3bpzuR5zSScpZdrVVCvMm1mwREXr88cfpgY8vvf5Tv37mjr4h80+9JW/m9hwDigQugpYQ2pRcVYJ4Ug3tO8XyPZ97+5yV137nkUULJ6uJdYkCp0tDFinPP7k+1f2gLNMAokX1I2/LJ3ZVh5GI54riEv08tT49tLlNFLVQdOu1h/hL928Zcxv9txNGquHIwhSs5Efc6ZNm8mZgGAC+9tt1S21Vw8L+ooO2kXz67u35V7/ldfSvCxvuIaLnxhKbX34b8KZbnroxSE0YL0HJkiJFNkIy4WFyw0m8BcDcpnmufUObyr7ujP8WkR9/+qdPLdxiki8t8rj5/T39zqOQFAIkpASDBJXgMLGeUMt2pwmDhz/65gU7549LP0cfOzhIstw8kZ6a0z637ZlnBxOTGU6AiEAuJlFAIuRREnk0jc/N+/2nL9tw3NyXh3IYitrJ1l237K7B5NQ3ojRiQAcJtzhx0qhkWk8sbntf1zde+wNklmlkl76wa0JmMgy0YvSYBhFRXJbg5dzB/eE9mbb1frZlfvjmb93734+F864sDodQ2gJg+JowNdr+xGXzTrqtOpVkJ+wsANba7969J9wUqleu20tv2jfI4iMkkEMEP2ocl/Le8NIpS295dUNHuVCNPfBowtlsK4CsU/g7VuBtblOZuZ0yWoRGJHalM5FTBBg5YBfb+Jr8v0TuiogCOlX748Oq5cILi2OHSh3G0xJw8WeX6eXZpabsLd+vICoCjOuqIpqc/1uaP+ZzNLcpam+xL7vxlz/Zm57ztpGQoSUCkcBTwGzdt3Lx2afdWm2G2Qm7UNcw++R17ekqbdo3eOnawdoruou+EDkCARIaM63Bpw9fMXfxDfP8J5/ZJIk5cyiIa4V0CpB1x9IfB2NJJu4XEWHCgSpcYx+VCAXlGIyIQp0Gw6FxkkovySzTPWjkxkzTcT7IaLO6MrOMvjF8YjmWTCbDGzbMO0T/bv9r18cY9zU3N6MZQEsL2YOrIhGRzWSEN8xrJ6AZ3Z0dtLycN7MBGywDQFEeHO4vXpkPXAFU8gBFEId9qv6CnZ10gSYLkdF8EgNjajFcLCIInZCfROQSzkkU+WwTc5N9f/req+Y+fu4tK7xrWyg6NEC0zBeI0Jva27m7M+aEluNAubmj4fCydAAwcUOPtMWVq2z20IAll8lkWJrb1OK5jbR8Xo9c3NlIyzf0CBHc81VIFxFqaWnng/t2ydxGakKHO+Q8lUyG3zvlcvXMnhE5vCzdkoPatBwdbnl2qclkhLMb2g+M+9xmuTF+Vxh1QY+O6ej4zh3jjJmxNoj4A61o3tBOaAbaOztlCWIv0CkT61av2zb01hGaXIDN+zom3Gm3rlu4/snCLX45K9qhAJBDZFMYLPowoRFmEIlzFp71k543b0Jx5XVzvRWPtbWp3bs7bOxgaLGjm0FHUwejY+yxwmHj1t7W7JaXy2IeziONoWGEJKwAlwS7AJYVxrk9+OB5bnb2ytdtPZELuP66B9sGU9OaURoxhwi3F6uG8ddtmdTW3s4Xvap53OVffmD5xkLVS0omEnhV5BybuA6eczgk7ksIxAKKGMw+yCelGNUJhVnjeNsNFze8+V33NK65dcpKde21i6KKLfoP1DSzWbf+ufXjrv7+rvWritMmW2sAXQtYMrD9DvZwb6IlkBYoYrAkEBXBzKhJeTirdnjNx18585//NLxjd1NTE3oAaaHjc3Le2MapxJWSpFyzLqA0ni7Ufv1DP1nVU7DegRqMxwlOiFJayS835s4bzBdBAP+PO9WGSE5ZsYKn1VHPd3/98Kvat3q37egpLenL9SuvYaq2pDSBjqyBLIDTtQhzA6h33WY8j/z51Al1d2Xet/RH86tp78L14l8zb2F07bWVdfsPQ2ye0Zkz5vd/5/Ftl6aX7/pW12BxaXehWyXHz9QiVWOz6cSAE+QH9mJ8fcqOr8KOaang27/596YfAii8Fv1ExJEctfTlcREYcUETJUVY8gDSyPME/OZZ+3pWjIi8E7G9xpF7QQJwEYTof+RBzIsWLYogQtcSPScil9366OZTnly/vWH6zOpLLCkSYSF36OQQQBL1moZ78msmuvptH33jpVuJSNqvj7WW+URhZcW+QHRIgD7wspM3pn31ipvu6jhl9abd9VNPP7nJcFV53z4wtgQIa4az1m3ZGnQsfNmC3A3n1vUQ0VA512d/2D4dx1PjjnpUoiOCIwWSCCwGxShhEZJA8odklh6SbXpoFZyxX/FXXINToBN0/NkLWNOACLW2dqhsdumW8m9XHOvtHysTWB2tTZYqxw++4IRGudgw3v+6i0fN/T8fy40/AfBhAGhrU5nOA6TycZ+OY3IYRBBoxAVkDLREsNBwpHF8ckOPpmcc9an//89hHIWUBVqBpucngzvQgYk9PTL3BE6kCv6GcZUMz2tvpZbOVlmCJm5qanp+i6aj1WXQitEzRI6Sy3KCBYboMVSGF8qu+z9TYFRQwT8ax8gNVDTZCiqo4EWfS1JBBRWcSGgAEGILIht7L4nisggvYK6RABBZEBMqRF4FFZxIgaGYXVQPJJUjAaDKlIV6AZsiDnBGEQTalfzKMFZQwQkTGA3BhVN0+5nT8JJANBiKWCwc9AtTYBCgxIKgXV3SqOpibdd3ADTP65H2ynhWUMHxXX4i632P5odMcYG2/Sd6vUAtEgLAiuCcxMcDOsCV62JW4gwqqOC4axjzojc2t6n29s7yaaHZWFy8gJfeks88yMuzcQWgTKZcGbIiLCqooIJjwWjKdAUVVHB8UVloFVRQQQUVVFDB3x//F0r9vD0RADLDAAAAAElFTkSuQmCC" alt="BigChange"></a>
+    <div class="navbar-right">
+      <span class="navbar-current" id="navCurrent">Overview</span>
+      <button class="burger-btn" id="burgerBtn" aria-expanded="false" aria-controls="navPanel">
+        <span class="burger-icon"><span></span><span></span><span></span></span>
+        Module index
+      </button>
+    </div>
+  </div>
+  <nav class="nav-panel" id="navPanel">
+    <div class="nav-panel-inner">
+      <div class="panel-group-label">Day-to-day operations</div>
+      <a class="panel-link" href="#scheduling"><span class="led standard"></span>Scheduling &amp; dispatch</a>
+      <a class="panel-link" href="#app"><span class="led standard"></span>Field engineer app</a>
+      <a class="panel-link" href="#resources"><span class="led standard"></span>Resource management</a>
+      <a class="panel-link" href="#assets"><span class="led standard"></span>Asset management &amp; PPM</a>
+      <a class="panel-link" href="#stock"><span class="led standard"></span>Stock &amp; equipment</a>
+      <a class="panel-link" href="#crm"><span class="led standard"></span>CRM &amp; sites</a>
+      <a class="panel-link" href="#notes"><span class="led standard"></span>Notes &amp; follow-ups</a>
+      <a class="panel-link" href="#worksheets"><span class="led standard"></span>Job cards &amp; worksheets</a>
+
+      <div class="panel-group-label">Finance &amp; fleet</div>
+      <a class="panel-link" href="#finance"><span class="led standard"></span>Finance &amp; invoicing</a>
+      <a class="panel-link" href="#contracts"><span class="led standard"></span>Contracts &amp; recurring billing</a>
+      <a class="panel-link" href="#fleet"><span class="led standard"></span>Vehicle tracking &amp; fleet</a>
+      <a class="panel-link" href="#booking"><span class="led standard"></span>Booking site &amp; payments</a>
+      <a class="panel-link" href="#express"><span class="led standard"></span>BigChange Express</a>
+
+      <div class="panel-group-label">Intelligence &amp; automation</div>
+      <a class="panel-link" href="#alerts"><span class="led standard"></span>Alerts &amp; automations</a>
+      <a class="panel-link" href="#analytics"><span class="led standard"></span>Analytics &amp; reporting</a>
+      <a class="panel-link" href="#lightning"><span class="led standard"></span>Lightning AI suite</a>
+
+      <div class="panel-group-label">Connectivity &amp; security</div>
+      <a class="panel-link" href="#network"><span class="led standard"></span>Network</a>
+      <a class="panel-link" href="#integrations"><span class="led standard"></span>Integrations</a>
+      <a class="panel-link" href="#security"><span class="led standard"></span>Security &amp; data integrity</a>
+    </div>
+  </nav>
+</div>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow"><span class="line"></span> What's included with BigChange</div>
+    <h1>Everything you get with BigChange, module by module</h1>
+    <p class="lead">One platform, one licence. A full walk-through of what's included as standard with every BigChange user — from scheduling and the mobile app through to finance, vehicle tracking and the Lightning AI suite — and the small number of items that sit as separate add-ons.</p>
+    <div class="hero-meta">
+      <span class="chip">One platform · one licence</span>
+      <span class="chip">Standard vs add-on, clearly marked</span>
+      <span class="chip">Job management · CRM · Finance · Fleet · AI</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="section-intro">
+    <h2>At a glance</h2>
+    <p>Every module below is either <b>included in the standard per-user licence</b> or a <b>separately priced add-on</b>. This table is the short answer to "what's standard, what costs extra" — the sections underneath give you the detail on what each module does day-to-day.</p>
+    <div class="legend">
+      <span class="legend-item"><span class="led standard"></span> Included as standard</span>
+      <span class="legend-item"><span class="led addon"></span> Additional cost / separate licence</span>
+    </div>
+    <div class="glance">
+      <div class="glance-row"><span class="name">Job scheduling &amp; dispatch</span><span class="badge standard">Standard</span></div>
+      <div class="glance-row"><span class="name">Field engineer mobile app</span><span class="badge standard">Standard</span></div>
+      <div class="glance-row"><span class="name">Resource management (skills, territories, compliance expiry)</span><span class="badge standard">Standard</span></div>
+      <div class="glance-row"><span class="name">Asset management &amp; PPM</span><span class="badge standard">Standard</span></div>
+      <div class="glance-row"><span class="name">Stock &amp; equipment tracking</span><span class="badge standard">Standard</span></div>
+      <div class="glance-row"><span class="name">CRM, contacts &amp; site hierarchy</span><span class="badge standard">Standard</span></div>
+      <div class="glance-row"><span class="name">Notes &amp; follow-ups</span><span class="badge standard">Standard</span></div>
+      <div class="glance-row"><span class="name">Finance &amp; invoicing (native)</span><span class="badge standard">Standard</span></div>
+      <div class="glance-row"><span class="name">Contracts &amp; recurring/aggregated billing</span><span class="badge standard">Standard</span></div>
+      <div class="glance-row"><span class="name">Vehicle tracking (hardware + app) &amp; fleet</span><span class="badge standard">Standard</span></div>
+      <div class="glance-row"><span class="name">Job cards, worksheets &amp; compliance forms</span><span class="badge standard">Standard</span></div>
+      <div class="glance-row"><span class="name">Alerts, flags &amp; standard automations</span><span class="badge standard">Standard</span></div>
+      <div class="glance-row"><span class="name">Standard reports &amp; BI dashboards</span><span class="badge standard">Standard</span></div>
+      <div class="glance-row"><span class="name">Booking site &amp; Stripe payments</span><span class="badge standard">Standard</span></div>
+      <div class="glance-row"><span class="name">BigChange Express (mobile manager app)</span><span class="badge standard">Standard</span></div>
+      <div class="glance-row"><span class="name">Network (subcontractor job-sharing)</span><span class="badge standard">Standard</span></div>
+      <div class="glance-row"><span class="name">REST API (Essentials tier, 100k calls/mo)</span><span class="badge standard">Standard</span></div>
+      <div class="glance-row"><span class="name">Xero / Sage 50 sync licence</span><span class="badge standard">Standard</span></div>
+      <div class="glance-row"><span class="name">Lightning AI suite (JobReady, JobBrief, JobScribe, JustAsk, Two-Way Messaging, GPS Time Tracking)</span><span class="badge standard">Standard</span></div>
+      <div class="glance-row"><span class="name">Multi-factor authentication &amp; User Events audit log</span><span class="badge standard">Standard</span></div>
+      <div class="glance-row"><span class="name">Single Sign-On (SSO)</span><span class="badge addon">Add-on</span></div>
+      <div class="glance-row"><span class="name">Data as a Service (Snowflake warehouse)</span><span class="badge addon">Add-on</span></div>
+      <div class="glance-row"><span class="name">Higher-volume REST API tiers</span><span class="badge addon">Add-on</span></div>
+      <div class="glance-row"><span class="name">SMS messaging</span><span class="badge addon">Pay-per-use (£0.06+VAT/msg)</span></div>
+      <div class="glance-row"><span class="name">Hardware (tablets, dashcams etc.)</span><span class="badge addon">Add-on</span></div>
+    </div>
+  </div>
+
+  <div class="section-intro">
+    <h2>Quick glossary</h2>
+    <p>A few BigChange-specific terms used throughout this document.</p>
+    <dl class="glossary">
+      <div class="g-term"><dt>Job Folder</dt><dd>The single record for a job — notes, worksheet, attachments, financials — all opened and edited on the same screen rather than in separate tabs.</dd></div>
+      <div class="g-term"><dt>Worksheet</dt><dd>A configurable digital job sheet: questions, photos, signatures, and "at risk" flags completed by the engineer against a job.</dd></div>
+      <div class="g-term"><dt>Resource</dt><dd>A field engineer (or vehicle) as represented in BigChange, with skills, groups and starting location.</dd></div>
+      <div class="g-term"><dt>Note Flag vs Job Flag</dt><dd>Two separate flag systems: Note Flags mark a follow-up's stage (e.g. "Awaiting Parts"); Job Flags mark a job's status on the schedule board.</dd></div>
+      <div class="g-term"><dt>Territory</dt><dd>A geographic area assigned to a resource or group, used to allocate jobs to the nearest suitable engineer.</dd></div>
+      <div class="g-term"><dt>Follow-On Job</dt><dd>A new job automatically created when a job result meets a condition — e.g. "parts required" spins up a parts-ordering job.</dd></div>
+      <div class="g-term"><dt>Network</dt><dd>BigChange's B2B layer for sharing jobs with subcontractors who are also on BigChange.</dd></div>
+      <div class="g-term"><dt>Lightning</dt><dd>BigChange's AI suite (Cooper AI brain), included as standard, bundling the AI agents described later in this document.</dd></div>
+      <div class="g-term"><dt>Dashboards Viewer</dt><dd>A per-user licence that controls who can open Business Intelligence dashboards.</dd></div>
+      <div class="g-term"><dt>User for Integration</dt><dd>A non-active-user account type used purely to hold API keys / run automations — doesn't consume a standard user licence.</dd></div>
+    </dl>
+  </div>
+
+  <!-- ================= SCHEDULING ================= -->
+  <div class="module" id="scheduling">
+    <div class="module-head">
+      <div class="module-title"><span class="led standard"></span><h3>Job scheduling &amp; dispatch</h3></div>
+      <span class="badge standard">Standard</span>
+    </div>
+    <p class="tagline">The core diary: drag-and-drop scheduling, job statuses, route optimisation, and a job folder that stays on one screen.</p>
+    <div class="feature-grid">
+      <div class="feature"><b>Drag-and-drop schedule board</b><span>Resource view, vehicle view, day/week/multi-day views, filter by group.</span></div>
+      <div class="feature"><b>4-stage job lifecycle</b><span>Accept → Drive → Start → Complete, with automatic time-stamping at each stage.</span></div>
+      <div class="feature"><b>Suspend / resume a job</b><span>Pause one job mid-way, work another, then pick the first back up — each job keeps its own accurate time record rather than the times merging together.</span></div>
+      <div class="feature"><b>Multiple resources per job</b><span>Assign a primary engineer plus assistants; all track GPS and complete the worksheet.</span></div>
+      <div class="feature"><b>Route optimisation</b><span>Most efficient stop order, reducing duration, mileage, cost and CO2.</span></div>
+      <div class="feature"><b>Recurring jobs &amp; job groups</b><span>Templates for planned maintenance visits that repeat on a schedule.</span></div>
+    </div>
+  </div>
+
+  <!-- ================= APP ================= -->
+  <div class="module" id="app">
+    <div class="module-head">
+      <div class="module-title"><span class="led standard"></span><h3>Field engineer mobile app</h3></div>
+      <span class="badge standard">Standard</span>
+    </div>
+    <p class="tagline">Android/iOS app for engineers — the same functionality whether it's a personal phone, a company tablet, or a locked-down device we supply. Includes the Lightning AI agents as standard.</p>
+    <div class="feature-grid">
+      <div class="feature"><b>Simple, large-button UI</b><span>Portrait or landscape, designed to be usable in a van or on-site without training overhead.</span></div>
+      <div class="feature"><b>Live job folder</b><span>Site info, customer attachments and job notes, all synced in real time with the back office.</span></div>
+      <div class="feature"><b>Digital worksheets</b><span>Photos, signatures and structured questions completed on the job.</span></div>
+      <div class="feature"><b>GPS navigation &amp; messaging</b><span>Turn-by-turn directions and two-way messaging with the office.</span></div>
+      <div class="feature"><b>Timesheets</b><span>Weekly signed timesheets by rate type, with the option to enforce starting a timesheet before starting a job and signing off before logging out — supports WTR compliance reporting.</span></div>
+      <div class="feature"><b>Absence &amp; leave requests</b><span>Engineers request holiday/sick/training leave from the app; it shows in the schedule to prevent double-booking, with remaining entitlement calculated automatically.</span></div>
+      <div class="feature"><b>Vehicle checks</b><span>Customisable daily checklist (tyres, oil, windscreen etc.) before driving, with defect flags raised automatically and a full audit trail.</span></div>
+      <div class="feature"><b>JobScribe AI</b><span>Cleans up and improves an engineer's typed or dictated job notes — corrects spelling/grammar and adds a professional tone automatically.</span></div>
+      <div class="feature"><b>Job summary (JobBrief AI)</b><span>Generates a clear, structured summary of the work carried out at job completion, ready to hand to the customer on-site.</span></div>
+      <div class="feature"><b>Optional supplied devices</b><span>Pre-loaded tablets/phones with unlimited-data SIM and a van cradle, if you'd rather not use personal phones.</span></div>
+    </div>
+  </div>
+
+  <!-- ================= RESOURCES ================= -->
+  <div class="module" id="resources">
+    <div class="module-head">
+      <div class="module-title"><span class="led standard"></span><h3>Resource management: skills, territories &amp; compliance</h3></div>
+      <span class="badge standard">Standard</span>
+    </div>
+    <p class="tagline">Back-office administration of your engineers — qualifications, geographic areas, and the compliance record-keeping that goes with regulated trades.</p>
+    <div class="feature-grid">
+      <div class="feature"><b>Skills &amp; qualifications</b><span>Log accreditations per engineer with expiry dates — IPAF, CSCS, DBS, 18th Edition, F-Gas, Gas Safe and similar.</span></div>
+      <div class="feature"><b>Skill-based scheduling constraints</b><span>Require a specific skill on a job type, and the system stops you scheduling an engineer who doesn't hold it.</span></div>
+      <div class="feature"><b>Skill expiry alerts</b><span>Notified ahead of a certification lapsing, rather than finding out on the day of a job.</span></div>
+      <div class="feature"><b>Territories</b><span>Assign engineers to geographic areas for smarter, more local job allocation.</span></div>
+      <div class="feature"><b>Driver behaviour monitoring</b><span>Scoring on harsh braking, speeding and idling from GPS data, separate from dashcam footage.</span></div>
+      <div class="feature"><b>Resource groups &amp; custom fields</b><span>Group engineers for scheduling/reporting and capture whatever extra attributes matter to you.</span></div>
+    </div>
+  </div>
+
+  <!-- ================= ASSETS ================= -->
+  <div class="module" id="assets">
+    <div class="module-head">
+      <div class="module-title"><span class="led standard"></span><h3>Asset management &amp; PPM</h3></div>
+      <span class="badge standard">Standard</span>
+    </div>
+    <p class="tagline">A proper asset register per site — serial numbers, warranty status, service schedules, and the full history of work carried out.</p>
+    <div class="feature-grid">
+      <div class="feature"><b>Per-site asset register</b><span>Every asset logged against the site it sits at, with serial numbers.</span></div>
+      <div class="feature"><b>Warranty tracking</b><span>Flag whether an asset is in or out of warranty, so the right billing route is obvious at job time.</span></div>
+      <div class="feature"><b>Full maintenance history</b><span>Every job against an asset — reactive and planned — builds a complete service record over time.</span></div>
+      <div class="feature"><b>PPM scheduling</b><span>Planned maintenance visits scheduled against required intervals, with follow-on jobs where needed.</span></div>
+    </div>
+  </div>
+
+  <!-- ================= STOCK ================= -->
+  <div class="module" id="stock">
+    <div class="module-head">
+      <div class="module-title"><span class="led standard"></span><h3>Stock &amp; equipment</h3></div>
+      <span class="badge standard">Standard</span>
+    </div>
+    <p class="tagline">Consumable stock and serialised equipment, tracked from the back office or directly from the engineer's phone.</p>
+    <div class="feature-grid">
+      <div class="feature"><b>Stock and equipment on jobs</b><span>Added by office staff or by the engineer via the app while on-site.</span></div>
+      <div class="feature"><b>Planned vs actual variance</b><span>Sub-templates compare what stock was planned to be used against what was actually used, for reporting.</span></div>
+      <div class="feature"><b>Import via Import Hub</b><span>Bulk-load your current stock list rather than re-keying it.</span></div>
+    </div>
+    <div class="note-open">Part of the standard platform — so if stock control isn't a day-one priority, it's there to switch on in phase two of a rollout with no separate module fee to unlock later.</div>
+  </div>
+
+  <!-- ================= CRM ================= -->
+  <div class="module" id="crm">
+    <div class="module-head">
+      <div class="module-title"><span class="led standard"></span><h3>CRM, contacts &amp; site hierarchy</h3></div>
+      <span class="badge standard">Standard</span>
+    </div>
+    <p class="tagline">Contacts, notes, sales opportunities and — importantly for multi-site customers — parent/child site relationships.</p>
+    <div class="feature-grid">
+      <div class="feature"><b>Parent/child contacts</b><span>A head-office contact with individual sites underneath, inheriting payment terms and pricing where useful.</span></div>
+      <div class="feature"><b>Sales opportunities</b><span>Track quotes and opportunities through to invoice, with line items carrying across automatically.</span></div>
+      <div class="feature"><b>Contact-specific pricing</b><span>Discounts or markups per contact, applied to specific stock or invoice items.</span></div>
+      <div class="feature"><b>Bulk email &amp; marketing opt-out</b><span>Filtered bulk communication, with GDPR-compliant opt-out tracking.</span></div>
+    </div>
+  </div>
+
+  <!-- ================= NOTES ================= -->
+  <div class="module" id="notes">
+    <div class="module-head">
+      <div class="module-title"><span class="led standard"></span><h3>Notes &amp; follow-ups</h3></div>
+      <span class="badge standard">Standard</span>
+    </div>
+    <p class="tagline">Task and follow-up records attached to a contact, job, or invoice — with an owner, a due date, and a visible status, rather than living in someone's inbox.</p>
+    <div class="feature-grid">
+      <div class="feature"><b>Configurable note types</b><span>Meeting, Site Visit, Email, or your own categories, each with an owner, priority and due date.</span></div>
+      <div class="feature"><b>Note workflows</b><span>Structured question sets with conditional branching, tailored to a specific note type.</span></div>
+      <div class="feature"><b>Note flags</b><span>Custom coloured labels showing where something sits in a process (e.g. "Awaiting Parts", "Spec In Progress").</span></div>
+      <div class="feature"><b>Progress tracking</b><span>0–100% completion indicator with a visual progress graph over time.</span></div>
+      <div class="feature"><b>@mentions</b><span>Tag a colleague on a note and they get an email notification — nothing sits unread and unowned.</span></div>
+      <div class="feature"><b>Automation trigger</b><span>"Create a note from a job result" is a standard automation action — e.g. a job result of "follow-up required" spins up an owned, dated note automatically.</span></div>
+    </div>
+  </div>
+
+  <!-- ================= WORKSHEETS ================= -->
+  <div class="module" id="worksheets">
+    <div class="module-head">
+      <div class="module-title"><span class="led standard"></span><h3>Job cards, worksheets &amp; compliance forms</h3></div>
+      <span class="badge standard">Standard</span>
+    </div>
+    <p class="tagline">Configurable digital job sheets, plus standard compliance form packs for regulated trades.</p>
+    <div class="feature-grid">
+      <div class="feature"><b>Configurable question types</b><span>Yes/No, cost, decimal, text, statement — with "at risk" flags to trigger alerts.</span></div>
+      <div class="feature"><b>Industry-standard compliance packs</b><span>Downloadable worksheet/template packs for common compliance forms.</span></div>
+      <div class="feature"><b>Photos &amp; signatures</b><span>Captured on-site as part of job completion, tied to the job record permanently.</span></div>
+      <div class="feature"><b>Single-screen job folder</b><span>Opening a job, viewing files and creating an invoice all happen on the same screen — with Ctrl+click available if you specifically want a new tab.</span></div>
+    </div>
+  </div>
+
+  <!-- ================= FINANCE ================= -->
+  <div class="module" id="finance">
+    <div class="module-head">
+      <div class="module-title"><span class="led standard"></span><h3>Finance &amp; invoicing</h3></div>
+      <span class="badge standard">Standard</span>
+    </div>
+    <p class="tagline">Invoices, credit notes, purchase orders and applications for payment, generated straight from completed jobs.</p>
+    <div class="feature-grid">
+      <div class="feature"><b>Financial documents from jobs</b><span>Invoices, credit notes and POs, with line items from free text, predefined items, or stock.</span></div>
+      <div class="feature"><b>Consolidated invoicing</b><span>Combine multiple completed jobs for the same contact into a single invoice, filtered by date range or job type.</span></div>
+      <div class="feature"><b>Configurable sender name &amp; email</b><span>Auto-sent documents can always go out under a chosen name and address — e.g. a shared accounts inbox — however many people trigger the send.</span></div>
+      <div class="feature"><b>Split invoicing</b><span>One job can be invoiced to two different entities — e.g. warranty and non-warranty parties on the same visit.</span></div>
+      <div class="feature"><b>Sage 50 / Xero-ready</b><span>Financial documents sync out to your accounting package (see Integrations).</span></div>
+    </div>
+  </div>
+
+  <!-- ================= CONTRACTS ================= -->
+  <div class="module" id="contracts">
+    <div class="module-head">
+      <div class="module-title"><span class="led standard"></span><h3>Contracts &amp; recurring billing</h3></div>
+      <span class="badge standard">Standard</span>
+    </div>
+    <p class="tagline">Purpose-built for planned maintenance revenue — set a contract value once and let periodic invoices generate themselves.</p>
+    <div class="feature-grid">
+      <div class="feature"><b>Aggregated invoicing</b><span>Set a total contract value, and BigChange divides it across the frequency and duration automatically — e.g. a £70,000 contract over 36 months becomes a £1,944 monthly invoice.</span></div>
+      <div class="feature"><b>Invoicing periods</b><span>Multiple periods per contract for price changes over time (different rates Jan–Apr, an increase from May, etc.), without duplicating the contract.</span></div>
+      <div class="feature"><b>Jobs feed contract value</b><span>Line items from completed jobs can populate the contract, so reactive work and planned visits both roll up to the same billing record.</span></div>
+      <div class="feature"><b>Central document storage</b><span>Contract documents, financial docs and scanned agreements held together against the contract.</span></div>
+      <div class="feature"><b>Send All</b><span>Filter contract financial documents and send them to every affected contact in one action, rather than one at a time.</span></div>
+      <div class="feature"><b>Bulk import</b><span>Existing contracts, or contract line items, can be bulk-loaded via Import Hub rather than re-keyed by hand.</span></div>
+    </div>
+  </div>
+
+  <!-- ================= FLEET ================= -->
+  <div class="module" id="fleet">
+    <div class="module-head">
+      <div class="module-title"><span class="led standard"></span><h3>Vehicle tracking &amp; fleet</h3></div>
+      <span class="badge standard">Standard</span>
+    </div>
+    <p class="tagline">Real-time GPS tracking, at no separate charge — covering both the vehicle and the device the engineer's logged into.</p>
+    <div class="feature-grid">
+      <div class="feature"><b>Hardware vehicle trackers</b><span>Installed as standard, no additional per-tracker fee.</span></div>
+      <div class="feature"><b>Device tracking</b><span>The engineer's logged-in phone/tablet is tracked alongside the vehicle.</span></div>
+      <div class="feature"><b>Vehicle &amp; driver reports</b><span>Mileage, fleet utilisation, driver behaviour scoring, defect history.</span></div>
+      <div class="feature"><b>Journey cost reporting</b><span>Distance, drive time, CO2 and fuel per vehicle.</span></div>
+    </div>
+  </div>
+
+  <!-- ================= BOOKING ================= -->
+  <div class="module" id="booking">
+    <div class="module-head">
+      <div class="module-title"><span class="led standard"></span><h3>Booking site &amp; payments</h3></div>
+      <span class="badge standard">Standard</span>
+    </div>
+    <p class="tagline">A customer-facing web portal for bookings, job status, and taking payment — powered by Stripe.</p>
+    <div class="feature-grid">
+      <div class="feature"><b>Customer booking &amp; status</b><span>Customers can view job status and complete 3rd-party workflow forms.</span></div>
+      <div class="feature"><b>Online payment links</b><span>Card, Apple Pay, Google Pay, and Buy-Now-Pay-Later, embedded directly in invoice emails.</span></div>
+      <div class="feature"><b>Take payment on-site</b><span>Engineers can take payment via the mobile app where relevant.</span></div>
+    </div>
+    <div class="note-open">Stripe processing fees apply per transaction — the module itself isn't a separate licence cost, but payment processing carries the usual card fees.</div>
+  </div>
+
+  <!-- ================= EXPRESS ================= -->
+  <div class="module" id="express">
+    <div class="module-head">
+      <div class="module-title"><span class="led standard"></span><h3>BigChange Express (mobile monitoring)</h3></div>
+      <span class="badge standard">Standard</span>
+    </div>
+    <p class="tagline">A lightweight app for managers — not engineers — to check on the business from a phone, without opening the full back office.</p>
+    <div class="feature-grid">
+      <div class="feature"><b>Daily dashboard</b><span>A quick-glance summary of what's happening today.</span></div>
+      <div class="feature"><b>Live map &amp; list tracking</b><span>See where every vehicle and resource is, in real time.</span></div>
+      <div class="feature"><b>Jobs list</b><span>Scheduled and completed jobs, viewable on the move.</span></div>
+    </div>
+  </div>
+
+  <!-- ================= ALERTS ================= -->
+  <div class="module" id="alerts">
+    <div class="module-head">
+      <div class="module-title"><span class="led standard"></span><h3>Alerts, flags &amp; automations</h3></div>
+      <span class="badge standard">Standard</span>
+    </div>
+    <p class="tagline">Rule-based alerts, custom job flags, and standard automations that trigger off job results — no coding required for the common cases.</p>
+    <div class="feature-grid">
+      <div class="feature"><b>Custom job flags</b><span>Create your own flags, filter the schedule by them, and save the filter as a favourite view.</span></div>
+      <div class="feature"><b>Follow-on jobs</b><span>A job result (e.g. "additional parts required") automatically spins up the next job.</span></div>
+      <div class="feature"><b>Standard automations</b><span>Create notes from results, chain automations together, send SMS/email off the back of a trigger.</span></div>
+      <div class="feature"><b>Outbound &amp; inbound webhooks</b><span>Post data to an external URL, or receive data from a 3rd-party system, once BigChange has approved the automation.</span></div>
+    </div>
+    <div class="note-open">More complex, bespoke automation builds beyond the standard rule set can involve BigChange's Professional Services team as a separate paid engagement.</div>
+  </div>
+
+  <!-- ================= ANALYTICS ================= -->
+  <div class="module" id="analytics">
+    <div class="module-head">
+      <div class="module-title"><span class="led standard"></span><h3>Analytics &amp; reporting</h3></div>
+      <span class="badge standard">Standard</span>
+    </div>
+    <p class="tagline">Pre-built reports and dashboards as standard, with heavier-duty options available if you outgrow them.</p>
+    <div class="feature-grid">
+      <div class="feature"><b>JustAsk (AI business intelligence)</b><span>Ask natural-language questions against your BigChange data and get dashboards back without building a report by hand. Note: a JustAsk user sees all data regardless of their normal role permissions, so licences are worth allocating deliberately.</span></div>
+      <div class="feature"><b>Standard reports</b><span>Financial, resource productivity, fleet/vehicle and job reporting out of the box.</span></div>
+      <div class="feature"><b>BI dashboards</b><span>Customisable, exportable dashboards with drill-down, granted per user via a Dashboards Viewer licence.</span></div>
+      <div class="feature"><b>Export Blueprints</b><span>Define exactly which columns you want to pull for your own analysis.</span></div>
+      <div class="feature"><b>Data as a Service (add-on)</b><span>A Snowflake-backed data warehouse for heavy, combined data sets — a separate paid service for organisations that need it.</span></div>
+    </div>
+  </div>
+
+  <!-- ================= LIGHTNING ================= -->
+  <div class="module" id="lightning">
+    <div class="module-head">
+      <div class="module-title"><span class="led standard"></span><h3>Lightning AI suite</h3></div>
+      <span class="badge standard">Standard</span>
+    </div>
+    <p class="tagline">BigChange's AI layer — job prep, note-writing, customer summaries and natural-language BI — included as standard, not a separate quote.</p>
+    <div class="feature-grid">
+      <div class="feature"><b>JobReady AI</b><span>Instant AI summary of a site's history before an engineer arrives — recent visits, recurring issues, warranty flags, recommended contacts.</span></div>
+      <div class="feature"><b>JobBrief AI</b><span>Auto-generates a customer-facing summary of the work carried out, at job completion.</span></div>
+      <div class="feature"><b>JobScribe AI</b><span>Cleans up and improves engineers' typed or dictated job notes.</span></div>
+      <div class="feature"><b>JustAsk (AI BI)</b><span>Natural-language questions against your BigChange data — note: JustAsk users see all data regardless of role permissions.</span></div>
+      <div class="feature"><b>GPS Time Tracking</b><span>Geofence-based automatic job start/stop timing.</span></div>
+      <div class="feature"><b>Two-Way Messaging</b><span>Customer messaging through the Booking Site portal (not SMS/WhatsApp).</span></div>
+    </div>
+  </div>
+
+  <!-- ================= NETWORK ================= -->
+  <div class="module" id="network">
+    <div class="module-head">
+      <div class="module-title"><span class="led standard"></span><h3>Network (subcontractor job-sharing)</h3></div>
+      <span class="badge standard">Standard</span>
+    </div>
+    <p class="tagline">An optional B2B layer for sharing jobs with subcontractors who are also on BigChange.</p>
+    <div class="feature-grid">
+      <div class="feature"><b>Share jobs out</b><span>Assign a job to a subcontractor; it lands in their own BigChange system.</span></div>
+      <div class="feature"><b>Track from your side</b><span>Status updates flow back to you as the originator.</span></div>
+      <div class="feature"><b>Cross-business invoicing</b><span>Invoicing between contractor and originator, matched contacts.</span></div>
+    </div>
+    <div class="note-open">Works between two BigChange customers — not a general subcontractor-management tool for companies outside the platform.</div>
+  </div>
+
+  <!-- ================= INTEGRATIONS ================= -->
+  <div class="module" id="integrations">
+    <div class="module-head">
+      <div class="module-title"><span class="led standard"></span><h3>Integrations</h3></div>
+      <span class="badge standard">Mostly standard</span>
+    </div>
+    <p class="tagline">The REST API is free at standard volumes, and Xero/Sage 50 sync is included as standard. SSO and higher API tiers are separately licensed.</p>
+    <div class="feature-grid">
+      <div class="feature"><b>REST API — Essentials tier</b><span class="badge standard">Standard</span><span>Free, up to 100,000 calls/month, 5 calls/sec.</span></div>
+      <div class="feature"><b>REST API — Plus/Professional/Enterprise</b><span class="badge addon">Add-on</span><span>Higher call volumes, licensed via Customer Success.</span></div>
+      <div class="feature"><b>Sage 50 integration</b><span class="badge standard">Standard</span><span>Middleware-based sync of contacts and invoices.</span></div>
+      <div class="feature"><b>Xero integration</b><span class="badge standard">Standard</span><span>Native OAuth sync of contacts and financial documents.</span></div>
+      <div class="feature"><b>RingCentral (telephony)</b><span>Incoming call screen-pop with CRM details, click-to-call.</span></div>
+    </div>
+  </div>
+
+  <!-- ================= SECURITY ================= -->
+  <div class="module" id="security">
+    <div class="module-head">
+      <div class="module-title"><span class="led standard"></span><h3>Security &amp; data integrity</h3></div>
+      <span class="badge standard">Mostly standard</span>
+    </div>
+    <p class="tagline">Login security and a full audit trail as standard; Single Sign-On sits as a separate add-on for larger identity setups.</p>
+    <div class="feature-grid">
+      <div class="feature"><b>Role-based permissions</b><span>Restrict what each web user can see or do — e.g. who can create jobs, raise invoices, or view financials.</span></div>
+      <div class="feature"><b>Multi-factor authentication</b><span class="badge standard">Standard</span><span>Two-factor login for web users, and a prerequisite for SSO.</span></div>
+      <div class="feature"><b>User Events audit log</b><span class="badge standard">Standard</span><span>A full log of user actions — filterable by date, user and action type — for tracing exactly who changed what.</span></div>
+      <div class="feature"><b>Single Sign-On (SSO)</b><span class="badge addon">Add-on</span><span>Connects to Microsoft Entra, Okta or Google Workspace; chargeable, and MFA must be enabled first.</span></div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand"><span class="dot"></span>BigChange</div>
+      <div class="footer-tagline">Make every business unstoppable</div>
+    </div>
+    <div class="footer-contact">
+      Jack Wilson — Account Executive<br>
+      <a href="tel:+447939910833">07939 910833</a><br>
+      <a href="mailto:jack.wilson@bigchange.com">jack.wilson@bigchange.com</a>
+    </div>
+  </div>
+  <div class="footer-note">Every item marked "Standard" is included in the per-user licence. Add-ons are priced separately — ask your Account Executive for current pricing.</div>
+</footer>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  const burgerBtn = document.getElementById('burgerBtn');
+  const navPanel = document.getElementById('navPanel');
+  const navCurrent = document.getElementById('navCurrent');
+  const panelLinks = document.querySelectorAll('.panel-link');
+  const modules = document.querySelectorAll('.module');
+
+  function closeMenu(){
+    navPanel.classList.remove('open');
+    burgerBtn.classList.remove('open');
+    burgerBtn.setAttribute('aria-expanded', 'false');
+  }
+  function toggleMenu(){
+    const isOpen = navPanel.classList.toggle('open');
+    burgerBtn.classList.toggle('open', isOpen);
+    burgerBtn.setAttribute('aria-expanded', String(isOpen));
+  }
+
+  burgerBtn.addEventListener('click', (e) => { e.stopPropagation(); toggleMenu(); });
+  document.addEventListener('click', (e) => { if(!navbar.contains(e.target)) closeMenu(); });
+  panelLinks.forEach(link => link.addEventListener('click', () => closeMenu()));
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        const id = entry.target.id;
+        const match = document.querySelector('.panel-link[href="#' + id + '"]');
+        panelLinks.forEach(l => l.classList.remove('active'));
+        if(match){
+          match.classList.add('active');
+          navCurrent.textContent = match.textContent.trim();
+        }
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+
+  modules.forEach(m => obs.observe(m));
+</script>
+
+</body>
+</html>
