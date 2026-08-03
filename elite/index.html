@@ -337,14 +337,13 @@
     .logo-div{margin:0 5px;}
   }
 
-  .coi { grid-column: 1 / -1; margin-top: 10px; background: var(--navy); color:#fff; border-radius: var(--r-md); padding: 24px 28px; box-shadow: var(--shadow-md); }
+
+  .coi { background: var(--navy); color:#fff; border-radius: var(--r-md); padding: 22px 24px; margin-bottom: 18px; box-shadow: var(--shadow-md); }
   .coi-eyebrow { font-family: 'Roboto Flex', Arial, sans-serif; font-weight: 700; font-size: 13px; letter-spacing: .02em; color: var(--green); margin-bottom: 8px; }
-  .coi-main { font-family: 'Roboto Flex', Arial, sans-serif; font-weight: 800; font-size: 22px; line-height: 1.3; letter-spacing: -0.01em; }
-  .coi-main b { color: var(--green); }
-  .coi-sub { margin-top: 8px; font-size: 14px; color: rgba(255,255,255,.72); }
+  .coi-fig { font-family: 'Roboto Flex', Arial, sans-serif; font-weight: 800; font-size: 34px; letter-spacing:-0.01em; color: var(--green); line-height:1; }
+  .coi-fig small { font-size: 15px; font-weight: 600; color: rgba(255,255,255,.7); margin-left: 2px; }
+  .coi-sub { margin-top: 12px; font-size: 14px; line-height:1.5; color: rgba(255,255,255,.72); }
   .coi-sub b { color:#fff; font-weight: 700; }
-  @media (max-width:1000px){ .qr-grid > div:first-child{ order:1; } .qr-grid .coi{ order:2; } .qr-grid .roi-col{ order:3; } }
-  @media (max-width:600px){ .coi-main{ font-size:18px; } .coi{ padding:18px 20px; } }
 </style>
 </head>
 <body>
@@ -409,6 +408,11 @@
     <div class="qr-grid">
       <div><div class="qcard"><div class="qcard-head"><span class="qcard-tag">6 users &middot; 36 month term</span><div class="qcard-price">&pound;523<small> / month</small></div><div class="qcard-vat">&pound;627.60 inc VAT &middot; order 41823720258</div></div><div class="qcard-body"><table class="qtab"><thead><tr><th>Item</th><th class="r">Qty</th><th class="r">Per month</th></tr></thead><tbody><tr><td>Field app licence<div class="qd">JobWatch Lightning app with hard wired vehicle tracking, &pound;65 each</div></td><td class="r">4</td><td class="r">&pound;260.00</td></tr><tr><td>Back office web user<div class="qd">Full JobWatch back office, &pound;65 each</div></td><td class="r">2</td><td class="r">&pound;130.00</td></tr><tr><td>Premier implementation<div class="qd">Hands on onboarding and UK support, spread across the term</div></td><td class="r">1</td><td class="r">&pound;133.00</td></tr></tbody></table><ul class="qincl"><li>Jobs, photos and customer sign-off in one place</li><li>Live vehicle tracking with on the way ETA notifications</li><li>Branded quotes and invoices, priced on site and sent from the app</li><li>Customer portals for commercial and planned work</li><li>Just Ask for unpaid invoices and converted quotes</li><li>Premier onboarding and Leeds based UK phone support</li></ul><div class="qnote">Six licences (four field with hard wired vehicle tracking, two back office) at <b>&pound;65 each</b>, plus Premier onboarding. <b>&pound;523</b> exc VAT (<b>&pound;627.60</b> inc VAT) per month on a 36 month term, itemised so you just add a licence as you grow.</div><a href="https://landing.bigchange.com/57XS7w2Aan8j53KCza" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:9px;font-family:&#x27;Roboto Flex&#x27;,Arial,sans-serif;font-weight:700;font-size:15px;padding:13px 24px;border-radius:999px;background:var(--grad-energy);color:#fff;box-shadow:0 8px 22px rgba(0,114,206,.35);">View and sign your quote &rarr;</a></div></div></div>
       <div class="roi-col">
+        <div class="coi">
+          <div class="coi-eyebrow">The cost of waiting</div>
+          <div class="coi-fig"><b id="coi-month">&pound;0</b><small> / month</small></div>
+          <div class="coi-sub">The benefit BigChange could unlock, left on the table for every month you stay as you are. Around <b id="coi-week">&pound;0</b> a week, or <b id="coi-day">&pound;0</b> a day, net of your subscription.</div>
+        </div>
         <div class="calc">
       <div class="calc-inputs">
         <div class="calc-field">
@@ -463,11 +467,7 @@
       </div>
     </div>
       </div>
-    <div class="coi">
-        <div class="coi-eyebrow">The cost of waiting</div>
-        <div class="coi-main">Every month you stay as you are leaves about <b id="coi-month">&pound;0</b> of the benefit above on the table.</div>
-        <div class="coi-sub">Around <b id="coi-week">&pound;0</b> a week, or <b id="coi-day">&pound;0</b> a day, net of your BigChange subscription.</div>
-      </div>
+    
     </div>
   </div>
 </section>
