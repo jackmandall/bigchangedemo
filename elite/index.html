@@ -344,6 +344,12 @@
   .coi-fig small { font-size: 15px; font-weight: 600; color: rgba(255,255,255,.7); margin-left: 2px; }
   .coi-sub { margin-top: 12px; font-size: 14px; line-height:1.5; color: rgba(255,255,255,.72); }
   .coi-sub b { color:#fff; font-weight: 700; }
+
+  details.assump > summary { list-style:none; cursor:pointer; display:flex; align-items:center; justify-content:space-between; gap:12px; font-family:'Roboto Flex',Arial,sans-serif; font-weight:800; color:var(--navy); font-size:15px; }
+  details.assump > summary::-webkit-details-marker { display:none; }
+  .assump-chev { color:var(--grey-500); font-size:20px; line-height:1; transition:transform .15s ease; }
+  details.assump[open] .assump-chev { transform:rotate(90deg); }
+  .assump-body { margin-top:14px; }
 </style>
 </head>
 <body>
@@ -453,8 +459,9 @@
           <div class="res"><div class="res-l">Fuel saving</div><div class="res-v" id="out-fuel-saving">&pound;0</div></div>
           <div class="res"><div class="res-l">Saving per job</div><div class="res-v" id="out-saving-per-job">&pound;0</div></div>
         </div>
-        <div class="assump">
-          <h4>The assumptions behind these numbers</h4>
+        <details class="assump">
+          <summary class="assump-summary">The assumptions behind these numbers <span class="assump-chev" aria-hidden="true">&rsaquo;</span></summary>
+          <div class="assump-body">
           <div class="sub">BigChange's published customer benchmarks, the same rates used in the savings model above.</div>
           <div class="assump-grid">
             <div class="assump-item"><div class="av">&pound;5<small>per &pound;1</small></div><div class="al">Return for every &pound;1 spent</div></div>
@@ -463,7 +470,8 @@
             <div class="assump-item"><div class="av">9.2<small>%</small></div><div class="al">Shorter job duration</div></div>
           </div>
           <p class="note">Indicative and based on assumptions of growth. Your prepared quote sets out exact licensing for your team.</p>
-        </div>
+          </div>
+        </details>
       </div>
     </div>
       </div>
