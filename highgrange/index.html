@@ -336,6 +336,18 @@
     .co-icon{display:inline-block;height:28px;width:auto;}
     .logo-div{margin:0 5px;}
   }
+
+  .coi { background: var(--navy); color:#fff; border-radius: var(--r-md); padding: 22px 24px; margin-bottom: 18px; box-shadow: var(--shadow-md); }
+  .coi-eyebrow { font-family: 'Roboto Flex', Arial, sans-serif; font-weight: 700; font-size: 13px; letter-spacing: .02em; color: var(--green); margin-bottom: 8px; }
+  .coi-fig { font-family: 'Roboto Flex', Arial, sans-serif; font-weight: 800; font-size: 34px; letter-spacing:-0.01em; color: var(--green); line-height:1; }
+  .coi-fig small { font-size: 15px; font-weight: 600; color: rgba(255,255,255,.7); margin-left: 2px; }
+  .coi-sub { margin-top: 12px; font-size: 14px; line-height:1.5; color: rgba(255,255,255,.72); }
+  .coi-sub b { color:#fff; font-weight: 700; }
+  details.assump > summary { list-style:none; cursor:pointer; display:flex; align-items:center; justify-content:space-between; gap:12px; font-family:'Roboto Flex',Arial,sans-serif; font-weight:800; color:var(--navy); font-size:15px; }
+  details.assump > summary::-webkit-details-marker { display:none; }
+  .assump-chev { color:var(--grey-500); font-size:20px; line-height:1; transition:transform .15s ease; }
+  details.assump[open] .assump-chev { transform:rotate(90deg); }
+  .assump-body { margin-top:14px; }
 </style>
 </head>
 <body>
@@ -364,6 +376,7 @@
         <a class="btn btn-green" href="https://landing.bigchange.com/Y2MZPvoDkp" target="_blank" rel="noopener">View your quote</a>
         <a class="btn btn-ghost" href="#demo">Watch your demo</a>
         <a class="btn btn-ghost" href="https://www.bigchangedemo.co.uk/elements/" target="_blank" rel="noopener">What&#x27;s included</a>
+        <a class="btn btn-ghost" href="https://bigchangeonboarding.github.io/onboardingwelcompack/" target="_blank" rel="noopener">What onboarding looks like</a>
       </div>
     </div>
     <div class="hero-card">
@@ -399,6 +412,11 @@
     <div class="qr-grid">
       <div><div class="qcard"><div class="qcard-head"><span class="qcard-tag">2 users &middot; 36 month term</span><div class="qcard-price">&pound;158<small> / month</small></div><div class="qcard-vat">&pound;189.60 inc VAT &middot; order 41823273831</div></div><div class="qcard-body"><table class="qtab"><thead><tr><th>Item</th><th class="r">Qty</th><th class="r">Per month</th></tr></thead><tbody><tr><td>Field app licence<div class="qd">JobWatch Lightning app with hard wired vehicle tracking, &pound;65 each</div></td><td class="r">1</td><td class="r">&pound;65.00</td></tr><tr><td>Back office web user<div class="qd">Full JobWatch back office, &pound;65 each</div></td><td class="r">1</td><td class="r">&pound;65.00</td></tr><tr><td>Smart Start implementation<div class="qd">Hands on onboarding and UK support, spread across the term</div></td><td class="r">1</td><td class="r">&pound;28.00</td></tr><tr><td>Xero link<div class="qd">Accounts integration, setup and support included</div></td><td class="r">1</td><td class="r">&pound;0.00</td></tr></tbody></table><ul class="qincl"><li>Electronic diary, scheduling and job cards on the app</li><li>Branded quotes and invoices, quote to invoice in a click</li><li>Native Xero integration, keep your accounts as they are</li><li>Live vehicle tracking and route history on the vans</li><li>Just Ask for unpaid invoices and converted quotes</li><li>Smart Start onboarding and Leeds based UK phone support</li></ul><div class="qnote">Two licences at <b>&pound;65 per user</b> (one field with vehicle tracking, one back office), Smart Start &pound;28 and the Xero link included. <b>&pound;158</b> exc VAT (<b>&pound;189.60</b> inc VAT) per month on a 36 month term, itemised so you just add a licence as you grow.</div><a href="https://landing.bigchange.com/Y2MZPvoDkp" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:9px;font-family:&#x27;Roboto Flex&#x27;,Arial,sans-serif;font-weight:700;font-size:15px;padding:13px 24px;border-radius:999px;background:var(--grad-energy);color:#fff;box-shadow:0 8px 22px rgba(0,114,206,.35);">View and sign your quote &rarr;</a></div></div></div>
       <div class="roi-col">
+        <div class="coi">
+          <div class="coi-eyebrow">The cost of waiting</div>
+          <div class="coi-fig"><b id="coi-month">&pound;0</b><small> / month</small></div>
+          <div class="coi-sub">The benefit BigChange could unlock, left on the table for every month you stay as you are. Around <b id="coi-week">&pound;0</b> a week, or <b id="coi-day">&pound;0</b> a day, net of your subscription.</div>
+        </div>
         <div class="calc">
       <div class="calc-inputs">
         <div class="calc-field">
@@ -439,8 +457,9 @@
           <div class="res"><div class="res-l">Fuel saving</div><div class="res-v" id="out-fuel-saving">&pound;0</div></div>
           <div class="res"><div class="res-l">Saving per job</div><div class="res-v" id="out-saving-per-job">&pound;0</div></div>
         </div>
-        <div class="assump">
-          <h4>The assumptions behind these numbers</h4>
+        <details class="assump">
+          <summary class="assump-summary">The assumptions behind these numbers <span class="assump-chev" aria-hidden="true">&rsaquo;</span></summary>
+          <div class="assump-body">
           <div class="sub">BigChange's published customer benchmarks, the same rates used in the savings model above.</div>
           <div class="assump-grid">
             <div class="assump-item"><div class="av">&pound;5<small>per &pound;1</small></div><div class="al">Return for every &pound;1 spent</div></div>
@@ -449,7 +468,8 @@
             <div class="assump-item"><div class="av">9.2<small>%</small></div><div class="al">Shorter job duration</div></div>
           </div>
           <p class="note">Indicative and based on assumptions of growth. Your prepared quote sets out exact licensing for your team.</p>
-        </div>
+          </div>
+        </details>
       </div>
     </div>
       </div>
@@ -580,6 +600,9 @@
     document.getElementById('out-fuel-saving').textContent = gbp(fuelSav);
     document.getElementById('out-engineer-productivity').textContent = gbp(engSav);
     document.getElementById('out-business-benefit').textContent = gbp(benefit);
+    var coiSub = 1896; var coiNet = Math.max(0, benefit - coiSub);
+    var _cm=document.getElementById("coi-month");
+    if(_cm){ _cm.textContent=gbp(Math.round(coiNet/12)); document.getElementById("coi-week").textContent=gbp(Math.round(coiNet/52)); document.getElementById("coi-day").textContent=gbp(Math.round(coiNet/365)); }
     document.getElementById('out-saving-per-job').textContent = gbp(savingPerJob);
   }
 
