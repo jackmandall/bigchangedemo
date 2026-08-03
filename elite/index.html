@@ -336,6 +336,15 @@
     .co-icon{display:inline-block;height:28px;width:auto;}
     .logo-div{margin:0 5px;}
   }
+
+  .coi { grid-column: 1 / -1; margin-top: 10px; background: var(--navy); color:#fff; border-radius: var(--r-md); padding: 24px 28px; box-shadow: var(--shadow-md); }
+  .coi-eyebrow { font-family: 'Roboto Flex', Arial, sans-serif; font-weight: 700; font-size: 13px; letter-spacing: .02em; color: var(--green); margin-bottom: 8px; }
+  .coi-main { font-family: 'Roboto Flex', Arial, sans-serif; font-weight: 800; font-size: 22px; line-height: 1.3; letter-spacing: -0.01em; }
+  .coi-main b { color: var(--green); }
+  .coi-sub { margin-top: 8px; font-size: 14px; color: rgba(255,255,255,.72); }
+  .coi-sub b { color:#fff; font-weight: 700; }
+  @media (max-width:1000px){ .qr-grid > div:first-child{ order:1; } .qr-grid .coi{ order:2; } .qr-grid .roi-col{ order:3; } }
+  @media (max-width:600px){ .coi-main{ font-size:18px; } .coi{ padding:18px 20px; } }
 </style>
 </head>
 <body>
@@ -453,6 +462,11 @@
         </div>
       </div>
     </div>
+      </div>
+    <div class="coi">
+        <div class="coi-eyebrow">The cost of waiting</div>
+        <div class="coi-main">Every month you stay as you are leaves about <b id="coi-month">&pound;0</b> of the benefit above on the table.</div>
+        <div class="coi-sub">Around <b id="coi-week">&pound;0</b> a week, or <b id="coi-day">&pound;0</b> a day, net of your BigChange subscription.</div>
       </div>
     </div>
   </div>
@@ -581,6 +595,9 @@
     document.getElementById('out-fuel-saving').textContent = gbp(fuelSav);
     document.getElementById('out-engineer-productivity').textContent = gbp(engSav);
     document.getElementById('out-business-benefit').textContent = gbp(benefit);
+    var coiSub = 6276; var coiNet = Math.max(0, benefit - coiSub);
+    var _cm=document.getElementById('coi-month');
+    if(_cm){ _cm.textContent=gbp(Math.round(coiNet/12)); document.getElementById('coi-week').textContent=gbp(Math.round(coiNet/52)); document.getElementById('coi-day').textContent=gbp(Math.round(coiNet/365)); }
     document.getElementById('out-saving-per-job').textContent = gbp(savingPerJob);
   }
 
