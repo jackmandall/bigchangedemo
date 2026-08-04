@@ -18,7 +18,7 @@ h1,h2,h3,h4{font-family:var(--display); margin:0; letter-spacing:-0.018em; line-
 a{color:var(--energy); text-decoration:none;}
 .wrap{max-width:1080px; margin:0 auto; padding:0 22px;}
 
-.navbar{background:#fff; border-bottom:1px solid var(--border);}
+.navbar{position:sticky; top:0; z-index:60; background:rgba(255,255,255,0.94); backdrop-filter:saturate(160%) blur(10px); border-bottom:1px solid var(--border); box-shadow:0 4px 18px rgba(10,34,64,0.06);}
 .navbar-inner{max-width:1080px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:14px; padding:10px 20px;}
 .logo-link{display:flex; align-items:center;}
 .logo-full{height:28px; width:auto; display:block;}
