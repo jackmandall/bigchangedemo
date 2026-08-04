@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BigChange vs Connecteam &mdash; feature comparison</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700;8..144,800;8..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --energy:#0072CE; --navy:#0A2240; --navy-2:#0F2E55; --grey:#F4F4F4; --card:#FFFFFF;
+  --border:#E4E7EC; --charcoal:#282922; --muted:#5B6472; --green:#28E289; --green-dim:#DFF9EC;
+  --orange:#FF6B00; --orange-dim:#FFE8D6; --display:'Roboto Flex', Arial, sans-serif; --body:'Inter', Arial, sans-serif;
+}
+*{box-sizing:border-box;}
+body{margin:0; font-family:var(--body); color:var(--charcoal); background:var(--grey); overflow-x:clip; line-height:1.55;}
+h1,h2,h3,h4{font-family:var(--display); margin:0; letter-spacing:-0.018em; line-height:1.16; font-weight:800; color:var(--navy);}
+a{color:var(--energy); text-decoration:none;}
+.wrap{max-width:1080px; margin:0 auto; padding:0 22px;}
+
+.topbar{background:var(--navy); color:#fff;}
+.topbar-inner{max-width:1080px; margin:0 auto; padding:16px 22px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;}
+.brand{font-family:var(--display); font-weight:800; font-size:22px; color:#fff; letter-spacing:-0.02em;}
+.brand span{color:var(--energy);}
+.topbar .vs{font-family:var(--display); font-weight:600; font-size:14px; color:rgba(255,255,255,.72);}
+.topbar .vs b{color:#fff; font-weight:700;}
+
+.hero{background:linear-gradient(180deg,var(--navy) 0%, var(--navy-2) 100%); color:#fff; padding:52px 0 60px;}
+.eyebrow{display:inline-flex; align-items:center; gap:9px; font-family:var(--display); font-weight:700; font-size:13px; color:var(--green); margin-bottom:14px;}
+.eyebrow .line{width:26px; height:2px; background:var(--green); display:inline-block;}
+.hero h1{color:#fff; font-size:40px; max-width:760px;}
+.hero .lead{color:rgba(255,255,255,.82); font-size:17px; max-width:760px; margin-top:16px;}
+.hero .srcnote{color:rgba(255,255,255,.55); font-size:13px; margin-top:18px;}
+
+.legend{display:flex; gap:22px; flex-wrap:wrap; margin:26px 0 6px;}
+.legend .li{display:inline-flex; align-items:center; gap:9px; font-size:13.5px; color:var(--muted);}
+.badge{display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px; border-radius:999px; font-weight:800; font-size:15px; flex:0 0 auto;}
+.b-full{background:var(--green-dim); color:#0d7a4e;}
+.b-part{background:var(--orange-dim); color:#c25200;}
+.b-none{background:#EEF0F3; color:#9aa2ad;}
+
+section.cmp{padding:34px 0;}
+.sec-head{margin-bottom:6px;}
+.sec-head .k{font-family:var(--display); font-weight:700; font-size:13px; color:var(--energy); text-transform:none; margin-bottom:6px;}
+.sec-head h2{font-size:24px;}
+.sec-head p{color:var(--muted); font-size:15px; margin:8px 0 0; max-width:760px;}
+
+.table{margin-top:20px; background:var(--card); border:1px solid var(--border); border-radius:16px; overflow:hidden;}
+.trow{display:grid; grid-template-columns:1.35fr 1fr 1fr; gap:0; border-top:1px solid var(--border);}
+.trow:first-child{border-top:0;}
+.thead{background:var(--navy); color:#fff;}
+.thead .tc{font-family:var(--display); font-weight:700; font-size:14px; color:#fff; padding:14px 18px;}
+.thead .tc.bc{color:#fff;}
+.thead .tc.ct{color:rgba(255,255,255,.9);}
+.tc{padding:15px 18px; display:flex; gap:11px; align-items:flex-start;}
+.tc.feat{font-family:var(--display); font-weight:700; color:var(--navy); font-size:15px; align-items:center; background:#FBFCFD;}
+.tc.bc{border-left:1px solid var(--border);}
+.tc.ct{border-left:1px solid var(--border);}
+.tc .note{font-size:13.5px; color:var(--muted); line-height:1.45;}
+.tc.bc .note{color:var(--charcoal);}
+
+.closing{background:var(--card); border:1px solid var(--border); border-radius:16px; padding:26px 28px; margin:8px 0 40px;}
+.closing h3{font-size:19px; margin-bottom:10px;}
+.closing p{color:var(--charcoal); font-size:15.5px; margin:0 0 10px;}
+.closing p:last-child{margin-bottom:0;}
+.closing b{color:var(--navy);}
+
+footer{background:var(--navy); color:rgba(255,255,255,.72); padding:30px 0; font-size:14px;}
+.footer-inner{max-width:1080px; margin:0 auto; padding:0 22px; display:flex; justify-content:space-between; gap:18px; flex-wrap:wrap;}
+.footer-brand{font-family:var(--display); font-weight:800; color:#fff; font-size:18px;}
+footer a{color:#fff;}
+
+@media(max-width:720px){
+  .hero h1{font-size:30px;}
+  .trow{grid-template-columns:1fr;}
+  .tc.bc, .tc.ct{border-left:0; border-top:1px dashed var(--border);}
+  .thead{display:none;}
+  .tc.feat{background:#F1F5FA; font-size:15px;}
+  .tc.bc::before{content:"BigChange"; font-family:var(--display); font-weight:700; font-size:12px; color:var(--energy); display:block; width:78px; flex:0 0 auto;}
+  .tc.ct::before{content:"Connecteam"; font-family:var(--display); font-weight:700; font-size:12px; color:var(--muted); display:block; width:78px; flex:0 0 auto;}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">Big<span>Change</span></div>
+    <div class="vs"><b>BigChange</b> &nbsp;vs&nbsp; Connecteam</div>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow"><span class="line"></span>Feature comparison</div>
+    <h1>BigChange vs Connecteam, feature by feature</h1>
+    <p class="lead">BigChange and Connecteam solve different problems. BigChange is a field service management platform that runs the whole job lifecycle, from scheduling and dispatch through job cards, assets, invoicing and vehicle tracking. Connecteam is a deskless employee management app, strongest on staff scheduling, time tracking, team communication and HR. They overlap on rostering, time, forms and the mobile app; they diverge on field service operations and on employee engagement.</p>
+    <div class="srcnote">Connecteam capabilities taken from their own published feature pages (Operations, Communications and HR &amp; Skills hubs), August 2026. Pricing is not compared here.</div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="legend">
+    <span class="li"><span class="badge b-full">&#10003;</span> Full, native capability</span>
+    <span class="li"><span class="badge b-part">~</span> Partial or limited</span>
+    <span class="li"><span class="badge b-none">&ndash;</span> Not available</span>
+  </div>
+</div>
+
+<section class="cmp">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="k">Where BigChange leads</div>
+      <h2>Running the field service operation</h2>
+      <p>The end-to-end job lifecycle for a trade or maintenance business: schedule the work, do it on site, invoice it, and track the assets and vehicles behind it.</p>
+    </div>
+    <div class="table">
+      <div class="trow thead"><div class="tc feat">Capability</div><div class="tc bc">BigChange</div><div class="tc ct">Connecteam</div></div>
+
+      <div class="trow"><div class="tc feat">Job scheduling &amp; dispatch</div>
+        <div class="tc bc"><span class="badge b-full">&#10003;</span><span class="note">Drag-and-drop job diary, route optimisation and a single job folder</span></div>
+        <div class="tc ct"><span class="badge b-part">~</span><span class="note">Shift and rota scheduling with tasks, not job dispatch or routing</span></div></div>
+
+      <div class="trow"><div class="tc feat">Field engineer job app</div>
+        <div class="tc bc"><span class="badge b-full">&#10003;</span><span class="note">Job cards, photos and customer signatures captured on site</span></div>
+        <div class="tc ct"><span class="badge b-part">~</span><span class="note">Mobile app with tasks, forms and clock-in</span></div></div>
+
+      <div class="trow"><div class="tc feat">Job cards &amp; trade compliance forms</div>
+        <div class="tc bc"><span class="badge b-full">&#10003;</span><span class="note">Configurable job sheets plus industry-standard compliance packs</span></div>
+        <div class="tc ct"><span class="badge b-part">~</span><span class="note">Generic forms and checklists, no trade compliance packs</span></div></div>
+
+      <div class="trow"><div class="tc feat">Asset register &amp; planned maintenance</div>
+        <div class="tc bc"><span class="badge b-full">&#10003;</span><span class="note">Per-site assets, service schedules and full work history</span></div>
+        <div class="tc ct"><span class="badge b-none">&ndash;</span><span class="note">Not available</span></div></div>
+
+      <div class="trow"><div class="tc feat">Stock &amp; equipment</div>
+        <div class="tc bc"><span class="badge b-full">&#10003;</span><span class="note">Tracked from the office or the engineer&#x27;s phone</span></div>
+        <div class="tc ct"><span class="badge b-none">&ndash;</span><span class="note">Not available</span></div></div>
+
+      <div class="trow"><div class="tc feat">Invoicing &amp; finance</div>
+        <div class="tc bc"><span class="badge b-full">&#10003;</span><span class="note">Invoices, credit notes and purchase orders straight from jobs</span></div>
+        <div class="tc ct"><span class="badge b-none">&ndash;</span><span class="note">No invoicing</span></div></div>
+
+      <div class="trow"><div class="tc feat">Contracts &amp; recurring billing</div>
+        <div class="tc bc"><span class="badge b-full">&#10003;</span><span class="note">Set a contract value and let periodic invoices generate themselves</span></div>
+        <div class="tc ct"><span class="badge b-none">&ndash;</span><span class="note">Not available</span></div></div>
+
+      <div class="trow"><div class="tc feat">Vehicle &amp; fleet tracking</div>
+        <div class="tc bc"><span class="badge b-full">&#10003;</span><span class="note">GPS vehicle and device tracking, included as standard</span></div>
+        <div class="tc ct"><span class="badge b-part">~</span><span class="note">GPS location on clock-in only, no fleet tracking</span></div></div>
+
+      <div class="trow"><div class="tc feat">Customer booking site &amp; payments</div>
+        <div class="tc bc"><span class="badge b-full">&#10003;</span><span class="note">Customer booking portal with Stripe payments</span></div>
+        <div class="tc ct"><span class="badge b-none">&ndash;</span><span class="note">Not available</span></div></div>
+
+      <div class="trow"><div class="tc feat">Customer CRM &amp; site hierarchy</div>
+        <div class="tc bc"><span class="badge b-full">&#10003;</span><span class="note">CRM with parent/child site relationships</span></div>
+        <div class="tc ct"><span class="badge b-part">~</span><span class="note">Employee and contact directory, not a customer CRM</span></div></div>
+
+      <div class="trow"><div class="tc feat">Subcontractor network</div>
+        <div class="tc bc"><span class="badge b-full">&#10003;</span><span class="note">Share jobs with subcontractors who are also on BigChange</span></div>
+        <div class="tc ct"><span class="badge b-none">&ndash;</span><span class="note">Not available</span></div></div>
+
+      <div class="trow"><div class="tc feat">Accounts sync (Xero / Sage 50)</div>
+        <div class="tc bc"><span class="badge b-full">&#10003;</span><span class="note">Two-way accounts integration included as standard</span></div>
+        <div class="tc ct"><span class="badge b-none">&ndash;</span><span class="note">Payroll integrations only, no invoicing to sync</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cmp">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="k">Common ground</div>
+      <h2>Where both platforms overlap</h2>
+      <p>Both do these, though usually with a different depth and focus.</p>
+    </div>
+    <div class="table">
+      <div class="trow thead"><div class="tc feat">Capability</div><div class="tc bc">BigChange</div><div class="tc ct">Connecteam</div></div>
+
+      <div class="trow"><div class="tc feat">Staff scheduling / rota</div>
+        <div class="tc bc"><span class="badge b-full">&#10003;</span><span class="note">As part of the job diary</span></div>
+        <div class="tc ct"><span class="badge b-full">&#10003;</span><span class="note">Shift scheduling is a core strength</span></div></div>
+
+      <div class="trow"><div class="tc feat">Time tracking &amp; timesheets</div>
+        <div class="tc bc"><span class="badge b-full">&#10003;</span><span class="note">Clock-in and timesheets against jobs</span></div>
+        <div class="tc ct"><span class="badge b-full">&#10003;</span><span class="note">Time clock with payroll-ready export (Gusto, QuickBooks)</span></div></div>
+
+      <div class="trow"><div class="tc feat">Digital forms &amp; checklists</div>
+        <div class="tc bc"><span class="badge b-full">&#10003;</span><span class="note">Configurable, with at-risk flags</span></div>
+        <div class="tc ct"><span class="badge b-full">&#10003;</span><span class="note">Forms and checklists with signature, image and location stamp</span></div></div>
+
+      <div class="trow"><div class="tc feat">Skills, qualifications &amp; compliance</div>
+        <div class="tc bc"><span class="badge b-full">&#10003;</span><span class="note">Accreditations and expiry per engineer</span></div>
+        <div class="tc ct"><span class="badge b-part">~</span><span class="note">Captured via training records</span></div></div>
+
+      <div class="trow"><div class="tc feat">Alerts &amp; automations</div>
+        <div class="tc bc"><span class="badge b-full">&#10003;</span><span class="note">Rule-based, triggered off job results</span></div>
+        <div class="tc ct"><span class="badge b-part">~</span><span class="note">Notifications for shifts and clock-in</span></div></div>
+
+      <div class="trow"><div class="tc feat">Reporting &amp; dashboards</div>
+        <div class="tc bc"><span class="badge b-full">&#10003;</span><span class="note">Pre-built reports plus JustAsk natural-language BI</span></div>
+        <div class="tc ct"><span class="badge b-part">~</span><span class="note">Per-hub reports and dashboards</span></div></div>
+
+      <div class="trow"><div class="tc feat">AI</div>
+        <div class="tc bc"><span class="badge b-full">&#10003;</span><span class="note">Lightning AI: JobReady, summaries and Just Ask, included</span></div>
+        <div class="tc ct"><span class="badge b-full">&#10003;</span><span class="note">AI course builder, chat translation and knowledge assistant</span></div></div>
+
+      <div class="trow"><div class="tc feat">Integrations &amp; open API</div>
+        <div class="tc bc"><span class="badge b-full">&#10003;</span><span class="note">REST API plus accounts sync</span></div>
+        <div class="tc ct"><span class="badge b-full">&#10003;</span><span class="note">Payroll and HR integrations, plus Zapier</span></div></div>
+
+      <div class="trow"><div class="tc feat">Security &amp; compliance</div>
+        <div class="tc bc"><span class="badge b-full">&#10003;</span><span class="note">Role permissions, audit trail, SSO add-on</span></div>
+        <div class="tc ct"><span class="badge b-full">&#10003;</span><span class="note">SOC 2, ISO 27001 and GDPR</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cmp">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="k">Where Connecteam leads</div>
+      <h2>Workforce, HR and communications</h2>
+      <p>Connecteam is built around engaging and administering a deskless workforce. BigChange touches some of this, but it is not an HR or internal-comms platform.</p>
+    </div>
+    <div class="table">
+      <div class="trow thead"><div class="tc feat">Capability</div><div class="tc bc">BigChange</div><div class="tc ct">Connecteam</div></div>
+
+      <div class="trow"><div class="tc feat">Team chat / messaging</div>
+        <div class="tc bc"><span class="badge b-part">~</span><span class="note">Portal messaging and notifications, not a chat platform</span></div>
+        <div class="tc ct"><span class="badge b-full">&#10003;</span><span class="note">1:1, group and company-wide chat with AI translation</span></div></div>
+
+      <div class="trow"><div class="tc feat">Company updates / social feed</div>
+        <div class="tc bc"><span class="badge b-none">&ndash;</span><span class="note">Not available</span></div>
+        <div class="tc ct"><span class="badge b-full">&#10003;</span><span class="note">Social-style feed with read receipts and reactions</span></div></div>
+
+      <div class="trow"><div class="tc feat">Employee training / courses</div>
+        <div class="tc bc"><span class="badge b-part">~</span><span class="note">Skills and compliance records, not an LMS</span></div>
+        <div class="tc ct"><span class="badge b-full">&#10003;</span><span class="note">Courses with quizzes and live progress tracking</span></div></div>
+
+      <div class="trow"><div class="tc feat">Hiring &amp; onboarding</div>
+        <div class="tc bc"><span class="badge b-none">&ndash;</span><span class="note">Not available</span></div>
+        <div class="tc ct"><span class="badge b-full">&#10003;</span><span class="note">Job posts, recruitment pipeline and onboarding packets</span></div></div>
+
+      <div class="trow"><div class="tc feat">HR documents &amp; e-sign</div>
+        <div class="tc bc"><span class="badge b-part">~</span><span class="note">PDF library against jobs and vehicles</span></div>
+        <div class="tc ct"><span class="badge b-full">&#10003;</span><span class="note">HR document packs with legally binding e-signatures</span></div></div>
+
+      <div class="trow"><div class="tc feat">Time off / PTO management</div>
+        <div class="tc bc"><span class="badge b-none">&ndash;</span><span class="note">Not available</span></div>
+        <div class="tc ct"><span class="badge b-full">&#10003;</span><span class="note">Absence requests, balances and policies</span></div></div>
+
+      <div class="trow"><div class="tc feat">Recognition &amp; rewards</div>
+        <div class="tc bc"><span class="badge b-none">&ndash;</span><span class="note">Not available</span></div>
+        <div class="tc ct"><span class="badge b-full">&#10003;</span><span class="note">Recognition plus gift-card rewards</span></div></div>
+
+      <div class="trow"><div class="tc feat">Surveys &amp; polls</div>
+        <div class="tc bc"><span class="badge b-none">&ndash;</span><span class="note">Not available</span></div>
+        <div class="tc ct"><span class="badge b-full">&#10003;</span><span class="note">Surveys and live polls</span></div></div>
+
+      <div class="trow"><div class="tc feat">Events manager</div>
+        <div class="tc bc"><span class="badge b-none">&ndash;</span><span class="note">Not available</span></div>
+        <div class="tc ct"><span class="badge b-full">&#10003;</span><span class="note">Create, announce and RSVP company events</span></div></div>
+
+      <div class="trow"><div class="tc feat">Help desk / internal tickets</div>
+        <div class="tc bc"><span class="badge b-part">~</span><span class="note">Just Ask plus the Leeds support desk</span></div>
+        <div class="tc ct"><span class="badge b-full">&#10003;</span><span class="note">Internal ticketing for staff queries</span></div></div>
+
+      <div class="trow"><div class="tc feat">Knowledge base</div>
+        <div class="tc bc"><span class="badge b-part">~</span><span class="note">PDF library</span></div>
+        <div class="tc ct"><span class="badge b-full">&#10003;</span><span class="note">Knowledge base with an AI assistant in chat</span></div></div>
+
+      <div class="trow"><div class="tc feat">Employee directory &amp; digital ID</div>
+        <div class="tc bc"><span class="badge b-part">~</span><span class="note">Contacts</span></div>
+        <div class="tc ct"><span class="badge b-full">&#10003;</span><span class="note">Directory, digital ID cards and org chart</span></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="closing">
+    <h3>In short</h3>
+    <p>If the job is running <b>field service</b> &mdash; scheduling engineers, doing the work on site, invoicing it, and tracking the assets and vehicles behind it &mdash; BigChange does it end to end in one platform, and Connecteam does not reach into invoicing, assets, contracts or fleet.</p>
+    <p>If the job is <b>engaging and administering a deskless workforce</b> &mdash; chat, company updates, training, HR, onboarding and time off &mdash; Connecteam has more built in, because that is what it is designed for.</p>
+    <p>For a trade or maintenance business, BigChange covers the whole operation from quote to cash; the employee-engagement tools are where Connecteam adds breadth alongside it.</p>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">BigChange</div>
+      <div>Make every business unstoppable</div>
+    </div>
+    <div>
+      Jack Wilson &mdash; Account Executive<br>
+      <a href="tel:+447939910833">07939 910833</a><br>
+      <a href="mailto:jack.wilson@bigchange.com">jack.wilson@bigchange.com</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
