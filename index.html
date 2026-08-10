@@ -742,6 +742,44 @@ section{padding:64px 0 78px}
 html{scroll-behavior:smooth}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
+<style>
+/* pill sits in the flow, so a long title can never run underneath it */
+.ex-feat{padding-top:26px}
+.rain-flags{position:static;display:flex;justify-content:flex-start;margin-bottom:14px}
+.ex-feat .ex-badge{position:static}
+.ex-feat h3{margin-top:0}
+@media(max-width:620px){
+ .ex-feat{padding-top:24px}
+ .rain-flags{margin-bottom:12px}
+}
+</style>
+<style>
+/* touch devices only, so the desktop look is untouched */
+@media (pointer: coarse){
+ /* story rails: keep the 5px bar, enlarge the invisible hit area */
+ .rain-rail span,.cs-rail button{padding:14px 0;background-clip:content-box;height:33px;border-radius:0}
+ .rain-rail span i,.cs-rail button i{top:14px;bottom:14px;border-radius:99px}
+ .rain-rail{gap:9px;align-items:center}
+ .cs-rail{gap:9px;align-items:center;margin-top:10px}
+ /* links and pills reach a comfortable tap size */
+ .nav-links a{padding:11px 0;display:inline-block}
+ .cs-link{padding:11px 0;display:inline-block}
+ .ja-tab{min-height:38px}
+ .f-links a{padding:9px 0;display:inline-block}
+ .go{padding:6px 0;display:inline-flex}
+ .sect{min-height:52px}
+}
+/* nudge the smallest label up to a readable size */
+.ja-pill{font-size:11.5px}
+</style>
+<style>
+/* card row renders at 76px when filled, so reserve the same when empty */
+.ja-cards{min-height:76px}
+/* reveal by fading only, so nothing physically shifts */
+.ja-out{transform:none !important}
+.ja-out{transition:opacity .4s ease}
+@media(max-width:520px){.ja-cards{min-height:68px}}
+</style>
 </head>
 <body>
 <nav>
