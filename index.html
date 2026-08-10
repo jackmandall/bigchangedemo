@@ -860,8 +860,10 @@ html{scroll-behavior:smooth}
  .ja{transition:background-color .5s ease}
  .ja .ja-in{gap:22px}
  .ja .ja-pts{display:none}
+ /* fill the stage instead of floating a small card in the middle of it. the first
+    term keeps the copy on screen, the second stops it eating the whole tablet viewport */
  .ja .ja-win{min-height:0;max-height:none;
-  height:clamp(240px, calc(100svh - var(--navh,52px) - 250px), 430px);
+  height:max(240px, min(calc(100svh - var(--navh,52px) - 250px), 70svh));
   transition:height .5s cubic-bezier(.16,1,.3,1),border-radius .5s ease,box-shadow .5s ease}
  .ja-in{transition:gap .5s ease}
  .ja .ja-pts,.ja .s-title,.ja .s-lead{transition:opacity .35s ease,max-height .5s ease,margin .5s ease}
