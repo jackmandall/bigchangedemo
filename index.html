@@ -854,9 +854,14 @@ html{scroll-behavior:smooth}
   .ja-stick{position:static;height:auto;display:block;overflow:visible}
  }
 
- /* collapsed by default */
+ /* collapsed by default. the whole block has to fit the stage or it gets clipped
+    top and bottom, so the panel is sized off the space the copy leaves behind */
  .ja{transition:background-color .5s ease}
- .ja-win{height:430px;transition:height .5s cubic-bezier(.16,1,.3,1),border-radius .5s ease,box-shadow .5s ease}
+ .ja .ja-in{gap:22px}
+ .ja .ja-pts{display:none}
+ .ja .ja-win{min-height:0;max-height:none;
+  height:clamp(240px, calc(100svh - var(--navh,52px) - 250px), 430px);
+  transition:height .5s cubic-bezier(.16,1,.3,1),border-radius .5s ease,box-shadow .5s ease}
  .ja-in{transition:gap .5s ease}
  .ja .ja-pts,.ja .s-title,.ja .s-lead{transition:opacity .35s ease,max-height .5s ease,margin .5s ease}
 
@@ -866,7 +871,7 @@ html{scroll-behavior:smooth}
  .ja.imm .ja-in{gap:0}
  .ja.imm .s-title,.ja.imm .s-lead,.ja.imm .ja-pts{opacity:0;max-height:0;margin:0;overflow:hidden;pointer-events:none}
  .ja.imm .s-head{margin-bottom:0}
- .ja.imm .ja-win{height:calc(100svh - var(--navh,52px));border-radius:0;border:0;box-shadow:none;
+ .ja.imm .ja-win{height:calc(100svh - var(--navh,52px)) !important;border-radius:0;border:0;box-shadow:none;
   --jbg:#000;--jbar:#000;--jline:rgba(255,255,255,.10)}
  .ja.imm .ja-bar{padding:15px 16px 13px;border-bottom:1px solid rgba(255,255,255,.10)}
  .ja.imm .ja-brand{font-size:16px}
