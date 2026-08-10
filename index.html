@@ -7,6 +7,7 @@
 <link rel="apple-touch-icon" href="https://www.bigchangedemo.co.uk/favicon.png">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ffffff">
 <title>BigChange | One platform for field service businesses</title>
 <meta name="description" content="Explore BigChange: what is included, what is coming next, and how to run your evaluation. Built for UK field service businesses.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1619,11 +1620,14 @@ html{scroll-behavior:smooth}
     document.documentElement.style.setProperty('--navh', navH+'px');
   }
   var hint=document.getElementById('ja-hint'), hintT=null;
+  var theme=document.querySelector('meta[name="theme-color"]');
   function setOn(v){
     if(v===on) return;
     on=v;
     sec.classList.toggle('imm', v);
     document.body.classList.toggle('ja-full', v);
+    // without this iOS keeps the sampled black on its top and bottom bars after you scroll off
+    if(theme) theme.setAttribute('content', v?'#000000':'#ffffff');
     if(hintT){ clearTimeout(hintT); hintT=null; }
     if(!hint) return;
     if(v){ hintT=setTimeout(function(){ hint.classList.add('on'); },4000); }
