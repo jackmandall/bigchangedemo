@@ -433,6 +433,7 @@ nav.sm{box-shadow:0 6px 24px rgba(10,34,64,.10)}
 .flow-steps{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px}
 .fs{flex:1;min-width:112px;background:var(--mist);border:1px solid transparent;border-radius:14px;
  padding:15px 14px;cursor:pointer;font-family:inherit;text-align:left;transition:.22s;position:relative;overflow:hidden}
+.fs-br{display:none}
 .fs:hover{background:#fff;border-color:var(--line);box-shadow:var(--sh-sm)}
 .fs.on{background:#fff;border-color:var(--energy);box-shadow:0 10px 26px rgba(0,114,206,.14)}
 .fs .n{font-size:11px;font-weight:800;color:var(--slate);letter-spacing:.06em;line-height:1}
@@ -823,7 +824,12 @@ html{scroll-behavior:smooth}
 .ja-track,.ja-stick{display:contents}
 @media(max-width:900px){
  .ja{overflow:visible}
- .ja-track{display:block;position:relative;height:220svh}
+ /* the scene catches the scroll on the way in and again on the way out */
+ html{scroll-snap-type:y proximity}
+ .ja-exit{position:absolute;left:0;right:0;bottom:0;height:1px;pointer-events:none;
+  scroll-snap-align:end;scroll-snap-stop:always}
+ .ja-track{display:block;position:relative;height:200svh;
+  scroll-snap-align:start;scroll-snap-stop:always;scroll-margin-top:var(--navh,52px)}
  .ja-stick{display:flex;position:sticky;top:var(--navh,52px);height:calc(100svh - var(--navh,52px));
   align-items:center;overflow:hidden}
  .ja-stick>.wrap{width:100%}
@@ -856,13 +862,45 @@ html{scroll-behavior:smooth}
  body.ja-full nav,body.ja-full .nav-logo img{transition:background .4s ease,filter .4s ease}
 }
 @media(max-width:900px) and (orientation:landscape){
- .ja-track{height:auto}
+ html{scroll-snap-type:none}
+ .ja-track{height:auto;scroll-snap-align:none}
+ .ja-exit{display:none}
  .ja-stick{position:static;height:auto;display:block;overflow:visible}
  .ja-win{height:auto}
  .ja.imm .ja-win{height:auto}
 }
 @media(prefers-reduced-motion:reduce){
  .ja,.ja-win,.ja-in,.ja .ja-pts,.ja .s-title,.ja .s-lead{transition:none}
+ html{scroll-snap-type:none}
+}
+</style>
+<style>
+/* mobile: read the stage first, then pick the next one from the pills below */
+@media(max-width:900px){
+ .does .wrap{display:flex;flex-direction:column}
+ .does .s-head{order:1}
+ .does .flow-panel{order:2}
+ .does .flow-steps{order:3}
+ .does .mods{order:4}
+ .does .does-foot{order:5}
+
+ .does .flow-steps{margin:16px 0 0;gap:6px;justify-content:center;flex-wrap:wrap}
+ .does .fs{flex:0 0 auto;min-width:0;width:auto;padding:8px 12px;border-radius:999px;
+  border:1px solid var(--line);background:var(--mist);text-align:center;overflow:visible;box-shadow:none}
+ .does .fs::after{display:none}
+ .does .fs .n{display:none}
+ .does .fs .l{margin-top:0;font-size:12.5px;font-weight:700;line-height:1;white-space:nowrap}
+ .does .fs.on{background:var(--energy);border-color:var(--energy);box-shadow:0 6px 16px rgba(0,114,206,.26)}
+ .does .fs.on .l{color:#fff}
+ .does .fs-br{display:block;flex-basis:100%;width:100%;height:0;margin:0}
+}
+@media(min-width:620px){
+ .does .fs-br{display:none}
+}
+@media(max-width:380px){
+ .does .flow-steps{gap:5px}
+ .does .fs{padding:8px 9px}
+ .does .fs .l{font-size:11.5px}
 }
 </style>
 </head>
@@ -947,7 +985,7 @@ html{scroll-behavior:smooth}
 </section>
 
 <section class="ja" id="justask">
- <div class="ja-track"><div class="ja-stick">
+ <div class="ja-track"><div class="ja-exit" aria-hidden="true"></div><div class="ja-stick">
  <div class="wrap">
   <div class="ja-in">
    <div>
@@ -1431,9 +1469,11 @@ html{scroll-behavior:smooth}
     b.innerHTML='<div class="n">'+String(i+1).padStart(2,'0')+'</div><div class="l">'+f.k+'</div>';
     b.addEventListener('click',function(){ show(i); });
     steps.appendChild(b);
+    // forced break keeps the pills as a balanced 4 and 3 on phones
+    if(i===3){ var br=document.createElement('i'); br.className='fs-br'; br.setAttribute('aria-hidden','true'); steps.appendChild(br); }
   });
   function show(i){
-    [].forEach.call(steps.children,function(b,n){ b.className='fs'+(n===i?' on':''); });
+    [].forEach.call(steps.querySelectorAll('.fs'),function(b,n){ b.className='fs'+(n===i?' on':''); });
     var f=F[i];
     H.textContent=f.h; P.textContent=f.p;
     L.innerHTML=f.l.map(function(x){ return '<div class="flow-li"><span class="tk">&#10003;</span><div>'+x+'</div></div>'; }).join('');
