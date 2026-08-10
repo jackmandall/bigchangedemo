@@ -259,6 +259,7 @@ footer{background:#fff;padding:52px 0 28px;border-top:1px solid var(--line)}
 
 .ja-out{margin-top:18px;min-height:200px;opacity:0;transform:translateY(8px);transition:opacity .45s ease,transform .45s ease}
 .ja-out.show{opacity:1;transform:none}
+.ja-out.nofade{transition:none !important}
 .ja-pin{display:flex;align-items:center;gap:9px;margin-bottom:12px}
 .ja-pin .p{font-size:12.5px;font-weight:700;color:var(--jblue)}
 .ja-pill{font-size:11px;font-weight:600;color:var(--jblue);background:rgba(76,125,255,.14);
@@ -839,9 +840,8 @@ html{scroll-behavior:smooth}
  /* keep scrolling nudge, only once the scene has held for a moment */
  .ja-hint{position:absolute;right:14px;bottom:calc(14px + env(safe-area-inset-bottom));
   width:40px;height:40px;border-radius:50%;display:none;align-items:center;justify-content:center;
-  background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.22);color:#fff;
-  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
-  box-shadow:0 8px 24px rgba(0,0,0,.5);opacity:0;transform:translateY(6px);
+  background:#1B1D22;border:1px solid rgba(255,255,255,.20);color:#fff;
+  box-shadow:0 8px 24px rgba(0,0,0,.6);opacity:0;transform:translateY(6px);
   transition:opacity .45s ease,transform .45s ease;pointer-events:none;z-index:4}
  .ja-hint svg{width:19px;height:19px;display:block}
  .ja.imm .ja-hint{display:flex}
@@ -1263,7 +1263,11 @@ html{scroll-behavior:smooth}
   function play(i,manual){
     clear(); mark(i);
     var item=Q[i];
+    // clear and hide in one paint, a fading container can leave a torn frame behind on iOS
+    out.classList.add('nofade');
     out.classList.remove('show'); tEl.innerHTML=''; cEl.innerHTML=''; pEl.textContent=item.pill;
+    void out.offsetHeight;
+    out.classList.remove('nofade');
     if(reduce){
       qEl.textContent=item.q; tEl.innerHTML=item.a; cards(item.c); out.classList.add('show');
       if(!manual) timers.push(setTimeout(function(){ play((i+1)%Q.length); },narrow()?3600:7000));
