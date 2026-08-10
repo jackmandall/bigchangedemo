@@ -780,6 +780,28 @@ html{scroll-behavior:smooth}
 .ja-out{transition:opacity .4s ease}
 @media(max-width:520px){.ja-cards{min-height:68px}}
 </style>
+<style>
+@media(max-width:900px){
+ /* JustAsk becomes a full screen app view, so the reserved space reads as the screen */
+ .ja-win{height:calc(100svh - 132px);min-height:520px;max-height:760px;display:flex;flex-direction:column}
+ .ja-bar{flex:0 0 auto}
+ .ja-body{flex:1 1 auto;display:flex;flex-direction:column;min-height:0;overflow:hidden}
+ .ja-tabs{flex:0 0 auto}
+ /* the answer area takes the slack instead of leaving a void above the tabs */
+ .ja-out{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;justify-content:flex-start}
+ .ja-ans{min-height:0}
+ .ja-cards{min-height:0;margin-top:auto;padding-bottom:2px}
+ .ja-ask{flex:0 0 auto}
+ .ja-hi{flex:0 0 auto}
+ .ja-sub{flex:0 0 auto}
+ /* give the section room so the panel is not clipped */
+ .ja{padding-top:40px;padding-bottom:40px}
+}
+@media(max-width:900px) and (orientation:landscape){
+ .ja-win{height:auto;max-height:none}
+ .ja-cards{margin-top:14px}
+}
+</style>
 </head>
 <body>
 <nav>
