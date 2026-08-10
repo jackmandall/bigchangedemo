@@ -607,6 +607,7 @@ section{padding:64px 0 78px}
 }
 </style>
 <style>
+@keyframes jahintbob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
 @keyframes logoscroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @media(max-width:760px){
  /* logos scroll past instead of squeezing into a tiny grid */
@@ -825,6 +826,7 @@ html{scroll-behavior:smooth}
 <style>
 /* pinned scroll scene: the section holds you while JustAsk goes full screen */
 .ja-track,.ja-stick{display:contents}
+.ja-hint{display:none}
 @media(max-width:900px){
  /* clip, not hidden: hidden would make this a scroll container and kill the sticky pin,
     visible let the panel widen the page and gave a sideways scroll */
@@ -834,6 +836,17 @@ html{scroll-behavior:smooth}
  .ja-stick{display:flex;position:sticky;top:var(--navh,52px);height:calc(100svh - var(--navh,52px));
   align-items:center;overflow:hidden}
  .ja-stick>.wrap{width:100%}
+ /* keep scrolling nudge, only once the scene has held for a moment */
+ .ja-hint{position:absolute;right:14px;bottom:calc(14px + env(safe-area-inset-bottom));
+  width:40px;height:40px;border-radius:50%;display:none;align-items:center;justify-content:center;
+  background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.22);color:#fff;
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  box-shadow:0 8px 24px rgba(0,0,0,.5);opacity:0;transform:translateY(6px);
+  transition:opacity .45s ease,transform .45s ease;pointer-events:none;z-index:4}
+ .ja-hint svg{width:19px;height:19px;display:block}
+ .ja.imm .ja-hint{display:flex}
+ .ja.imm .ja-hint.on{opacity:1;transform:none;animation:jahintbob 1.9s ease-in-out .45s infinite}
+ .ja.imm .ja-tabs{padding-right:60px}
  /* no clip support means no pin at all, rather than a pin stuck to the top */
  @supports not (overflow:clip){
   .ja{overflow:hidden}
@@ -876,6 +889,7 @@ html{scroll-behavior:smooth}
 }
 @media(prefers-reduced-motion:reduce){
  .ja,.ja-win,.ja-in,.ja .ja-pts,.ja .s-title,.ja .s-lead{transition:none}
+ .ja.imm .ja-hint.on{animation:none}
 }
 </style>
 <style>
@@ -990,6 +1004,7 @@ html{scroll-behavior:smooth}
 
 <section class="ja" id="justask">
  <div class="ja-track"><div class="ja-stick">
+  <div class="ja-hint" id="ja-hint" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg></div>
  <div class="wrap">
   <div class="ja-in">
    <div>
@@ -1594,11 +1609,16 @@ html{scroll-behavior:smooth}
     navH=Math.round(nav.getBoundingClientRect().height)||52;
     document.documentElement.style.setProperty('--navh', navH+'px');
   }
+  var hint=document.getElementById('ja-hint'), hintT=null;
   function setOn(v){
     if(v===on) return;
     on=v;
     sec.classList.toggle('imm', v);
     document.body.classList.toggle('ja-full', v);
+    if(hintT){ clearTimeout(hintT); hintT=null; }
+    if(!hint) return;
+    if(v){ hintT=setTimeout(function(){ hint.classList.add('on'); },4000); }
+    else { hint.classList.remove('on'); }
   }
   function update(){
     ticking=false;
