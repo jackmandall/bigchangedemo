@@ -802,6 +802,47 @@ html{scroll-behavior:smooth}
  .ja-cards{margin-top:14px}
 }
 </style>
+<style>
+/* three metric cards stay on one row at every width */
+.ja-cards{grid-template-columns:repeat(3,1fr) !important}
+@media(max-width:520px){
+ .ja-cards{gap:6px}
+ .ja-card{padding:8px 7px}
+ .ja-card .k{font-size:9.5px;line-height:1.25}
+ .ja-card .v{font-size:15px;margin-top:3px;letter-spacing:-.02em}
+}
+@media(max-width:380px){
+ .ja-cards{gap:5px}
+ .ja-card{padding:7px 6px}
+ .ja-card .k{font-size:9px}
+ .ja-card .v{font-size:14px}
+}
+</style>
+<style>
+@media(max-width:900px){
+ /* collapsed by default */
+ .ja{transition:background-color .55s ease, padding .55s ease}
+ .ja-win{height:430px;transition:height .55s cubic-bezier(.16,1,.3,1),border-radius .55s ease,box-shadow .55s ease}
+ .ja-in{transition:gap .55s ease}
+ .ja .ja-pts,.ja .s-title,.ja .s-lead{transition:opacity .45s ease,max-height .55s ease,margin .55s ease}
+
+ /* immersive: fills the screen and the surround goes black */
+ .ja.imm{background-color:#05070A;padding-top:14px;padding-bottom:14px}
+ .ja.imm .wrap{padding-left:10px;padding-right:10px}
+ .ja.imm .ja-win{height:calc(100svh - 108px);border-radius:20px;box-shadow:0 0 0 1px rgba(76,125,255,.22),0 30px 90px rgba(0,0,0,.75)}
+ .ja.imm .ja-in{gap:0}
+ /* the supporting copy steps back so the panel is the whole story */
+ .ja.imm .s-title,.ja.imm .s-lead,.ja.imm .ja-pts{opacity:0;max-height:0;margin:0;overflow:hidden;pointer-events:none}
+ .ja.imm .s-head{margin-bottom:0}
+}
+@media(max-width:900px) and (orientation:landscape){
+ .ja-win{height:auto}
+ .ja.imm .ja-win{height:auto}
+}
+@media(prefers-reduced-motion:reduce){
+ .ja,.ja-win,.ja-in,.ja .ja-pts,.ja .s-title,.ja .s-lead{transition:none}
+}
+</style>
 </head>
 <body>
 <nav>
@@ -1098,16 +1139,16 @@ html{scroll-behavior:smooth}
 <script>
 (function(){
   var Q=[
-    {q:" \u2014 Which invoices are more than 30 days overdue?", pill:"14 records",
+    {q:" \u2014 Which invoices are more than 30 days overdue?", lab:"Overdue invoices", pill:"14 records",
      a:"You have <b>14 invoices</b> past 30 days, worth <b>&pound;38,420</b>. The oldest is 71 days with Hartley Estates.",
      c:[["Overdue invoices","14"],["Value at risk","&pound;38,420"],["Oldest","71 days"]]},
-    {q:" \u2014 How many jobs did we complete last week?", pill:"218 jobs",
+    {q:" \u2014 How many jobs did we complete last week?", lab:"Jobs completed last week", pill:"218 jobs",
      a:"<b>218 jobs</b> completed, up <b>9%</b> on the week before. First time fix held at <b>87%</b>.",
      c:[["Jobs completed","218"],["Week on week","+9%"],["First time fix","87%"]]},
-    {q:" \u2014 Where are my technicians spending the most time?", pill:"6 engineers",
+    {q:" \u2014 Where are my technicians spending the most time?", lab:"Where time goes", pill:"6 engineers",
      a:"Most time went to <b>reactive callouts</b> at 41% of hours. Travel was <b>18%</b>, down from 23% last month.",
      c:[["Reactive work","41%"],["Travel time","18%"],["Planned work","33%"]]},
-    {q:" \u2014 What did we spend on fuel this month?", pill:"fleet wide",
+    {q:" \u2014 What did we spend on fuel this month?", lab:"Fuel spend", pill:"fleet wide",
      a:"<b>&pound;4,180</b> across the fleet, down <b>11%</b> since routes were optimised. Average <b>&pound;6.40</b> a job.",
      c:[["Fuel spend","&pound;4,180"],["Change","-11%"],["Per job","&pound;6.40"]]}
   ];
@@ -1121,8 +1162,7 @@ html{scroll-behavior:smooth}
   Q.forEach(function(item,i){
     var b=document.createElement('button');
     b.className='ja-tab'+(i===0?' on':''); b.type='button';
-    var label=item.q.replace(/^ \u2014 /,'');
-    b.textContent=label.length>32?label.slice(0,30)+'...':label;
+    b.textContent=item.lab || item.q.replace(/^ \u2014 /,'');
     b.addEventListener('click',function(){ play(i,true); });
     tabs.appendChild(b);
   });
@@ -1466,6 +1506,23 @@ html{scroll-behavior:smooth}
     window.scrollTo({top:0,left:0,behavior:reduce?'auto':'smooth'});
     if(history.replaceState) history.replaceState(null,'',location.pathname+location.search);
   });
+})();
+</script>
+<script>
+(function(){
+  var sec=document.getElementById('justask');
+  var win=sec&&sec.querySelector('.ja-win');
+  if(!sec||!win||!('IntersectionObserver' in window)) return;
+  function mobile(){ return window.matchMedia('(max-width:900px)').matches; }
+  var io=new IntersectionObserver(function(en){
+    en.forEach(function(e){
+      if(!mobile()){ sec.classList.remove('imm'); return; }
+      sec.classList.toggle('imm', e.isIntersecting);
+    });
+  // fires once the panel reaches the middle band of the screen
+  },{root:null, rootMargin:'-28% 0px -28% 0px', threshold:0});
+  io.observe(win);
+  window.addEventListener('resize',function(){ if(!mobile()) sec.classList.remove('imm'); },{passive:true});
 })();
 </script>
 </body></html>
