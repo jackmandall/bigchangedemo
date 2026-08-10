@@ -607,6 +607,7 @@ section{padding:64px 0 78px}
 }
 </style>
 <style>
+@keyframes logoscroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @media(max-width:760px){
  /* logos scroll past instead of squeezing into a tiny grid */
  .proof{overflow:hidden}
@@ -615,8 +616,10 @@ section{padding:64px 0 78px}
  .proof-track{display:flex;width:max-content;animation:logoscroll 26s linear infinite}
  .proof-track .proof-g{display:flex;grid-template-columns:none;gap:34px;align-items:center;
   padding:0 17px;flex:0 0 auto}
+ /* the marquee opts out of the scroll reveal, the cloned group never receives it
+    and was leaving half the strip blank */
+ .proof-track .proof-g,.proof-track .proof-g.rv{opacity:1 !important;transform:none !important;transition:none !important}
  .proof-track .proof-g img{width:auto;height:28px;flex:0 0 auto;opacity:.6}
- @keyframes logoscroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 }
 @media(min-width:761px){ .proof-track .proof-g[aria-hidden]{display:none} }
 @media(prefers-reduced-motion:reduce){ .proof-track{animation:none} }
@@ -824,12 +827,8 @@ html{scroll-behavior:smooth}
 .ja-track,.ja-stick{display:contents}
 @media(max-width:900px){
  .ja{overflow:visible}
- /* the scene catches the scroll on the way in and again on the way out */
- html{scroll-snap-type:y proximity}
- .ja-exit{position:absolute;left:0;right:0;bottom:0;height:1px;pointer-events:none;
-  scroll-snap-align:end;scroll-snap-stop:always}
- .ja-track{display:block;position:relative;height:200svh;
-  scroll-snap-align:start;scroll-snap-stop:always;scroll-margin-top:var(--navh,52px)}
+ /* long enough that one flick cannot clear the pinned scene */
+ .ja-track{display:block;position:relative;height:260svh}
  .ja-stick{display:flex;position:sticky;top:var(--navh,52px);height:calc(100svh - var(--navh,52px));
   align-items:center;overflow:hidden}
  .ja-stick>.wrap{width:100%}
@@ -862,16 +861,13 @@ html{scroll-behavior:smooth}
  body.ja-full nav,body.ja-full .nav-logo img{transition:background .4s ease,filter .4s ease}
 }
 @media(max-width:900px) and (orientation:landscape){
- html{scroll-snap-type:none}
- .ja-track{height:auto;scroll-snap-align:none}
- .ja-exit{display:none}
+ .ja-track{height:auto}
  .ja-stick{position:static;height:auto;display:block;overflow:visible}
  .ja-win{height:auto}
  .ja.imm .ja-win{height:auto}
 }
 @media(prefers-reduced-motion:reduce){
  .ja,.ja-win,.ja-in,.ja .ja-pts,.ja .s-title,.ja .s-lead{transition:none}
- html{scroll-snap-type:none}
 }
 </style>
 <style>
@@ -985,7 +981,7 @@ html{scroll-behavior:smooth}
 </section>
 
 <section class="ja" id="justask">
- <div class="ja-track"><div class="ja-exit" aria-hidden="true"></div><div class="ja-stick">
+ <div class="ja-track"><div class="ja-stick">
  <div class="wrap">
   <div class="ja-in">
    <div>
@@ -1228,6 +1224,9 @@ html{scroll-behavior:smooth}
     b.addEventListener('click',function(){ play(i,true); });
     tabs.appendChild(b);
   });
+  function narrow(){ return window.matchMedia('(max-width:900px)').matches; }
+  // the answer sits for less time on a phone, where the panel is the whole view
+  function dwell(){ return narrow()?2500:5400; }
   function clear(){ timers.forEach(clearTimeout); timers=[]; }
   function mark(i){ [].forEach.call(tabs.children,function(b,n){ b.classList.toggle('on',n===i); }); }
   function cards(list){
@@ -1244,7 +1243,7 @@ html{scroll-behavior:smooth}
     out.classList.remove('show'); tEl.innerHTML=''; cEl.innerHTML=''; pEl.textContent=item.pill;
     if(reduce){
       qEl.textContent=item.q; tEl.innerHTML=item.a; cards(item.c); out.classList.add('show');
-      if(!manual) timers.push(setTimeout(function(){ play((i+1)%Q.length); },7000));
+      if(!manual) timers.push(setTimeout(function(){ play((i+1)%Q.length); },narrow()?3600:7000));
       return;
     }
     qEl.innerHTML='<span class="ja-cur"></span>';
@@ -1259,7 +1258,7 @@ html{scroll-behavior:smooth}
         out.classList.add('show');
         timers.push(setTimeout(function(){
           tEl.innerHTML=item.a; cards(item.c);
-          if(!manual) timers.push(setTimeout(function(){ play((i+1)%Q.length); },5400));
+          if(!manual) timers.push(setTimeout(function(){ play((i+1)%Q.length); },dwell()));
         },1150));
       }
     })();
