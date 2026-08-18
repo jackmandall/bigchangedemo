@@ -838,8 +838,9 @@ html{scroll-behavior:smooth}
  /* clip, not hidden: hidden would make this a scroll container and kill the sticky pin,
     visible let the panel widen the page and gave a sideways scroll */
  .ja{overflow:clip}
- /* long enough that one flick cannot clear the pinned scene */
- .ja-track{display:block;position:relative;height:260svh}
+ /* long enough that a flick cannot clear the scene, short enough that scrolling
+    off it does not feel like wading. Roughly one screen of hold. */
+ .ja-track{display:block;position:relative;height:190svh}
  .ja-stick{display:flex;position:sticky;top:var(--navh,52px);height:calc(100svh - var(--navh,52px));
   align-items:center;overflow:hidden}
  .ja-stick>.wrap{width:100%}
@@ -1658,7 +1659,9 @@ var LG={"LPW Mobile Fleetwash_card.png":"data:image/png;base64,iVBORw0KGgoAAAANS
     if(span<=0){ setOn(false); return; }
     var p=(navH-r.top)/span;
     // full screen for the whole pinned run, easing in and out at the very edges
-    setOn(p>0.03 && p<0.97);
+    // release the full screen state before the pin itself ends, so the panel has
+    // shrunk back by the time the page starts moving again
+    setOn(p>0.04 && p<0.88);
   }
   function onScroll(){ if(!ticking){ ticking=true; requestAnimationFrame(update); } }
   measure(); update();
