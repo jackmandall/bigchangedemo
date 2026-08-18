@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>/* ===========================================================
-   BigChange RAIN — release document styles
+   BigChange RAIN, release document styles
    Built on the BigChange Lightning design system tokens
    =========================================================== */
 
@@ -177,7 +177,7 @@ img{display:block; max-width:100%;}
 .s-features .section-title{ color:#fff; }
 .s-features .section-lead{ color:var(--fg-on-dark-2); }
 .s-features .section-lead b{ color:#fff; font-weight:600; }
-.feat-badges{ display:flex; align-items:center; gap:9px; }
+.feat-badges{ display:flex; align-items:center; gap:9px; flex-wrap:wrap; }
 
 /* ---------- Powered by Lightning note ---------- */
 .lightning-note{
@@ -216,7 +216,7 @@ img{display:block; max-width:100%;}
 .legend .legend-text b{ color:var(--lt-volt-yellow); font-weight:700; }
 
 /* Highly Requested badge on cards */
-.feat-badges{ display:flex; align-items:center; gap:9px; flex-wrap:wrap; justify-content:flex-end; }
+.feat-badges{ display:flex; align-items:center; gap:9px; flex-wrap:wrap; justify-content:flex-start; }
 .badge-requested{
   display:inline-flex; align-items:center; gap:6px;
   font-weight:700; font-size:11px; letter-spacing:.1em;  color:var(--lt-volt-yellow);
@@ -270,7 +270,7 @@ img{display:block; max-width:100%;}
 .feat-card:hover{ transform:translateY(-3px); border-color:rgba(255,198,41,.4); box-shadow:0 24px 60px rgba(0,0,0,.4); }
 .feat-card:hover::after{ opacity:1; }
 .feat-card.wide{ grid-column:1 / -1; }
-.feat-top{ display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.feat-top{ display:flex; align-items:center; justify-content:flex-start; flex-wrap:wrap; gap:9px; margin-bottom:14px; }
 .feat-idx{
   font-weight:800; font-size:14px; letter-spacing:.12em; color:var(--fg-on-dark-3);
 }
@@ -326,9 +326,9 @@ img{display:block; max-width:100%;}
 
 /* last-mile divider + simple list */
 .lastmile{ margin-top:clamp(48px,6vw,76px); }
-.lastmile-head{ display:flex; align-items:baseline; gap:16px; margin-bottom:26px; }
-.lastmile-head .lm-title{ font-weight:800; font-size:15px; letter-spacing:.04em; color:var(--bc-navy); white-space:nowrap; }
-.lastmile-head .lm-sub{ font-weight:500; font-size:13.5px; color:var(--fg-3); white-space:nowrap; }
+.lastmile-head{ display:flex; align-items:baseline; gap:6px 16px; flex-wrap:wrap; margin-bottom:26px; }
+.lastmile-head .lm-title{ font-weight:800; font-size:15px; letter-spacing:.04em; color:var(--bc-navy); }
+.lastmile-head .lm-sub{ font-weight:500; font-size:13.5px; color:var(--fg-3); }
 .lastmile-head::after{ content:""; flex:1; height:1px; background:var(--border-2); align-self:center; }
 .lastmile-list{ margin:0; padding:0; list-style:none; columns:2; column-gap:44px; }
 .lastmile-list li{
@@ -517,9 +517,25 @@ html,body{overflow-x:clip}
 h1,h2,h3,h4,p,li{overflow-wrap:break-word}
 @media (max-width:560px){
  .enh-card{padding:20px 18px 22px}
- .feat-card{padding-left:0;padding-right:0}
  .lastmile-list li{font-size:14.5px}
 }
+
+.enh-groups{margin-top:clamp(30px,4vw,44px);display:flex;flex-direction:column;gap:14px}
+.enh-group .enh-cards-in{margin-top:0;padding:20px 22px 24px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.enh-group .idx-group-head .name{letter-spacing:.01em;font-size:14px}
+.enh-group .enh-card{box-shadow:none;background:var(--neutral-50)}
+@media (max-width:900px){.enh-group .enh-cards-in{grid-template-columns:minmax(0,1fr) minmax(0,1fr);padding:16px 16px 20px;gap:12px}}
+@media (max-width:560px){.enh-group .enh-cards-in{grid-template-columns:1fr}.enh-group .idx-group-head{padding:14px 16px;gap:10px}}
+
+.pulse-cards{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:1100px){.pulse-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.pulse-cards{grid-template-columns:1fr}}
+
+.headliners{margin-top:clamp(34px,4vw,52px)}
+.more-grid{margin-top:20px}
+.hero-topbar img.logo{height:38px}
+.footer-logo img{height:32px}
+@media (max-width:620px){.hero-topbar img.logo{height:30px}.footer-logo img{height:26px}}
 </style>
 
 </head>
@@ -545,7 +561,7 @@ h1,h2,h3,h4,p,li{overflow-wrap:break-word}
           <span class="line">comes the <span class="rain-text">RAIN.</span></span>
         </h1>
         <p class="subhead"><b>7 killer new features. 31 AI infused enhancements.</b> All falling on the BigChange platform.</p>
-        <p class="intro">When we put an AI brain at the centre of your platform with <b>BigChange Lightning</b>, we promised it would help us build faster — shipping what you actually ask for, sooner. RAIN is the proof. You asked. We built. Now it pours.</p>
+        <p class="intro">When we put an AI brain at the centre of your platform with <b>BigChange Lightning</b>, we promised it would help us build faster, shipping what you actually ask for, sooner. RAIN is the proof. You asked. We built. Now it pours.</p>
       </div>
 
       <div class="hero-bolt" aria-hidden="true">
@@ -562,69 +578,50 @@ h1,h2,h3,h4,p,li{overflow-wrap:break-word}
   </div>
 </header>
 
-<!-- =================== SECTION ONE — KILLER NEW FEATURES =================== -->
+<!-- =================== SECTION ONE, KILLER NEW FEATURES =================== -->
 <section class="section s-features" data-screen-label="Killer New Features">
   <div class="wrap">
     <div class="section-head">
-      <div class="section-num">Section one, killer new features</div>
       <h2 class="section-title">Seven killer, net new ways to win, run and get paid.</h2>
-      <p class="section-lead">Seven net new capabilities on the BigChange platform — built faster thanks to the AI development engine behind <b>BigChange Lightning</b>. New ways to win work, run jobs, and get paid.</p>
+      <p class="section-lead">Seven net new capabilities on the BigChange platform, built faster thanks to the AI development engine behind <b>BigChange Lightning</b>. New ways to win work, run jobs, and get paid.</p>
     </div>
-
-    <div class="section-meta">
-      <div class="lightning-note">
-        <span class="ln-bolt"><svg viewBox="0 0 10 14" fill="none"><path d="M5.5 0L0 8h3.5L3 14l6.5-9H6l1-5z" fill="currentColor"></path></svg></span>
-        <span class="ln-copy">
-          <span class="ln-title">Powered by BigChange Lightning</span>
-          <span class="ln-fine">These features require the BigChange Lightning platform upgrade.</span>
-        </span>
-      </div>
-      <div class="legend">
-        <span class="legend-swatch"><svg viewBox="0 0 10 14" fill="none"><path d="M5.5 0L0 8h3.5L3 14l6.5-9H6l1-5z" fill="currentColor"></path></svg></span>
-        <span class="legend-text"><b>Yellow outline</b> = Highly Requested by customers like you.</span>
-      </div>
-    </div>
-
-    <div class="group-label"><span class="dot"></span> The Headliners</div>
 
     <div class="headliners">
         <article class="feat-card requested">
-          <div class="feat-top"><span class="feat-idx">01</span><span class="feat-badges"><span class="badge-requested"><svg viewBox="0 0 10 14" fill="none"><path d="M5.5 0L0 8h3.5L3 14l6.5-9H6l1-5z" fill="currentColor"></path></svg>Highly Requested</span><span class="badge-state st-soon">Coming</span><span class="badge-month">November to December</span></span></div>
+          <div class="feat-top"><span class="feat-badges"><span class="badge-requested"><svg viewBox="0 0 10 14" fill="none"><path d="M5.5 0L0 8h3.5L3 14l6.5-9H6l1-5z" fill="currentColor"></path></svg>Highly Requested</span><span class="badge-month">November to December</span><span class="badge-state st-soon">Coming</span></span></div>
           <h3>Full-Featured Sales CRM</h3>
           <p class="desc">Stop losing deals between disconnected systems. The expanded CRM turns BigChange into your full sales engine, manage leads, track every customer interaction, and run your entire pipeline right alongside live operations, so nothing falls through the cracks.</p>
         </article>
         <article class="feat-card requested">
-          <div class="feat-top"><span class="feat-idx">02</span><span class="feat-badges"><span class="badge-requested"><svg viewBox="0 0 10 14" fill="none"><path d="M5.5 0L0 8h3.5L3 14l6.5-9H6l1-5z" fill="currentColor"></path></svg>Highly Requested</span><span class="badge-state st-soon">Coming</span><span class="badge-month">October</span></span></div>
+          <div class="feat-top"><span class="feat-badges"><span class="badge-requested"><svg viewBox="0 0 10 14" fill="none"><path d="M5.5 0L0 8h3.5L3 14l6.5-9H6l1-5z" fill="currentColor"></path></svg>Highly Requested</span><span class="badge-month">October</span><span class="badge-state st-soon">Coming</span></span></div>
           <h3>AI-Powered Real-Time Schedule Optimisation</h3>
-          <p class="desc">React to change without missing a beat. When a job is cancelled or an urgent call comes in, BigChange instantly re optimises your entire schedule, giving every technician the most efficient route and workload automatically, without a dispatcher touching the board.</p>
+          <p class="desc">React to change without missing a beat. When a job is cancelled or an urgent call comes in, BigChange instantly reoptimises your entire schedule, giving every technician the most efficient route and workload automatically, without a dispatcher touching the board.</p>
         </article>
         <article class="feat-card requested">
-          <div class="feat-top"><span class="feat-idx">03</span><span class="feat-badges"><span class="badge-requested"><svg viewBox="0 0 10 14" fill="none"><path d="M5.5 0L0 8h3.5L3 14l6.5-9H6l1-5z" fill="currentColor"></path></svg>Highly Requested</span><span class="badge-state st-build">In build</span><span class="badge-month">September</span></span></div>
+          <div class="feat-top"><span class="feat-badges"><span class="badge-requested"><svg viewBox="0 0 10 14" fill="none"><path d="M5.5 0L0 8h3.5L3 14l6.5-9H6l1-5z" fill="currentColor"></path></svg>Highly Requested</span><span class="badge-month">September</span><span class="badge-state st-build">In build</span></span></div>
           <h3>Complex Multi-Day Job Management</h3>
           <p class="desc">Bigger jobs, perfectly orchestrated. Plan and manage multi day projects with the right people assigned end to end, resource continuity guaranteed, so larger installations and service engagements run smoothly without costly handoff gaps.</p>
         </article>
         <article class="feat-card">
-          <div class="feat-top"><span class="feat-idx">04</span><span class="feat-badges"><span class="badge-state st-build">In build</span><span class="badge-month">September</span></span></div>
+          <div class="feat-top"><span class="feat-badges"><span class="badge-month">September</span><span class="badge-state st-build">In build</span></span></div>
           <h3>AI-Validated Photo Capture</h3>
           <p class="desc">AI validation automatically reviews each photo to make sure engineers have captured the right thing, first time. No more follow up visits, no more disputes, accurate job evidence every time.</p>
         </article>
       </div>
 
-      <div class="group-label"><span class="dot"></span> More Killer Features</div>
-
     <div class="more-grid">
         <article class="feat-card requested">
-          <div class="feat-top"><span class="feat-idx">05</span><span class="feat-badges"><span class="badge-requested"><svg viewBox="0 0 10 14" fill="none"><path d="M5.5 0L0 8h3.5L3 14l6.5-9H6l1-5z" fill="currentColor"></path></svg>Highly Requested</span><span class="badge-state st-build">In build</span><span class="badge-month">August</span></span></div>
+          <div class="feat-top"><span class="feat-badges"><span class="badge-requested"><svg viewBox="0 0 10 14" fill="none"><path d="M5.5 0L0 8h3.5L3 14l6.5-9H6l1-5z" fill="currentColor"></path></svg>Highly Requested</span><span class="badge-month">August</span><span class="badge-state st-build">In build</span></span></div>
           <h4>Fully customisable asset records</h4>
           <p class="desc">Assets as unique as the work you do on them. Add custom fields for any attribute your engineers or customers need, richer records that power smarter servicing, better compliance reporting, and more informed engineers on every visit.</p>
         </article>
         <article class="feat-card">
-          <div class="feat-top"><span class="feat-idx">06</span><span class="feat-badges"><span class="badge-state st-build">In build</span><span class="badge-month">October</span></span></div>
+          <div class="feat-top"><span class="feat-badges"><span class="badge-month">October</span><span class="badge-state st-build">In build</span></span></div>
           <h4>Asset linked reactive work management</h4>
           <p class="desc">Raise reactive jobs directly against customer assets from the job, building a rich service history so your next visit starts with the complete picture, not a blank page.</p>
         </article>
         <article class="feat-card">
-          <div class="feat-top"><span class="feat-idx">07</span><span class="feat-badges"><span class="badge-state st-live">Live now</span><span class="badge-month">July</span></span></div>
+          <div class="feat-top"><span class="feat-badges"><span class="badge-month">July</span><span class="badge-state st-live">Live now</span></span></div>
           <h4>Easy multi image capture</h4>
           <p class="desc">Capture every detail, protect every job. Collect multiple job photos in one smooth flow from JobWatch, complete and timestamped, so you do not miss the smallest detail. Video capture is still in build and follows shortly.</p>
         </article>
@@ -632,210 +629,248 @@ h1,h2,h3,h4,p,li{overflow-wrap:break-word}
     </div>
   </section>
 
-<!-- =================== SECTION TWO — AI-INFUSED ENHANCEMENTS =================== -->
+
+<!-- =================== PULSE =================== -->
+<section class="section s-enhance" data-screen-label="Pulse">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="section-title">Pulse is coming to BigChange.</h2>
+      <p class="section-lead">A new layer of AI agents that work your data rather than waiting to be asked. Proving out now, and landing on BigChange after. This is the one to watch.</p>
+    </div>
+    <div class="enh-cards pulse-cards">
+        <article class="enh-card">
+          <h4>Customer service agent</h4>
+          <div class="enh-badges"><span class="badge-month">September to November</span></div>
+          <p class="desc">Already in initial release. An agent that handles routine customer contact end to end, picking up status questions and chasing so your office does not have to.</p>
+        </article>
+        <article class="enh-card">
+          <h4>SMS support for Fast Cash</h4>
+          <div class="enh-badges"><span class="badge-month">In build now</span></div>
+          <p class="desc">Payment requests and reminders by text, so the money arrives without anyone making a phone call.</p>
+        </article>
+        <article class="enh-card">
+          <h4>Sales manager agent</h4>
+          <div class="enh-badges"><span class="badge-month">September to December</span></div>
+          <p class="desc">Pipeline worked automatically, surfacing the deals that need you today.</p>
+        </article>
+        <article class="enh-card">
+          <h4>Customer marketing agent</h4>
+          <div class="enh-badges"><span class="badge-month">September</span></div>
+          <p class="desc">Campaigns and follow up driven from the job data you already hold.</p>
+        </article>
+      </div>
+  </div>
+</section>
+<!-- =================== SECTION TWO, AI-INFUSED ENHANCEMENTS =================== -->
 <section class="section s-enhance" data-screen-label="AI infused Enhancements">
   <div class="wrap">
     <div class="section-head">
-      <div class="section-num">Section two, AI infused enhancements</div>
-      <h2 class="section-title">AI infused Enhancements: <span class="resp">you asked. We built.</span></h2>
-      <p class="section-lead">Not everything in RAIN is brand new — some of it is something better. These enhancements come straight from your requests: taking the BigChange features you rely on every day and pushing them further. And every one is now wired into <b>Cooper AI</b> — so it can learn from how you use them, optimise them over time, and surface sharper insight back to you. This is what it looks like when your platform listens.</p>
+      <h2 class="section-title">AI infused enhancements. <span class="resp">Customers asked. We built.</span></h2>
+      <p class="section-lead">Not everything in RAIN is brand new, some of it is something better. These enhancements come straight from customer requests, taking the features teams rely on every day and pushing them further. And every one is now wired into <b>Cooper AI</b>, so it can learn from how you use them, optimise them over time, and surface sharper insight back to you. This is what it looks like when your platform listens.</p>
     </div>
 
-    <div class="lightning-note on-light">
-      <span class="ln-bolt"><svg viewBox="0 0 10 14" fill="none"><path d="M5.5 0L0 8h3.5L3 14l6.5-9H6l1-5z" fill="currentColor"></path></svg></span>
-      <span class="ln-copy">
-        <span class="ln-title">Powered by BigChange Lightning</span>
-        <span class="ln-fine">Selected enhancements require the BigChange Lightning platform upgrade.</span>
-      </span>
-    </div>
-
-    <div class="enh-cards">
-        <article class="enh-card">
-          <div class="cat">Financial management</div>
-          <h4>Professional structured quoting</h4>
-          <div class="enh-badges"><span class="badge-state st-soon">Coming</span><span class="badge-month">October to December</span></div>
-          <p class="desc">Build multi option, sectioned quotes with protected margin data, giving a faster and more flexible path from quote to signed job.</p>
-        </article>
-        <article class="enh-card">
-          <div class="cat">Financial management</div>
-          <h4>Consolidated multi site invoicing</h4>
-          <div class="enh-badges"><span class="badge-state st-build">In build</span><span class="badge-month">September</span></div>
-          <p class="desc">Invoice multiple locations or subsidiaries in one consolidated run, cutting the back and forth with accounts teams.</p>
-        </article>
-        <article class="enh-card">
-          <div class="cat">Financial management</div>
-          <h4>Export contact rates</h4>
-          <div class="enh-badges"><span class="badge-state st-live">Live now</span><span class="badge-month">July</span></div>
-          <p class="desc">Pull agreed customer rates out of BigChange for checking or sharing, without rebuilding the rate card by hand.</p>
-        </article>
-        <article class="enh-card">
-          <div class="cat">Financial management</div>
-          <h4>Group job financials</h4>
-          <div class="enh-badges"><span class="badge-state st-live">Live now</span><span class="badge-month">July</span></div>
-          <p class="desc">Costs and revenue rolled up across a group of jobs, so multi visit and multi site work shows its true margin.</p>
-        </article>
-        <article class="enh-card">
-          <div class="cat">Financial management</div>
-          <h4>Enhanced group job overview financials</h4>
-          <div class="enh-badges"><span class="badge-state st-soon">Coming</span><span class="badge-month">October to December</span></div>
-          <p class="desc">See the money across a group of related jobs in one view, rather than adding up each job to find the margin.</p>
-        </article>
-        <article class="enh-card">
-          <div class="cat">Financial management</div>
-          <h4>Supplier on stop status</h4>
-          <div class="enh-badges"><span class="badge-state st-build">In build</span><span class="badge-month">August</span></div>
-          <p class="desc">Flag a supplier as on stop, so nobody raises a purchase order against an account finance has frozen.</p>
-        </article>
-        <article class="enh-card">
-          <div class="cat">Scheduling</div>
-          <h4>Priority job scheduling lock</h4>
-          <div class="enh-badges"><span class="badge-state st-soon">Coming</span><span class="badge-month">November to December</span></div>
-          <p class="desc">Your most critical jobs stay exactly where you put them. Lock high priority jobs against accidental rescheduling, so when the board gets busy, what matters most never gets bumped.</p>
-        </article>
-        <article class="enh-card">
-          <div class="cat">Data and insights</div>
-          <h4>Configurable JustAsk data freshness</h4>
-          <div class="enh-badges"><span class="badge-state st-build">In build</span><span class="badge-month">September</span></div>
-          <p class="desc">Fresh answers when your team needs them most. Choose your JustAsk refresh frequency, faster tiers for the teams making real time decisions, standard intervals for everyone else.</p>
-        </article>
-        <article class="enh-card">
-          <div class="cat">Data and insights</div>
-          <h4>Business wide JustAsk intelligence</h4>
-          <div class="enh-badges"><span class="badge-state st-build">In build</span><span class="badge-month">December</span></div>
-          <p class="desc">Ask bigger questions, get more complete answers. JustAsk now reaches across a wider breadth of your BigChange data, so every query is grounded in more of your operation.</p>
-        </article>
-        <article class="enh-card">
-          <div class="cat">Data and insights</div>
-          <h4>Role based JustAsk access control</h4>
-          <div class="enh-badges"><span class="badge-state st-build">In build</span><span class="badge-month">September</span></div>
-          <p class="desc">Role based permissions keep JustAsk answers scoped to exactly what each user is authorised to see, without slowing anyone down.</p>
-        </article>
-        <article class="enh-card">
-          <div class="cat">Inventory and compliance</div>
-          <h4>Real time inventory and stock</h4>
-          <div class="enh-badges"><span class="badge-state st-soon">Coming</span><span class="badge-month">November to December</span></div>
-          <p class="desc">Van and store stock counted as it moves, so you can drop the parallel spreadsheets and the audit risk that comes with them.</p>
-        </article>
-        <article class="enh-card">
-          <div class="cat">Compliance</div>
-          <h4>Built in waste duty of care records</h4>
-          <div class="enh-badges"><span class="badge-state st-build">In build</span><span class="badge-month">August</span></div>
-          <p class="desc">Compliance paperwork that completes itself. Capture waste receiver data directly from the job, so duty of care records are created automatically and auditable instantly.</p>
-        </article>
-        <article class="enh-card">
-          <div class="cat">Compliance</div>
-          <h4>F-Gas compliance forms</h4>
-          <div class="enh-badges"><span class="badge-state st-soon">Coming</span><span class="badge-month">November to December</span></div>
-          <p class="desc">The certificates and records F-Gas demands, built into the job. Every refrigerant handling documented and audit ready, with no parallel paperwork.</p>
-        </article>
-        <article class="enh-card">
-          <div class="cat">Compliance</div>
-          <h4>France e-invoicing compliance automation</h4>
-          <div class="enh-badges"><span class="badge-state st-soon">Coming</span><span class="badge-month">October</span></div>
-          <p class="desc">Stay compliant with the French e-invoicing mandate automatically, with the required format and reporting handled for you.</p>
-        </article>
-        <article class="enh-card">
-          <div class="cat">APIs</div>
-          <h4>Broader integration APIs</h4>
-          <div class="enh-badges"><span class="badge-state st-build">In build</span><span class="badge-month">September</span></div>
-          <p class="desc">Broader, more complete APIs with webhooks mean deeper, real time integration with your ERP or accounting platform, and far less double keying.</p>
-        </article>
-        <article class="enh-card">
-          <div class="cat">Hire</div>
-          <h4>Hire industry integrations and damage detection</h4>
-          <div class="enh-badges"><span class="badge-state st-soon">Coming</span><span class="badge-month">November</span></div>
-          <p class="desc">Sync with the TACHO, HGV and ERP systems the hire industry runs on, and auto detect damage on hired out assets.</p>
-        </article>
-        <article class="enh-card">
-          <div class="cat">Field operations</div>
-          <h4>Accept, reject or revert suggested text</h4>
-          <div class="enh-badges"><span class="badge-state st-build">In build</span><span class="badge-month">September</span></div>
-          <p class="desc">Take the AI suggestion, change it, or put it back as it was. The engineer stays in control of every word that reaches the customer.</p>
-        </article>
-        <article class="enh-card">
-          <div class="cat">Field operations</div>
-          <h4>More accurate job result selection on mobile</h4>
-          <div class="enh-badges"><span class="badge-state st-build">In build</span><span class="badge-month">September</span></div>
-          <p class="desc">Fewer taps and fewer wrong picks when an engineer closes a job, so the result on the record matches what actually happened on site.</p>
-        </article>
-        <article class="enh-card">
-          <div class="cat">Field operations</div>
-          <h4>Job summary, copy to field and reuse</h4>
-          <div class="enh-badges"><span class="badge-state st-soon">Coming</span><span class="badge-month">September</span></div>
-          <p class="desc">Reuse a job summary rather than retyping it, and push it out to the field so the next engineer starts with the full story.</p>
-        </article>
-        <article class="enh-card">
-          <div class="cat">Field operations</div>
-          <h4>Lightning feature access configuration</h4>
-          <div class="enh-badges"><span class="badge-state st-build">In build</span><span class="badge-month">August</span></div>
-          <p class="desc">Decide which Lightning features each team can see, so you roll new capability out at the pace your people can absorb it.</p>
-        </article>
-        <article class="enh-card">
-          <div class="cat">Field operations</div>
-          <h4>Default folders on attachments</h4>
-          <div class="enh-badges"><span class="badge-state st-build">In build</span><span class="badge-month">September</span></div>
-          <p class="desc">Photos and documents land in the right folder on their own, so nobody is filing evidence by hand after the visit.</p>
-        </article>
-        <article class="enh-card">
-          <div class="cat">Field operations</div>
-          <h4>Multi video capture</h4>
-          <div class="enh-badges"><span class="badge-state st-build">In build</span><span class="badge-month">September</span></div>
-          <p class="desc">Video capture joining the images already live in JobWatch, for the jobs where a still does not tell the story.</p>
-        </article>
-        <article class="enh-card">
-          <div class="cat">Field operations</div>
-          <h4>Attachment views, gallery and list</h4>
-          <div class="enh-badges"><span class="badge-state st-live">Live now</span><span class="badge-month">July</span></div>
-          <p class="desc">See a customer&amp;rsquo;s attachments as a gallery or a list, whichever gets you to the right document faster.</p>
-        </article>
-        <article class="enh-card">
-          <div class="cat">Job management</div>
-          <h4>Improved document design</h4>
-          <div class="enh-badges"><span class="badge-state st-build">In build</span><span class="badge-month">August</span></div>
-          <p class="desc">More control over how job sheets, certificates and reports look, so what the customer receives reflects your brand.</p>
-        </article>
-        <article class="enh-card">
-          <div class="cat">Job management</div>
-          <h4>Constraint specific scheduling warnings</h4>
-          <div class="enh-badges"><span class="badge-state st-build">In build</span><span class="badge-month">August</span></div>
-          <p class="desc">When a job will not fit, the warning names the constraint that blocked it, rather than leaving you to work it out.</p>
-        </article>
-        <article class="enh-card">
-          <div class="cat">Job management</div>
-          <h4>Archive resources</h4>
-          <div class="enh-badges"><span class="badge-state st-soon">Coming</span><span class="badge-month">September</span></div>
-          <p class="desc">Retire people and equipment you no longer use without losing their history, keeping the scheduling board clean.</p>
-        </article>
-        <article class="enh-card">
-          <div class="cat">Job management</div>
-          <h4>Two way messaging on job confirmation</h4>
-          <div class="enh-badges"><span class="badge-state st-live">Live now</span><span class="badge-month">July</span></div>
-          <p class="desc">Messaging opens once the job is confirmed, so office and field conversation stays attached to real, live work.</p>
-        </article>
-        <article class="enh-card">
-          <div class="cat">Job management</div>
-          <h4>Mass add and update waypoints against jobs</h4>
-          <div class="enh-badges"><span class="badge-state st-build">In build</span><span class="badge-month">September</span></div>
-          <p class="desc">Add or update waypoints across many jobs at once, instead of opening each one to change a single address.</p>
-        </article>
-        <article class="enh-card">
-          <div class="cat">Job management</div>
-          <h4>Improved document design, second pass</h4>
-          <div class="enh-badges"><span class="badge-state st-soon">Coming</span><span class="badge-month">October</span></div>
-          <p class="desc">A further round of layout control on customer documents, building on the first release.</p>
-        </article>
-        <article class="enh-card">
-          <div class="cat">Fleet management</div>
-          <h4>Vehicle types</h4>
-          <div class="enh-badges"><span class="badge-state st-soon">Coming</span><span class="badge-month">November</span></div>
-          <p class="desc">Group vehicles by type, so scheduling and reporting understand the difference between a van, a tanker and a tipper.</p>
-        </article>
-        <article class="enh-card">
-          <div class="cat">Fleet management</div>
-          <h4>Archive vehicles</h4>
-          <div class="enh-badges"><span class="badge-state st-soon">Coming</span><span class="badge-month">October</span></div>
-          <p class="desc">Take vehicles off the fleet without deleting their tracking and service history, so your reporting stays intact.</p>
-        </article>
+    <div class="enh-groups">
+      <details class="idx-group enh-group" open>
+        <summary class="idx-group-head"><span class="idx-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg></span><span class="name">Live now</span><span class="count">4</span><span class="bar"></span></summary>
+        <div class="enh-cards enh-cards-in">
+          <article class="enh-card">
+            <div class="cat">Field operations</div>
+            <h4>Attachment views, gallery and list</h4>
+            <div class="enh-badges"><span class="badge-month">July</span></div>
+            <p class="desc">See a customer&amp;rsquo;s attachments as a gallery or a list, whichever gets you to the right document faster.</p>
+          </article>
+          <article class="enh-card">
+            <div class="cat">Financial management</div>
+            <h4>Export contact rates</h4>
+            <div class="enh-badges"><span class="badge-month">July</span></div>
+            <p class="desc">Pull agreed customer rates out of BigChange for checking or sharing, without rebuilding the rate card by hand.</p>
+          </article>
+          <article class="enh-card">
+            <div class="cat">Financial management</div>
+            <h4>Group job financials</h4>
+            <div class="enh-badges"><span class="badge-month">July</span></div>
+            <p class="desc">Costs and revenue rolled up across a group of jobs, so multi visit and multi site work shows its true margin.</p>
+          </article>
+          <article class="enh-card">
+            <div class="cat">Job management</div>
+            <h4>Two way messaging on job confirmation</h4>
+            <div class="enh-badges"><span class="badge-month">July</span></div>
+            <p class="desc">Messaging opens once the job is confirmed, so office and field conversation stays attached to real, live work.</p>
+          </article>
+        </div>
+      </details>
+      <details class="idx-group enh-group">
+        <summary class="idx-group-head"><span class="idx-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg></span><span class="name">In build</span><span class="count">15</span><span class="bar"></span></summary>
+        <div class="enh-cards enh-cards-in">
+          <article class="enh-card">
+            <div class="cat">Compliance</div>
+            <h4>Built in waste duty of care records</h4>
+            <div class="enh-badges"><span class="badge-month">August</span></div>
+            <p class="desc">Compliance paperwork that completes itself. Capture waste receiver data directly from the job, so duty of care records are created automatically and auditable instantly.</p>
+          </article>
+          <article class="enh-card">
+            <div class="cat">Job management</div>
+            <h4>Constraint specific scheduling warnings</h4>
+            <div class="enh-badges"><span class="badge-month">August</span></div>
+            <p class="desc">When a job will not fit, the warning names the constraint that blocked it, rather than leaving you to work it out.</p>
+          </article>
+          <article class="enh-card">
+            <div class="cat">Job management</div>
+            <h4>Improved document design</h4>
+            <div class="enh-badges"><span class="badge-month">August</span></div>
+            <p class="desc">More control over how job sheets, certificates and reports look, so what the customer receives reflects your brand.</p>
+          </article>
+          <article class="enh-card">
+            <div class="cat">Field operations</div>
+            <h4>Lightning feature access configuration</h4>
+            <div class="enh-badges"><span class="badge-month">August</span></div>
+            <p class="desc">Decide which Lightning features each team can see, so you roll new capability out at the pace your people can absorb it.</p>
+          </article>
+          <article class="enh-card">
+            <div class="cat">Financial management</div>
+            <h4>Supplier on stop status</h4>
+            <div class="enh-badges"><span class="badge-month">August</span></div>
+            <p class="desc">Flag a supplier as on stop, so nobody raises a purchase order against an account finance has frozen.</p>
+          </article>
+          <article class="enh-card">
+            <div class="cat">Field operations</div>
+            <h4>Accept, reject or revert suggested text</h4>
+            <div class="enh-badges"><span class="badge-month">September</span></div>
+            <p class="desc">Take the AI suggestion, change it, or put it back as it was. The engineer stays in control of every word that reaches the customer.</p>
+          </article>
+          <article class="enh-card">
+            <div class="cat">APIs</div>
+            <h4>Broader integration APIs</h4>
+            <div class="enh-badges"><span class="badge-month">September</span></div>
+            <p class="desc">Broader, more complete APIs with webhooks mean deeper, real time integration with your ERP or accounting platform, and far less double keying.</p>
+          </article>
+          <article class="enh-card">
+            <div class="cat">Data and insights</div>
+            <h4>Configurable JustAsk data freshness</h4>
+            <div class="enh-badges"><span class="badge-month">September</span></div>
+            <p class="desc">Fresh answers when your team needs them most. Choose your JustAsk refresh frequency, faster tiers for the teams making real time decisions, standard intervals for everyone else.</p>
+          </article>
+          <article class="enh-card">
+            <div class="cat">Financial management</div>
+            <h4>Consolidated multi site invoicing</h4>
+            <div class="enh-badges"><span class="badge-month">September</span></div>
+            <p class="desc">Invoice multiple locations or subsidiaries in one consolidated run, cutting the back and forth with accounts teams.</p>
+          </article>
+          <article class="enh-card">
+            <div class="cat">Field operations</div>
+            <h4>Default folders on attachments</h4>
+            <div class="enh-badges"><span class="badge-month">September</span></div>
+            <p class="desc">Photos and documents land in the right folder on their own, so nobody is filing evidence by hand after the visit.</p>
+          </article>
+          <article class="enh-card">
+            <div class="cat">Job management</div>
+            <h4>Mass add and update waypoints against jobs</h4>
+            <div class="enh-badges"><span class="badge-month">September</span></div>
+            <p class="desc">Add or update waypoints across many jobs at once, instead of opening each one to change a single address.</p>
+          </article>
+          <article class="enh-card">
+            <div class="cat">Field operations</div>
+            <h4>More accurate job result selection on mobile</h4>
+            <div class="enh-badges"><span class="badge-month">September</span></div>
+            <p class="desc">Fewer taps and fewer wrong picks when an engineer closes a job, so the result on the record matches what actually happened on site.</p>
+          </article>
+          <article class="enh-card">
+            <div class="cat">Field operations</div>
+            <h4>Multi video capture</h4>
+            <div class="enh-badges"><span class="badge-month">September</span></div>
+            <p class="desc">Video capture joining the images already live in JobWatch, for the jobs where a still does not tell the story.</p>
+          </article>
+          <article class="enh-card">
+            <div class="cat">Data and insights</div>
+            <h4>Role based JustAsk access control</h4>
+            <div class="enh-badges"><span class="badge-month">September</span></div>
+            <p class="desc">Role based permissions keep JustAsk answers scoped to exactly what each user is authorised to see, without slowing anyone down.</p>
+          </article>
+          <article class="enh-card">
+            <div class="cat">Data and insights</div>
+            <h4>Business wide JustAsk intelligence</h4>
+            <div class="enh-badges"><span class="badge-month">December</span></div>
+            <p class="desc">Ask bigger questions, get more complete answers. JustAsk now reaches across a wider breadth of your BigChange data, so every query is grounded in more of your operation.</p>
+          </article>
+        </div>
+      </details>
+      <details class="idx-group enh-group">
+        <summary class="idx-group-head"><span class="idx-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg></span><span class="name">Coming</span><span class="count">12</span><span class="bar"></span></summary>
+        <div class="enh-cards enh-cards-in">
+          <article class="enh-card">
+            <div class="cat">Job management</div>
+            <h4>Archive resources</h4>
+            <div class="enh-badges"><span class="badge-month">September</span></div>
+            <p class="desc">Retire people and equipment you no longer use without losing their history, keeping the scheduling board clean.</p>
+          </article>
+          <article class="enh-card">
+            <div class="cat">Field operations</div>
+            <h4>Job summary, copy to field and reuse</h4>
+            <div class="enh-badges"><span class="badge-month">September</span></div>
+            <p class="desc">Reuse a job summary rather than retyping it, and push it out to the field so the next engineer starts with the full story.</p>
+          </article>
+          <article class="enh-card">
+            <div class="cat">Fleet management</div>
+            <h4>Archive vehicles</h4>
+            <div class="enh-badges"><span class="badge-month">October</span></div>
+            <p class="desc">Take vehicles off the fleet without deleting their tracking and service history, so your reporting stays intact.</p>
+          </article>
+          <article class="enh-card">
+            <div class="cat">Financial management</div>
+            <h4>Enhanced group job overview financials</h4>
+            <div class="enh-badges"><span class="badge-month">October to December</span></div>
+            <p class="desc">See the money across a group of related jobs in one view, rather than adding up each job to find the margin.</p>
+          </article>
+          <article class="enh-card">
+            <div class="cat">Compliance</div>
+            <h4>France e-invoicing compliance automation</h4>
+            <div class="enh-badges"><span class="badge-month">October</span></div>
+            <p class="desc">Stay compliant with the French e-invoicing mandate automatically, with the required format and reporting handled for you.</p>
+          </article>
+          <article class="enh-card">
+            <div class="cat">Job management</div>
+            <h4>Improved document design, second pass</h4>
+            <div class="enh-badges"><span class="badge-month">October</span></div>
+            <p class="desc">A further round of layout control on customer documents, building on the first release.</p>
+          </article>
+          <article class="enh-card">
+            <div class="cat">Financial management</div>
+            <h4>Professional structured quoting</h4>
+            <div class="enh-badges"><span class="badge-month">October to December</span></div>
+            <p class="desc">Build multi option, sectioned quotes with protected margin data, giving a faster and more flexible path from quote to signed job.</p>
+          </article>
+          <article class="enh-card">
+            <div class="cat">Compliance</div>
+            <h4>F-Gas compliance forms</h4>
+            <div class="enh-badges"><span class="badge-month">November to December</span></div>
+            <p class="desc">The certificates and records F-Gas demands, built into the job. Every refrigerant handling documented and audit ready, with no parallel paperwork.</p>
+          </article>
+          <article class="enh-card">
+            <div class="cat">Hire</div>
+            <h4>Hire industry integrations and damage detection</h4>
+            <div class="enh-badges"><span class="badge-month">November</span></div>
+            <p class="desc">Sync with the TACHO, HGV and ERP systems the hire industry runs on, and auto detect damage on hired out assets.</p>
+          </article>
+          <article class="enh-card">
+            <div class="cat">Scheduling</div>
+            <h4>Priority job scheduling lock</h4>
+            <div class="enh-badges"><span class="badge-month">November to December</span></div>
+            <p class="desc">Your most critical jobs stay exactly where you put them. Lock high priority jobs against accidental rescheduling, so when the board gets busy, what matters most never gets bumped.</p>
+          </article>
+          <article class="enh-card">
+            <div class="cat">Inventory and compliance</div>
+            <h4>Real time inventory and stock</h4>
+            <div class="enh-badges"><span class="badge-month">November to December</span></div>
+            <p class="desc">Van and store stock counted as it moves, so you can drop the parallel spreadsheets and the audit risk that comes with them.</p>
+          </article>
+          <article class="enh-card">
+            <div class="cat">Fleet management</div>
+            <h4>Vehicle types</h4>
+            <div class="enh-badges"><span class="badge-month">November</span></div>
+            <p class="desc">Group vehicles by type, so scheduling and reporting understand the difference between a van, a tanker and a tipper.</p>
+          </article>
+        </div>
+      </details>
       </div>
 
       <div class="lastmile">
@@ -869,44 +904,11 @@ h1,h2,h3,h4,p,li{overflow-wrap:break-word}
 <section class="bridge" data-screen-label="Bridge">
   <div class="platform"></div>
   <div class="wrap">
-    <p><span class="muted">…and those are just the biggest RAIN drops.</span> The full index of this storm follows — every one a direct response to a customer request. Because the best AI doesn't replace the tools you love. It makes them <span class="volt-text">better, faster.</span></p>
+    <p><span class="muted">…and those are just the biggest RAIN drops.</span> The full index of this storm follows, every one a direct response to a customer request. Because the best AI doesn't replace the tools you love. It makes them <span class="volt-text">better, faster.</span></p>
   </div>
   <div class="platform bottom"></div>
 </section>
 
-
-<!-- =================== PULSE =================== -->
-<section class="section s-enhance" data-screen-label="Pulse">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="section-num">Also on the way</div>
-      <h2 class="section-title">Pulse is coming to BigChange.</h2>
-      <p class="section-lead">A new layer of AI agents that work your data rather than waiting to be asked. Proving out now, and landing on BigChange after. This is the one to watch.</p>
-    </div>
-    <div class="enh-cards">
-        <article class="enh-card">
-          <h4>Customer service agent</h4>
-          <div class="enh-badges"><span class="badge-month">September to November</span></div>
-          <p class="desc">Already in initial release. An agent that handles routine customer contact end to end, picking up status questions and chasing so your office does not have to.</p>
-        </article>
-        <article class="enh-card">
-          <h4>SMS support for Fast Cash</h4>
-          <div class="enh-badges"><span class="badge-month">In build now</span></div>
-          <p class="desc">Payment requests and reminders by text, so the money arrives without anyone making a phone call.</p>
-        </article>
-        <article class="enh-card">
-          <h4>Sales manager agent</h4>
-          <div class="enh-badges"><span class="badge-month">September to December</span></div>
-          <p class="desc">Pipeline worked automatically, surfacing the deals that need you today.</p>
-        </article>
-        <article class="enh-card">
-          <h4>Customer marketing agent</h4>
-          <div class="enh-badges"><span class="badge-month">September</span></div>
-          <p class="desc">Campaigns and follow up driven from the job data you already hold.</p>
-        </article>
-      </div>
-  </div>
-</section>
 <!-- =================== FOOTER / CTA =================== -->
 <footer class="s-footer" data-screen-label="Close">
   <div class="platform"></div>
@@ -914,7 +916,7 @@ h1,h2,h3,h4,p,li{overflow-wrap:break-word}
   <div class="wrap">
     <div class="inner">
       <p class="thunder">A season of RAIN</p>
-      <h2>This is a season of <span class="rain-text">RAIN</span> — and it's only the beginning.</h2>
+      <h2>This is a season of <span class="rain-text">RAIN</span>, and it's only the beginning.</h2>
       <p class="cta-copy">If the improvement you want most isn't here, it may just be in the next storm. Come and see it running on your own numbers.</p>
       <div class="cta-row">
         <a class="btn-volt" href="https://meetings.hubspot.com/jack-wilson9" target="_blank" rel="noopener">

@@ -39,7 +39,8 @@ section[id]{scroll-margin-top:78px}
 nav{position:sticky;top:0;z-index:80;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .nav-in{display:flex;align-items:center;justify-content:space-between;gap:24px;max-width:1240px;margin:0 auto;padding:14px 28px}
 .nav-l{display:flex;align-items:center;gap:38px}
-.nav-logo img{height:25px;display:block}
+.nav-logo img{height:36px;display:block}
+@media(max-width:620px){.nav-logo img{height:30px}}
 .nav-links{display:flex;gap:26px}
 .nav-links a{font-size:14.5px;font-weight:500;color:var(--ink-soft);text-decoration:none;transition:color .2s}
 .nav-links a:hover{color:var(--energy)}
@@ -494,6 +495,9 @@ nav.sm{box-shadow:0 6px 24px rgba(10,34,64,.10)}
 @keyframes csfill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 @media(prefers-reduced-motion:reduce){.cs-rail button.on i{animation:none;transform:scaleX(1)}}
 .cs-fade{transition:opacity .35s ease}
+.rain-when{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:2px 0 10px}
+.rain-when .rw-s{font-size:10.5px;font-weight:700;color:#12203A;border-radius:999px;padding:3px 9px;background:linear-gradient(120deg,#FFC629,#F9A21B)}
+.rain-when .rw-w{font-size:12.5px;color:var(--slate)}
 .cs-fade.out{opacity:0}
 .cs-stats:empty{min-height:0;margin-bottom:2px}
 </style>
@@ -980,6 +984,7 @@ html{scroll-behavior:smooth}
    <a class="ex ex-feat" href="https://www.bigchangedemo.co.uk/rain/" target="_blank" rel="noopener">
     <span class="rain-flags"><span class="ex-badge">Our Roadmap</span></span>
     <h3 id="rain-t">Full-Featured Sales CRM</h3>
+    <div class="rain-when"><span class="rw-s" id="rain-s">Coming</span><span class="rw-w" id="rain-w">November to December</span></div>
     <p id="rain-d">Manage leads, track every customer interaction and run your whole pipeline alongside live operations, so deals stop slipping between systems.</p>
     <div class="rain-rail" id="rain-rail"><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span></div>
     <span class="go">See the roadmap <span class="arw">&rarr;</span></span>
@@ -1299,17 +1304,22 @@ html{scroll-behavior:smooth}
 <script>
 (function(){
   var R=[
-   {req:true,  t:"Full-Featured Sales CRM",
+   {req:true , s:"Coming", w:"November to December",
+    t:"Full-Featured Sales CRM",
     d:"Manage leads, track every customer interaction and run your whole pipeline alongside live operations, so deals stop slipping between systems."},
-   {req:true,  t:"AI-Powered Real-Time Schedule Optimisation",
+   {req:true , s:"Coming", w:"October",
+    t:"AI-Powered Real-Time Schedule Optimisation",
     d:"Cancel a job or take an urgent call and the schedule reoptimises itself, giving every engineer the best route and workload automatically."},
-   {t:"Complex Multi-Day Job Management",
+   {req:true , s:"In build", w:"September",
+    t:"Complex Multi-Day Job Management",
     d:"Plan bigger projects with the right people assigned end to end, so large installations run without costly gaps in the handover."},
-   {t:"AI-Validated Photo Capture",
+   {req:false, s:"In build", w:"September",
+    t:"AI-Validated Photo Capture",
     d:"Every photo is checked automatically to make sure the right thing was captured first time, so no return visits and no disputes."}
   ];
   var tt=document.getElementById('rain-t'),
-      dd=document.getElementById('rain-d'), rail=document.getElementById('rain-rail');
+      dd=document.getElementById('rain-d'), rail=document.getElementById('rain-rail'),
+      st=document.getElementById('rain-s'), wh=document.getElementById('rain-w');
   if(!tt||!rail) return;
   var i=0, timer=null;
   var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1317,6 +1327,8 @@ html{scroll-behavior:smooth}
   function show(k){
     var r=R[k];
  tt.textContent=r.t; dd.textContent=r.d;
+    if(st) st.textContent=r.s;
+    if(wh) wh.textContent=r.w;
     [].forEach.call(rail.children,function(s,n){
       var fill=s.firstChild;
       s.className = n<k ? 'done' : (n===k ? 'on' : '');
