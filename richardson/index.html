@@ -276,9 +276,11 @@
 
   /* Inline quote breakdown + ROI (combined section) */
   .qtab { width:100%; border-collapse:collapse; font-size:14px; margin-bottom:18px; }
-  .qtab th { text-align:left; color:var(--grey-500); font-weight:600; font-size:12px;  letter-spacing:.03em; padding:0 0 8px; border-bottom:1px solid var(--grey-200); }
+  .qtab th { text-align:left; color:var(--grey-500); font-weight:600; font-size:12px; letter-spacing:.03em; padding:0 0 8px; border-bottom:1px solid var(--grey-200); }
   .qtab td { padding:10px 0; border-bottom:1px solid var(--grey-100); color:var(--charcoal); vertical-align:top; }
-  .qtab td.r, .qtab th.r { text-align:right; white-space:nowrap; }
+  .qtab td.r, .qtab th.r { text-align:right; white-space:nowrap; padding-left:20px; width:1%; }
+  .qtab th:first-child, .qtab td:first-child { padding-right:8px; }
+  @media (max-width:420px){ .qtab { font-size:13px; } .qtab td.r, .qtab th.r { padding-left:12px; } }
   .qtab .qd { color:var(--grey-500); font-size:12.5px; }
   .qcard { background:var(--white); border:1px solid var(--grey-200); border-radius:var(--r-lg); box-shadow:var(--shadow-md); overflow:hidden; }
   .qcard-head { padding:24px 26px 18px; border-bottom:1px solid var(--grey-200); }
