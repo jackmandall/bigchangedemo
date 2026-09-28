@@ -412,19 +412,19 @@
     <div class="qr-grid">
       <div><div class="qcard">
   <div class="qcard-head">
-    <span class="qcard-tag">11 users + subcontractor app &middot; 36 month term</span>
-    <div class="qcard-price">&pound;968<small> / month</small></div>
-    <div class="qcard-vat">&pound;1,161.60 inc VAT &middot; order 41288767080</div>
+    <span class="qcard-tag">11 licences + subcontractor app &middot; 36 month term</span>
+    <div class="qcard-price">&pound;1,008<small> / month</small></div>
+    <div class="qcard-vat">&pound;1,209.60 inc VAT &middot; order 41288767080</div>
   </div>
   <div class="qcard-body">
     <table class="qtab">
       <thead><tr><th>Item</th><th class="r">Qty</th><th class="r">Per month</th></tr></thead>
       <tbody>
-        <tr><td>Field app with rugged tablet and hard wired tracking<div class="qd">JobWatch Plus: tablet, cradle, sat nav, data and 2 year warranty, &pound;85 each</div></td><td class="r">6</td><td class="r">&pound;510.00</td></tr>
-        <tr><td>Back office web user<div class="qd">Full JobWatch back office, &pound;65 each</div></td><td class="r">5</td><td class="r">&pound;325.00</td></tr>
+        <tr><td>Field app with rugged tablet and hard wired tracking<div class="qd">JobWatch Plus: tablet, cradle, sat nav, data and 2 year warranty, &pound;85 each</div></td><td class="r">8</td><td class="r">&pound;680.00</td></tr>
+        <tr><td>Back office web user<div class="qd">Full JobWatch back office, &pound;65 each</div></td><td class="r">3</td><td class="r">&pound;195.00</td></tr>
         <tr><td>Premier implementation package<div class="qd">Hands on onboarding and UK support, spread across the term</div></td><td class="r">1</td><td class="r">&pound;133.00</td></tr>
         <tr><td>Xero link<div class="qd">Accounts integration, setup and support included</div></td><td class="r">1</td><td class="r">&pound;0.00</td></tr>
-        <tr><td>Subcontractor licences<div class="qd">Pool of 5, billed &pound;1 per completed job in arrears</div></td><td class="r">5</td><td class="r">&pound;0.00</td></tr>
+        <tr><td>Subcontractor licences<div class="qd">Pool of 12, billed &pound;1 per completed job in arrears</div></td><td class="r">12</td><td class="r">&pound;0.00</td></tr>
       </tbody>
     </table>
     <ul class="qincl">
@@ -435,7 +435,7 @@
       <li>Parent and child CRM and branded booking sites</li>
       <li>AI job summaries and Leeds based UK support</li>
     </ul>
-    <div class="qnote">Conditional sale over a 36 month minimum term. The first payment and 35 monthly payments are each <b>&pound;968.00</b> exc VAT (<b>&pound;1,161.60</b> inc VAT). Subcontractor jobs are billed at &pound;1 per completed job in arrears.</div>
+    <div class="qnote">Conditional sale over a 36 month minimum term. The first payment and 35 monthly payments are each <b>&pound;1,008.00</b> exc VAT (<b>&pound;1,209.60</b> inc VAT), commencing 30 September 2026. Subcontractor jobs are billed at &pound;1 per completed job in arrears.</div>
     <a href="https://landing.bigchange.com/c67e26f5bfc8fccd4765" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:9px;font-family:'Roboto Flex',Arial,sans-serif;font-weight:700;font-size:15px;padding:13px 24px;border-radius:999px;background:var(--grad-energy);color:#fff;box-shadow:0 8px 22px rgba(0,114,206,.35);">View and sign your quote &rarr;</a>
   </div>
 </div></div>
@@ -449,7 +449,7 @@
       <div class="calc-inputs">
         <div class="calc-field">
           <label>How many engineers or technicians do you have?</label>
-          <div class="calc-row"><input type="number" class="calc-num" id="engineer-count" min="1" max="100" value="6"></div>
+          <div class="calc-row"><input type="number" class="calc-num" id="engineer-count" min="1" max="100" value="8"></div>
         </div>
         <div class="calc-field">
           <label>How many jobs does each engineer complete each day?</label>
@@ -457,7 +457,7 @@
         </div>
         <div class="calc-field">
           <label>How many office staff work with your field team?</label>
-          <div class="calc-row"><input type="number" class="calc-num" id="office-count" min="1" max="100" value="5"></div>
+          <div class="calc-row"><input type="number" class="calc-num" id="office-count" min="1" max="100" value="3"></div>
         </div>
         <div class="calc-field">
           <label>What's the average revenue per job (&pound;)?</label>
@@ -639,7 +639,7 @@
     document.getElementById('out-fuel-saving').textContent = gbp(fuelSav);
     document.getElementById('out-engineer-productivity').textContent = gbp(engSav);
     document.getElementById('out-business-benefit').textContent = gbp(benefit);
-    var coiSub = 11616; var coiNet = Math.max(0, benefit - coiSub);
+    var coiSub = 12096; var coiNet = Math.max(0, benefit - coiSub);
     var _cm=document.getElementById('coi-month');
     if(_cm){ _cm.textContent=gbp(Math.round(coiNet/12)); document.getElementById('coi-week').textContent=gbp(Math.round(coiNet/52)); document.getElementById('coi-day').textContent=gbp(Math.round(coiNet/365)); }
     document.getElementById('out-saving-per-job').textContent = gbp(savingPerJob);
